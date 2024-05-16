@@ -15,9 +15,12 @@ public class RegistroDto implements Serializable{
 	private String correo;
 	private String contrasena;
 	private Integer idrol ;
+	private Integer idperfil ;
 	private Integer creadoridusuario;
 	private Integer id_codigo_postal;
-
+	private String nombre_empren;
+	private String descripcion;
+	private String industria;
 	public String getNombre() {
 		return nombre;
 	}
@@ -72,8 +75,12 @@ public class RegistroDto implements Serializable{
 	public void setIdrol(Integer idrol) {
 		this.idrol = idrol;
 	}
-
-	
+	public Integer getIdperfil() {
+		return idperfil;
+	}
+	public void setIdperfil(Integer idperfil) {
+		this.idperfil = idperfil;
+	}
 	public Integer getCreadoridusuario() {
 		return creadoridusuario;
 	}
@@ -86,8 +93,26 @@ public class RegistroDto implements Serializable{
 	public void setId_codigo_postal(Integer id_codigo_postal) {
 		this.id_codigo_postal = id_codigo_postal;
 	}
+	public String getNombre_empren() {
+		return nombre_empren;
+	}
+	public void setNombre_empren(String nombre_empren) {
+		this.nombre_empren = nombre_empren;
+	}
+	public String getDescripcion() {
+		return descripcion;
+	}
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+	public String getIndustria() {
+		return industria;
+	}
+	public void setIndustria(String industria) {
+		this.industria = industria;
+	}
 
-	
+
 	
 	
 	

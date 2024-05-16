@@ -31,6 +31,9 @@ private String apellido_paterno;
 @Column(name = "direccion")
 private String direccion;
 
+@Column(name = "telefono")
+private String telefono; 
+
 @Column(name = "referencia")
 private String refencia;
 
@@ -125,6 +128,14 @@ public Integer getId_codigo_postal() {
 
 public void setId_codigo_postal(Integer id_codigo_postal) {
 	this.id_codigo_postal = id_codigo_postal;
+}
+
+public String getTelefono() {
+	return telefono;
+}
+
+public void setTelefono(String telefono) {
+	this.telefono = telefono;
 }
 
 

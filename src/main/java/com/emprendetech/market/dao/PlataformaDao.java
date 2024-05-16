@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -49,12 +50,29 @@ public class PlataformaDao {
 }	
 	
 	    public String getCorreo(String Correo) {
-	        String sql2 = "SELECT correo FROM emprendetech_market.usuario where correo='"+Correo+"';";
-	        return jdbcTemplate.queryForObject(sql2, new Object[] {}, (rs, rowNum) -> {
-	            return rs.getString("correo"); // Aquí puedes seleccionar la columna que deseas retornar
-	        });
+	        try {
+	            String sql2 = "SELECT correo FROM emprendetech_market.usuario where correo='"+Correo+"';";
+	            return jdbcTemplate.queryForObject(sql2, new Object[] {}, (rs, rowNum) -> {
+	                return rs.getString("correo"); // Aquí puedes seleccionar la columna que deseas retornar
+	            });
+	        } catch (EmptyResultDataAccessException e) {
+	            return null;
+	        }
 	    }
 
+	    
+	    
+	    public String getEmp(Integer Perfilemp) {
+	        String sql3 = "SELECT nombre FROM emprendetech_market.perfiles where idperfil="+Perfilemp+";";
+	        return jdbcTemplate.queryForObject(sql3, new Object[] {}, (rs, rowNum) -> {
+	            return rs.getString("nombre"); // Aquí puedes seleccionar la columna que deseas retornar
+	        });
+	    }
+	    
+
+
+	    
+	    
 	
 }
 	
