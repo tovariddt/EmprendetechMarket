@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.emprendetech.market.service.responseDto.PostalRespDto;
 import com.emprendetech.market.service.responseDto.RolesRespDto;
+import com.emprendetech.market.service.responseDto.PersonaUsuarioRespDTO;
+import com.emprendetech.market.service.requestDto.UsuarioContraseñaDto;
+import com.emprendetech.market.service.responseDto.EmprendimientosRespDTO;
 
 @Repository
 public class PlataformaDao {
@@ -59,17 +62,57 @@ public class PlataformaDao {
 	            return null;
 	        }
 	    }
-
+ 
 	    
-	    
-	    public String getEmp(Integer Perfilemp) {
-	        String sql3 = "SELECT nombre FROM emprendetech_market.perfiles where idperfil="+Perfilemp+";";
+	    public int getEmp(Integer Perfilemp) {
+	        String sql3 = "SELECT idperfil FROM emprendetech_market.perfiles where idperfil="+Perfilemp+";";
 	        return jdbcTemplate.queryForObject(sql3, new Object[] {}, (rs, rowNum) -> {
-	            return rs.getString("nombre"); // Aquí puedes seleccionar la columna que deseas retornar
+	            return rs.getInt("idperfil"); // Aquí puedes seleccionar la columna que deseas retornar
 	        });
 	    }
 	    
-
+	    
+	    public List<PersonaUsuarioRespDTO> getUsuarioPersona(String correo, String contraseña) {
+	            String sql4 = "SELECT nombreusuario, correo ,idrol,idperfil , nombre,apellido_paterno,apellido_materno,telefono, direccion ,id_codigo_postal\r\n"
+	            		+ "FROM emprendetech_market.usuario\r\n"
+	            		+ "INNER JOIN emprendetech_market.personas ON emprendetech_market.usuario.idpersona = emprendetech_market.personas.idpersona\r\n"
+	            		+ "where emprendetech_market.usuario.contrasena='"+contraseña+"' and emprendetech_market.usuario.correo= '"+correo+"';";
+	            return jdbcTemplate.query(sql4, new Object[] {}, (rs, rowNum) -> {
+	               PersonaUsuarioRespDTO dto4 = new PersonaUsuarioRespDTO ();
+				   dto4.setNombreusuario(rs.getString("nombreusuario"));
+				   dto4.setCorreo(rs.getString("correo"));
+				   dto4.setIdrol(rs.getInt("idrol"));
+				   dto4.setIdperfil(rs.getInt("idperfil"));
+				   dto4.setNombre(rs.getString("nombre"));
+				   dto4.setApellido_paterno(rs.getString("apellido_paterno"));
+				   dto4.setApellido_materno(rs.getString("apellido_materno"));
+				   dto4.setTelefono(rs.getString("telefono"));
+				   dto4.setDireccion(rs.getString("direccion"));
+				   dto4.setId_codigo_postal(rs.getInt("id_codigo_postal"));
+	              return dto4; // Aquí puedes seleccionar la columna que deseas retornar
+	            });
+	         }
+	    
+	    public List<EmprendimientosRespDTO> getEmprendimientos(String correo, String contraseña) {
+	        try {
+	            String sql5 = "SELECT emprendetech_market.emprendimientos.nombre,emprendetech_market.emprendimientos.descripcion, emprendetech_market.emprendimientos.industria\r\n"
+	            		+ "FROM emprendetech_market.usuario\r\n"
+	            		+ "INNER JOIN emprendetech_market.personas ON emprendetech_market.usuario.idpersona = emprendetech_market.personas.idpersona\r\n"
+	            		+ "INNER JOIN emprendetech_market.emprendimientos ON emprendetech_market.usuario.idpersona = emprendetech_market.emprendimientos.idpersona\r\n"
+	            		+ "where emprendetech_market.usuario.contrasena='"+contraseña+"' and emprendetech_market.usuario.correo='"+correo+"';";
+	          
+	            
+	            return jdbcTemplate.query(sql5, new Object[] {}, (rs, rowNum) -> {
+	               	EmprendimientosRespDTO dto5 = new EmprendimientosRespDTO();
+	            	dto5.setNombre(rs.getString("nombre"));
+	                dto5.setDescripcion(rs.getString("descripcion"));
+	                dto5.setIndustria(rs.getString("industria"));
+	            	return dto5; // Aquí puedes seleccionar la columna que deseas retornar
+	            });
+	        } catch (EmptyResultDataAccessException e) {
+	            return null;
+	        }
+	    }
 
 	    
 	    

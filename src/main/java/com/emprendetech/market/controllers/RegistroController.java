@@ -68,7 +68,7 @@ public class RegistroController {
 				    String NombreUsuario=registroDto.getNombre()+" "+registroDto.getApellido_paterno();
 				    
 				    usuarioInsert.setIdpersona(personasInsert.getIdpersona());
-				    usuarioInsert.setContrasena(registroDto.getContrasena());
+				    usuarioInsert.setContrasena(registroDto.getContraseña());
 				    usuarioInsert.setCorreo(registroDto.getCorreo());
 				    usuarioInsert.setIdrol(registroDto.getIdrol());
 				    usuarioInsert.setIdperfil(registroDto.getIdperfil());
@@ -82,8 +82,8 @@ public class RegistroController {
 					LOG.info(personasInsert.getIdpersona());
 
 					}
-					    String perfilCom = perfilDao.getEmp(registroDto.getIdperfil());	
-				        boolean sonIguales = perfilCom.equals("Emprendedor");
+					    Integer perfilCom = perfilDao.getEmp(registroDto.getIdperfil());	
+				        boolean sonIguales = (perfilCom==3);
 						LOG.info(perfilCom);
 					    if (sonIguales)
 					    {
