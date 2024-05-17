@@ -19,7 +19,12 @@ import com.emprendetech.market.repositorys.UsuarioRepository;
 import com.emprendetech.market.service.requestDto.RegistroDto;
 import com.emprendetech.market.utils.Utils;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Data
 @Controller
 public class RegistroController {
 	
@@ -72,13 +77,13 @@ public class RegistroController {
 				    usuarioInsert.setCorreo(registroDto.getCorreo());
 				    usuarioInsert.setIdrol(registroDto.getIdrol());
 				    usuarioInsert.setIdperfil(registroDto.getIdperfil());
-				    usuarioInsert.setNombreusuarui(NombreUsuario);
+				    usuarioInsert.setNombreusuario(NombreUsuario);
 				    usuarioInsert.setCreadoridusuario(registroDto.getCreadoridusuario());  
 				    usuarioInsert.setFechacreacion(util.currentDate());	
 				    usuarioInsert.setFechamodificacion(util.currentDate());
 				    usuarioInsert=usuarioRepository.save(usuarioInsert);	 
 				    
-				    response ="Felicidades fue registrado como="+usuarioInsert.getNombreusuarui();
+				    response ="Felicidades fue registrado como="+usuarioInsert.getNombreusuario();
 					LOG.info(personasInsert.getIdpersona());
 
 					}
