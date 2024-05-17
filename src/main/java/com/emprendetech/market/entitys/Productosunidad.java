@@ -8,7 +8,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+@Getter 
+@Setter 
+@NoArgsConstructor 
 @Entity
 @Table(name = "productosunidad")
 public class Productosunidad {
@@ -33,53 +38,7 @@ public class Productosunidad {
 	@Column(name="fechamodificacion")
 	private Timestamp fechamodificacion;
 
-	public Integer getIdproductounidad() {
-		return idproductounidad;
-	}
 
-	public void setIdproductounidad(Integer idproductounidad) {
-		this.idproductounidad = idproductounidad;
-	}
-
-	public Integer getIdproducto() {
-		return idproducto;
-	}
-
-	public void setIdproducto(Integer idproducto) {
-		this.idproducto = idproducto;
-	}
-
-	public Integer getIdmedida() {
-		return idmedida;
-	}
-
-	public void setIdmedida(Integer idmedida) {
-		this.idmedida = idmedida;
-	}
-
-	public Integer getCreadoridusuario() {
-		return creadoridusuario;
-	}
-
-	public void setCreadoridusuario(Integer creadoridusuario) {
-		this.creadoridusuario = creadoridusuario;
-	}
-
-	public Timestamp getFechacreacion() {
-		return fechacreacion;
-	}
-
-	public void setFechacreacion(Timestamp fechacreacion) {
-		this.fechacreacion = fechacreacion;
-	}
-
-	public Timestamp getFechamodificacion() {
-		return fechamodificacion;
-	}
-
-	public void setFechamodificacion(Timestamp fechamodificacion) {
-		this.fechamodificacion = fechamodificacion;
-	}
 	
 	
 	

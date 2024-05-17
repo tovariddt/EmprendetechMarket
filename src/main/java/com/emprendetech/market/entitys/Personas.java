@@ -6,10 +6,16 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.sql.Timestamp;
 
 import javax.management.loading.PrivateClassLoader;
-
+@Getter 
+@Setter 
+@NoArgsConstructor 
 @Entity
 @Table(name="personas")
 public class Personas {
@@ -48,95 +54,6 @@ private Timestamp fechamodificacion;
 
 @Column(name = "id_codigo_postal")
 private Integer id_codigo_postal;
-
-
-public Integer getIdpersona() {
-	return idpersona;
-}
-
-public void setIdpersona(Integer idpersona) {
-	this.idpersona = idpersona;
-}
-
-public String getNombre() {
-	return nombre;
-}
-
-public void setNombre(String nombre) {
-	this.nombre = nombre;
-}
-
-public String getApellido_materno() {
-	return apellido_materno;
-}
-
-public void setApellido_materno(String apellido_materno) {
-	this.apellido_materno = apellido_materno;
-}
-
-public String getApellido_paterno() {
-	return apellido_paterno;
-}
-
-public void setApellido_paterno(String apellido_paterno) {
-	this.apellido_paterno = apellido_paterno;
-}
-
-public String getDireccion() {
-	return direccion;
-}
-
-public void setDireccion(String direccion) {
-	this.direccion = direccion;
-}
-
-public String getRefencia() {
-	return refencia;
-}
-
-public void setRefencia(String refencia) {
-	this.refencia = refencia;
-}
-
-public Integer getCreadoridusuario() {
-	return creadoridusuario;
-}
-
-public void setCreadoridusuario(Integer creadoridusuario) {
-	this.creadoridusuario = creadoridusuario;
-}
-
-public Timestamp getFechacreacion() {
-	return fechacreacion;
-}
-
-public void setFechacreacion(Timestamp fechacreacion) {
-	this.fechacreacion = fechacreacion;
-}
-
-public Timestamp getFechamodificacion() {
-	return fechamodificacion;
-}
-
-public void setFechamodificacion(Timestamp fechamodificacion) {
-	this.fechamodificacion = fechamodificacion;
-}
-
-public Integer getId_codigo_postal() {
-	return id_codigo_postal;
-}
-
-public void setId_codigo_postal(Integer id_codigo_postal) {
-	this.id_codigo_postal = id_codigo_postal;
-}
-
-public String getTelefono() {
-	return telefono;
-}
-
-public void setTelefono(String telefono) {
-	this.telefono = telefono;
-}
 
 
 }
