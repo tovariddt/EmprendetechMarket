@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -108,26 +109,33 @@ public class PlataformaServiceImpl {
 		return response;
 	}
 	
-	@PostMapping("/Correo")
-	public ResponseEntity<?> getCorreo(@RequestBody RegistroDto request) {
+	        @PostMapping("/Correo")
+			public ResponseEntity<?> getCorreo(@RequestBody RegistroDto request) {
+			    LOG.info("getCorreoComprobacion - getCorreoComprobacion() Method");
 
-		LOG.info("getCorreoComprobacion - getCorreoComprobacion() Method");
-		ResponseEntity<?> response = null;
-		String correo = request.getCorreo();
-		try {
-			String  Comprobacion = new String();
-			Comprobacion = CorreoDAo.getCorreo(correo);
-			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("200 OK", "Codigo");
-			responseContenido.setContenido(Comprobacion+" Este correo ya existe");
-			response = new ResponseEntity<>(responseContenido, HttpStatus.OK);
+			    ResponseEntity<?> response = null;
+			    HttpHeaders headers = new HttpHeaders();
+			    String correo = request.getCorreo();
+			    String Comprobacion = CorreoDAo.getCorreo(correo);
+			    boolean Existe = Comprobacion == null;
 
-		} catch (Exception e) {
-			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("error", "Codigo");
-			responseContenido.setContenido(correo+" Este correo no existe");
-			response = new ResponseEntity<>(responseContenido, HttpStatus.OK);
-		}
-		return response;
-	}
+			    if (Comprobacion == null) {
+					List<RolesRespDto> result = new ArrayList<RolesRespDto>();
+			        // Si Comprobacion es null, significa que no se encontró el correo
+			        final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("200 OK", "Codigo");
+			        responseContenido.setContenido(Existe);
+			        response = new ResponseEntity<>(responseContenido, headers, HttpStatus.NOT_FOUND);
+			    } else {
+			        // Si Comprobacion no es null, entonces se encontró el correo
+
+			        final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("200 OK", "Codigo");
+			        responseContenido.setContenido(Existe);
+			        response = new ResponseEntity<>(responseContenido, headers, HttpStatus.OK);
+			    }
+
+			    return response;
+			}
+
 	
 	
 	

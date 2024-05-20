@@ -18,8 +18,8 @@ public class Emprendimientos {
 	@Column(name = "idemprendimiento")
 	private Integer idemprendimiento;
 	
-	@Column(name = "idpropietario")
-	private Integer idpropietario;
+	@Column(name = "idpersona")
+	private Integer idpersona;
 	
 	@Column(name = "nombre")
 	private String nombre;
@@ -47,12 +47,12 @@ public class Emprendimientos {
 		this.idemprendimiento = idemprendimiento;
 	}
 
-	public Integer getIdpropietario() {
-		return idpropietario;
+	public Integer getIdpersona() {
+		return idpersona;
 	}
 
-	public void setIdpropietario(Integer idpropietario) {
-		this.idpropietario = idpropietario;
+	public void setIdpersona(Integer idpersona) {
+		this.idpersona = idpersona;
 	}
 
 	public String getNombre() {
