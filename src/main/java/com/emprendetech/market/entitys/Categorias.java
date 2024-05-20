@@ -9,7 +9,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+@Getter 
+@Setter 
+@NoArgsConstructor 
 @Entity
 @Table(name="categorias")
 public class Categorias {
@@ -29,48 +34,5 @@ public class Categorias {
 
 	@Column(name="fechamodificacion")
 	private Timestamp fechamodificacion;
-
-	public Integer getIdcategoria() {
-		return idcategoria;
-	}
-
-	public void setIdcategoria(Integer idcategoria) {
-		this.idcategoria = idcategoria;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public Integer getCreadoridusuario() {
-		return creadoridusuario;
-	}
-
-	public void setCreadoridusuario(Integer creadoridusuario) {
-		this.creadoridusuario = creadoridusuario;
-	}
-
-	public Timestamp getFechacreacion() {
-		return fechacreacion;
-	}
-
-	public void setFechacreacion(Timestamp fechacreacion) {
-		this.fechacreacion = fechacreacion;
-	}
-
-	public Timestamp getFechamodificacion() {
-		return fechamodificacion;
-	}
-
-	public void setFechamodificacion(Timestamp fechamodificacion) {
-		this.fechamodificacion = fechamodificacion;
-	}
-
 	
-	
-
 }

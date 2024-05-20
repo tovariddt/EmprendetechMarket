@@ -8,7 +8,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+@Getter 
+@Setter 
+@NoArgsConstructor 
 @Entity
 @Table(name = "productos")
 public class Productos {
@@ -48,94 +53,7 @@ public class Productos {
 	@Column(name="fechamodificacion")
 	private Timestamp fechamodificacion;
 
-	public Integer getIdproducto() {
-		return idproducto;
-	}
 
-	public void setIdproducto(Integer idproducto) {
-		this.idproducto = idproducto;
-	}
-
-	public String getSku() {
-		return sku;
-	}
-
-	public void setSku(String sku) {
-		this.sku = sku;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public String getDescripcion() {
-		return descripcion;
-	}
-
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
-
-	public Integer getCantidad_disponible() {
-		return cantidad_disponible;
-	}
-
-	public void setCantidad_disponible(Integer cantidad_disponible) {
-		this.cantidad_disponible = cantidad_disponible;
-	}
-
-	public String getImagen() {
-		return imagen;
-	}
-
-	public void setImagen(String imagen) {
-		this.imagen = imagen;
-	}
-
-	public Integer getIdemprendimiento() {
-		return idemprendimiento;
-	}
-
-	public void setIdemprendimiento(Integer idemprendimiento) {
-		this.idemprendimiento = idemprendimiento;
-	}
-
-	public Integer getIdcategoria() {
-		return idcategoria;
-	}
-
-	public void setIdcategoria(Integer idcategoria) {
-		this.idcategoria = idcategoria;
-	}
-
-	public Integer getCreadoridusuario() {
-		return creadoridusuario;
-	}
-
-	public void setCreadoridusuario(Integer creadoridusuario) {
-		this.creadoridusuario = creadoridusuario;
-	}
-
-	public Timestamp getFechacreacion() {
-		return fechacreacion;
-	}
-
-	public void setFechacreacion(Timestamp fechacreacion) {
-		this.fechacreacion = fechacreacion;
-	}
-
-	public Timestamp getFechamodificacion() {
-		return fechamodificacion;
-	}
-
-	public void setFechamodificacion(Timestamp fechamodificacion) {
-		this.fechamodificacion = fechamodificacion;
-	}
-	
 	
 
 }

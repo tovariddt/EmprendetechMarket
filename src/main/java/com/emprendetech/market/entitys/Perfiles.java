@@ -15,10 +15,9 @@ import lombok.Setter;
 import java.sql.Timestamp;
 
 
-				//	@Setter
-					//@Getter
-					//@AllArgsConstructor
-				//	@NoArgsConstructor
+@Getter 
+@Setter 
+@NoArgsConstructor 
 @Entity
 @Table(name="perfiles")
 public class Perfiles {
@@ -44,55 +43,6 @@ private Timestamp fechacreacion;
 
 @Column(name="fechamodificacion")
 private Timestamp fechamodificacion;
-
-public Integer getIdperfil() {
-	return idperfil;
-}
-
-public void setIdperfil(Integer idperfil) {
-	this.idperfil = idperfil;
-}
-
-public String getNombre() {
-	return nombre;
-}
-
-public void setNombre(String nombre) {
-	this.nombre = nombre;
-}
-
-public String getDescripcion() {
-	return descripcion;
-}
-
-public void setDescripcion(String descripcion) {
-	this.descripcion = descripcion;
-}
-
-public Integer getCreadoridusuario() {
-	return creadoridusuario;
-}
-
-public void setCreadoridusuario(Integer creadoridusuario) {
-	this.creadoridusuario = creadoridusuario;
-}
-
-public Timestamp getFechacreacion() {
-	return fechacreacion;
-}
-
-public void setFechacreacion(Timestamp fechacreacion) {
-	this.fechacreacion = fechacreacion;
-}
-
-public Timestamp getFechamodificacion() {
-	return fechamodificacion;
-}
-
-public void setFechamodificacion(Timestamp fechamodificacion) {
-	this.fechamodificacion = fechamodificacion;
-}
-
 
 
 }

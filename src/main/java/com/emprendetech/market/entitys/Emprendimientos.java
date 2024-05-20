@@ -8,7 +8,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+@Getter 
+@Setter 
+@NoArgsConstructor 
 @Entity
 @Table(name = "emprendimientos")
 public class Emprendimientos {
@@ -39,69 +44,7 @@ public class Emprendimientos {
 	@Column(name="fechamodificacion")
 	private Timestamp fechamodificacion;
 
-	public Integer getIdemprendimiento() {
-		return idemprendimiento;
-	}
 
-	public void setIdemprendimiento(Integer idemprendimiento) {
-		this.idemprendimiento = idemprendimiento;
-	}
-
-	public Integer getIdpersona() {
-		return idpersona;
-	}
-
-	public void setIdpersona(Integer idpersona) {
-		this.idpersona = idpersona;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public String getDescripcion() {
-		return descripcion;
-	}
-
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
-
-	public String getIndustria() {
-		return industria;
-	}
-
-	public void setIndustria(String industria) {
-		this.industria = industria;
-	}
-
-	public Integer getCreadoridusuario() {
-		return creadoridusuario;
-	}
-
-	public void setCreadoridusuario(Integer creadoridusuario) {
-		this.creadoridusuario = creadoridusuario;
-	}
-
-	public Timestamp getFechacreacion() {
-		return fechacreacion;
-	}
-
-	public void setFechacreacion(Timestamp fechacreacion) {
-		this.fechacreacion = fechacreacion;
-	}
-
-	public Timestamp getFechamodificacion() {
-		return fechamodificacion;
-	}
-
-	public void setFechamodificacion(Timestamp fechamodificacion) {
-		this.fechamodificacion = fechamodificacion;
-	}
 	
 	
 	

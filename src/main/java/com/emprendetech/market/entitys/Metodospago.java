@@ -30,45 +30,7 @@ public class Metodospago {
 	@Column(name="fechamodificacion")
 	private Timestamp fechamodificacion;
 
-	public Integer getIdmetodospago() {
-		return idmetodospago;
-	}
 
-	public void setIdmetodospago(Integer idmetodospago) {
-		this.idmetodospago = idmetodospago;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public Integer getCreadoridusuario() {
-		return creadoridusuario;
-	}
-
-	public void setCreadoridusuario(Integer creadoridusuario) {
-		this.creadoridusuario = creadoridusuario;
-	}
-
-	public Timestamp getFechacreacion() {
-		return fechacreacion;
-	}
-
-	public void setFechacreacion(Timestamp fechacreacion) {
-		this.fechacreacion = fechacreacion;
-	}
-
-	public Timestamp getFechamodificacion() {
-		return fechamodificacion;
-	}
-
-	public void setFechamodificacion(Timestamp fechamodificacion) {
-		this.fechamodificacion = fechamodificacion;
-	}
 	
 	
 }
