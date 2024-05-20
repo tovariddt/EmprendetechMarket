@@ -13,7 +13,7 @@ public class RegistroDto implements Serializable{
 	private String referencia;
 	private String telefono;
 	private String correo;
-	private String contrasena;
+	private String contraseña;
 	private Integer idrol ;
 	private Integer idperfil ;
 	private Integer creadoridusuario;
@@ -63,11 +63,13 @@ public class RegistroDto implements Serializable{
 	public void setCorreo(String correo) {
 		this.correo = correo;
 	}
-	public String getContrasena() {
-		return contrasena;
+
+	
+	public String getContraseña() {
+		return contraseña;
 	}
-	public void setContrasena(String contrasena) {
-		this.contrasena = contrasena;
+	public void setContraseña(String contraseña) {
+		this.contraseña = contraseña;
 	}
 	public Integer getIdrol() {
 		return idrol;
