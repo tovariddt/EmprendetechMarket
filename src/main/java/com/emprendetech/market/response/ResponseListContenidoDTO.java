@@ -14,7 +14,7 @@ public class ResponseListContenidoDTO<T> extends BaseResponseDTO {
 	public ResponseListContenidoDTO(String codigo, String mensaje) {
 		super(codigo, mensaje);
 	}
-	
+
 	private List<T> contenido = new ArrayList<T>();
 
 	public List<T> getContenido() {
@@ -24,5 +24,5 @@ public class ResponseListContenidoDTO<T> extends BaseResponseDTO {
 	public void setContenido(List<T> contenido) {
 		this.contenido = contenido;
 	}
-	
+
 }

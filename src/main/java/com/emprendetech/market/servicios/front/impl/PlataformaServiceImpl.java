@@ -53,238 +53,231 @@ public class PlataformaServiceImpl {
 
 	@Autowired
 	private PlataformaDao rolesDao, perfilesDao, codigoDao, correoDao, consultaDao, categoriaDao;
-	
+
 	@Autowired
 	private RegistroController AltaUsuario;
 	@Autowired
 	private ProductoController AltaProducto, ActualizarProducto;
-	
-	
 
-		@GetMapping("/roles")
-		public ResponseEntity<?> getAllRoles() {
+	@GetMapping("/roles")
+	public ResponseEntity<?> getAllRoles() {
+
+		LOG.info("getAllRoles - getAllRoles() Method");
+		ResponseEntity<?> responseroles = null;
+		List<RolesRespDto> resultroles = new ArrayList<RolesRespDto>();
+
+		try {
+
+			resultroles = rolesDao.getRoles();
+
+			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("200 OK", "Roles");
+			responseContenido.setContenido(resultroles);
+			responseroles = new ResponseEntity<>(responseContenido, HttpStatus.OK);
+
+		} catch (Exception e) {
+			LOG.error("eror" + e.getStackTrace());
+			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("error", "Roles");
+		}
+
+		return responseroles;
+	}
+
+	@GetMapping("/perfiles")
+	public ResponseEntity<?> getAllPerfiles() {
+
+		LOG.info("getAllPerfiles - getAllPerfiles() Method");
+		ResponseEntity<?> responseperfiles = null;
+		List<PerfilesRespDto> resultperfiles = new ArrayList<PerfilesRespDto>();
+		try {
+
+			resultperfiles = perfilesDao.getPefiles();
+
+			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("200 OK", "Perfiles");
+			responseContenido.setContenido(resultperfiles);
+			responseperfiles = new ResponseEntity<>(responseContenido, HttpStatus.OK);
+
+		} catch (Exception e) {
+			LOG.error("eror" + e.getStackTrace());
+			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("error", "Perfiles");
+		}
+
+		return responseperfiles;
+	}
+
 	
-			LOG.info("getAllRoles - getAllRoles() Method");
-			ResponseEntity<?> response = null;
+	@GetMapping("/codigopostal")
+	public ResponseEntity<?> getAllCodigoPostal(@RequestBody PostalRespDto request) {
+
+		LOG.info("getAllCodigoPostal - getAllCodigoPostal() Method");
+		ResponseEntity<?> responsecodigopostal = null;
+		String clave = request.getClave();
+		
+		List<PostalRespDto> resultcodigopostal = new ArrayList<PostalRespDto>();
+
+		try {
+			resultcodigopostal = codigoDao.getCodigo(clave);
+			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("200 OK", "Codigo");
+			responseContenido.setContenido(resultcodigopostal);
+			responsecodigopostal = new ResponseEntity<>(responseContenido, HttpStatus.OK);
+
+		} catch (Exception e) {
+			LOG.error("eror codigo" + e.getStackTrace());
+			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("error", "Codigo");
+		}
+		return responsecodigopostal;
+	}
+
+	@PostMapping("/Alta")
+	public ResponseEntity<?> postRegistro(@RequestBody RegistroDto registrodto) {
+
+		LOG.info("getRegistro - getRegistro() Method");
+		ResponseEntity<?> responsealta = null;
+		try {
+			String altausuario = new String();
+			altausuario = AltaUsuario.AltaUsuario(registrodto);
+			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("200 OK", "Codigo");
+			responseContenido.setContenido(altausuario);
+			responsealta = new ResponseEntity<>(responseContenido, HttpStatus.OK);
+
+		} catch (Exception e) {
+			LOG.error("eror codigo" + e.getStackTrace());
+			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("error", "Codigo");
+		}
+
+		return responsealta;
+	}
+
 	
-			try {
-				List<RolesRespDto> result = new ArrayList<RolesRespDto>();
-	
-				result = rolesDao.getRoles();
-	
-				final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("200 OK", "Roles");
-				responseContenido.setContenido(result);
-				response = new ResponseEntity<>(responseContenido, HttpStatus.OK);
-	
-			} catch (Exception e) {
-				LOG.error("eror" + e.getStackTrace());
-				final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("error", "Roles");
+	@GetMapping("/Correo")
+	public ResponseEntity<?> getCorreo(@RequestBody Usuario request) {
+		LOG.info("getCorreoComprobacion - getCorreoComprobacion() Method");
+
+		ResponseEntity<?> responsecorreo = null;
+		List<CompCorreoRespDto> resultcorreo  = new ArrayList<CompCorreoRespDto>();
+
+		try {
+			String correo = request.getCorreo();
+			String Comprobacion = correoDao.getCorreo(correo);
+			boolean Existe = Comprobacion == null;
+
+			CompCorreoRespDto PruebaCorreo = new CompCorreoRespDto();
+			PruebaCorreo.setCorreo(correo);
+			PruebaCorreo.setValor(Existe);
+
+			if (Comprobacion == null) {
+				PruebaCorreo.setMensaje("No Existe");
+			} else {
+				PruebaCorreo.setMensaje("Existe");
 			}
-	
-			return response;
+
+			resultcorreo.add(PruebaCorreo);
+			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("200 OK", "Codigo");
+			responseContenido.setContenido(resultcorreo);
+			responsecorreo = new ResponseEntity<>(responseContenido, HttpStatus.OK);
+		} catch (Exception e) {
+			LOG.error("eror codigo" + e.getStackTrace());
+			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("error", "Codigo");
 		}
-		
-		@GetMapping("/perfiles")
-		public ResponseEntity<?> getAllPerfiles() {
+		return responsecorreo;
+	}
+
 	
-			LOG.info("getAllPerfiles - getAllPerfiles() Method");
-			ResponseEntity<?> response = null;
-	
-			try {
-				List<PerfilesRespDto> result = new ArrayList<PerfilesRespDto>();
-	
-				result = perfilesDao.getPefiles();
-	
-				final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("200 OK", "Perfiles");
-				responseContenido.setContenido(result);
-				response = new ResponseEntity<>(responseContenido, HttpStatus.OK);
-	
-			} catch (Exception e) {
-				LOG.error("eror" + e.getStackTrace());
-				final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("error", "Perfiles");
-			}
-	
-			return response;
+	@GetMapping("/Consulta")
+	public ResponseEntity<?> getUsuarioPersona(@RequestBody UsuarioContraseñaDto CorroContraseña) {
+		LOG.info("getUsuarioPersona - getUsuarioPersona() Method");
+
+		ResponseEntity<?> responseconsulta = null;
+		String correo = CorroContraseña.getCorreo();
+		String contraseña = CorroContraseña.getContraseña();
+
+		try {
+
+			List<PersonaUsuarioRespDTO> resultpersonausuario = new ArrayList<PersonaUsuarioRespDTO>();
+			resultpersonausuario = consultaDao.getUsuarioPersona(correo, contraseña);
+
+			List<EmprendimientosRespDTO> resultemprendimientos = new ArrayList<EmprendimientosRespDTO>();
+			resultemprendimientos = consultaDao.getEmprendimientos(correo, contraseña);
+
+			UsuarioEmprendimientoRespDto usuarioemprendimiento = new UsuarioEmprendimientoRespDto();
+			usuarioemprendimiento.setEmprendimiento(resultemprendimientos);
+			usuarioemprendimiento.setPersonausuario(resultpersonausuario);
+
+			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("200 OK", "Usuario");
+			responseContenido.setContenido(usuarioemprendimiento);
+			responseconsulta = new ResponseEntity<>(responseContenido, HttpStatus.OK);
+
+		} catch (Exception e) {
+			LOG.error("eror codigo" + e.getStackTrace());
+			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("error", "Codigo");
 		}
+		return responseconsulta;
+	}
 
-		@GetMapping("/codigopostal")
-		public ResponseEntity<?> getAllCodigoPostal(@RequestBody PostalRespDto request) {
-	
-			LOG.info("getAllCodigoPostal - getAllCodigoPostal() Method");
-			ResponseEntity<?> response = null;
-			String clave = request.getClave();
-			try {
-				List<PostalRespDto> resultados = new ArrayList<PostalRespDto>();
-				resultados = codigoDao.getCodigo(clave);
-				final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("200 OK", "Codigo");
-				responseContenido.setContenido(resultados);
-				response = new ResponseEntity<>(responseContenido, HttpStatus.OK);
-	
-			} catch (Exception e) {
-				LOG.error("eror codigo" + e.getStackTrace());
-				final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("error", "Codigo");
-			}
-			return response;
-		}
-	
-		
-		@PostMapping("/Alta")
-		public ResponseEntity<?> postRegistro(@RequestBody RegistroDto registrodto){
-			
-			LOG.info("getRegistro - getRegistro() Method");
-			ResponseEntity<?> response= null;	    
-			try {
-				String altausuario = new String();
-				altausuario = AltaUsuario.AltaUsuario(registrodto);
-				final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("200 OK", "Codigo");
-				responseContenido.setContenido(altausuario);
-				response = new ResponseEntity<>(responseContenido, HttpStatus.OK);
-				
-			} catch (Exception e) {
-				LOG.error("eror codigo" + e.getStackTrace());
-				final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("error", "Codigo");
-			}
-			
-			
-			return response;
-		}
-	
-		@GetMapping("/Correo")
-		public ResponseEntity<?> getCorreo(@RequestBody Usuario request) {
-		            LOG.info("getCorreoComprobacion - getCorreoComprobacion() Method");
+	@GetMapping("/categorias")
+	public ResponseEntity<?> getAllCategorias() {
 
-		            ResponseEntity<?> response = null;
-		           
-		        	try { List<CompCorreoRespDto> result = new ArrayList<CompCorreoRespDto>();
-		            String correo = request.getCorreo();
-		            String Comprobacion = correoDao.getCorreo(correo);
-		            boolean Existe = Comprobacion == null;
-		            
-		            CompCorreoRespDto PruebaCorreo = new CompCorreoRespDto();
-		            PruebaCorreo.setCorreo(correo);
-		            PruebaCorreo.setValor(Existe);
-		           
-		            if (Comprobacion == null) {
-		                PruebaCorreo.setMensaje("No Existe");
-		            } else {
-		                PruebaCorreo.setMensaje("Existe");
-		            }
-		            
-		            result.add(PruebaCorreo);				    	
-		            final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("200 OK", "Codigo");
-		            responseContenido.setContenido(result);
-		            response = new ResponseEntity<>(responseContenido, HttpStatus.OK);
-		        	} catch (Exception e) {
-						LOG.error("eror codigo" + e.getStackTrace());
-						final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("error", "Codigo");
-					}
-		            return response;
-		        }
-	
-		
-		@GetMapping("/Consulta")
-		public ResponseEntity<?> getUsuarioPersona(@RequestBody UsuarioContraseñaDto CorroContraseña) {
-		            LOG.info("getUsuarioPersona - getUsuarioPersona() Method");
+		LOG.info("getAllCategorias - getAllCategorias() Method");
+		ResponseEntity<?> responsecategorias = null;
 
-		            ResponseEntity<?> response = null;
-		            String correo = CorroContraseña.getCorreo();
-		            String contraseña = CorroContraseña.getContraseña();
+		try {
+			List<CategoriasRespDto> resultcategorias = new ArrayList<CategoriasRespDto>();
 
-		        	try {
+			resultcategorias = categoriaDao.getcategoria();
 
-			    		List<PersonaUsuarioRespDTO> result = new ArrayList<PersonaUsuarioRespDTO>();					
-						result =consultaDao.getUsuarioPersona(correo, contraseña);
-						
-						List<EmprendimientosRespDTO> result2 = new ArrayList<EmprendimientosRespDTO>();					
-						result2 =consultaDao.getEmprendimientos(correo, contraseña);
-						
-						UsuarioEmprendimientoRespDto usuarioemprendimiento = new UsuarioEmprendimientoRespDto();
-						usuarioemprendimiento.setEmprendimiento(result2);
-						usuarioemprendimiento.setPersonausuario(result);
-                       
-			            LOG.info(" llego al trygetUsuarioPersona - getUsuarioPersona() Method");
+			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("200 OK", "Roles");
+			responseContenido.setContenido(resultcategorias);
+			responsecategorias = new ResponseEntity<>(responseContenido, HttpStatus.OK);
 
-						final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("200 OK", "Usuario");
-						responseContenido.setContenido(usuarioemprendimiento);
-						response = new ResponseEntity<>(responseContenido, HttpStatus.OK);
-
-		        	} catch (Exception e) {
-						LOG.error("eror codigo" + e.getStackTrace());
-						final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("error", "Codigo");
-					}
-		            return response;
-		        }
-		
-		@GetMapping("/categorias")
-		public ResponseEntity<?> getAllCategorias() {
-	
-			LOG.info("getAllCategorias - getAllCategorias() Method");
-			ResponseEntity<?> response = null;
-	
-			try {
-				List<CategoriasRespDto> result = new ArrayList<CategoriasRespDto>();
-	
-				result = categoriaDao.getcategoria();
-	
-				final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("200 OK", "Roles");
-				responseContenido.setContenido(result);
-				response = new ResponseEntity<>(responseContenido, HttpStatus.OK);
-	
-			} catch (Exception e) {
-				LOG.error("eror" + e.getStackTrace());
-				final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("error", "Roles");
-			}
-	
-			return response;
-		}
-		
-		@PostMapping("/AltaProducto")
-		public ResponseEntity<?> postProducto(@RequestBody ProductoDto productoDto){
-			
-			LOG.info("getProducto - getProducto() Method");
-			ResponseEntity<?> response= null;	    
-			
-			try {
-				
-				String altaproducto = new String();
-				
-				altaproducto = AltaProducto.AltaProducto(productoDto);
-				final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("200 OK", "Codigo");
-				responseContenido.setContenido(altaproducto);
-				response = new ResponseEntity<>(responseContenido, HttpStatus.OK);
-				
-			} catch (Exception e) {
-				LOG.error("eror codigo" + e.getStackTrace());
-				final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("error", "Codigo");
-			}
-			return response;
+		} catch (Exception e) {
+			LOG.error("eror" + e.getStackTrace());
+			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("error", "Roles");
 		}
 
-	
-		@PostMapping("/ActualizarProducto")
-		public ResponseEntity<?> updateProducto(@RequestBody Productos productos){
-		    
-		    LOG.info("updateProducto - updateProducto() Method");
-		    ResponseEntity<?> response= null;        
-		    
-		    try {
-		        
-		        String actualizarProducto = new String();
-		        
-		        actualizarProducto = ActualizarProducto.actualizarProducto(productos);
-		        final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("200 OK", "Codigo");
-		        responseContenido.setContenido(actualizarProducto);
-		        response = new ResponseEntity<>(responseContenido, HttpStatus.OK);
-		        
-		    } catch (Exception e) {
-		        LOG.error("error codigo" + e.getStackTrace());
-		        final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("error", "Codigo");
-		    }
-		    return response;
+		return responsecategorias;
+	}
+
+	@PostMapping("/AltaProducto")
+	public ResponseEntity<?> postProducto(@RequestBody ProductoDto productoDto) {
+
+		LOG.info("getProducto - getProducto() Method");
+		ResponseEntity<?> responsealtaproducto = null;
+
+		try {
+
+			String altaproducto = null;
+
+			altaproducto = AltaProducto.AltaProducto(productoDto);
+			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("200 OK", "Codigo");
+			responseContenido.setContenido(altaproducto);
+			responsealtaproducto = new ResponseEntity<>(responseContenido, HttpStatus.OK);
+
+		} catch (Exception e) {
+			LOG.error("eror codigo" + e.getStackTrace());
+			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("error", "Codigo");
 		}
-		
-		
+		return responsealtaproducto;
+	}
 
+	@PostMapping("/ActualizarProducto")
+	public ResponseEntity<?> updateProducto(@RequestBody Productos productos) {
 
-	
+		LOG.info("updateProducto - updateProducto() Method");
+		ResponseEntity<?> responseactualizarproducto = null;
+
+		try {
+
+			String actualizarProducto = null;
+
+			actualizarProducto = ActualizarProducto.actualizarProducto(productos);
+			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("200 OK", "Codigo");
+			responseContenido.setContenido(actualizarProducto);
+			responseactualizarproducto = new ResponseEntity<>(responseContenido, HttpStatus.OK);
+
+		} catch (Exception e) {
+			LOG.error("error codigo" + e.getStackTrace());
+			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("error", "Codigo");
+		}
+		return responseactualizarproducto;
+	}
+
 }

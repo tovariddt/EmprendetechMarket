@@ -23,46 +23,42 @@ import com.emprendetech.market.response.ResponseContenidoDTO;
 import com.emprendetech.market.service.responseDto.RolesRespDto;
 import com.emprendetech.market.utils.Utils;
 
-
-
 public class Perfilcontroller {
-	
+
 	private static final Log LOG = LogFactory.getLog(Perfilcontroller.class);
 
-@Autowired
-private  PerfilesRepository perfilesRepository;
+	@Autowired
+	private PerfilesRepository perfilesRepository;
 
- public ResponseEntity<?> createPerfil(@RequestBody Perfiles perfiles) {
-	LOG.info("createPerfil - createPerfil() Method");
-	LOG.debug("perfiles :: " + perfiles.toString());
-	
-	Perfiles perfilInsert=perfiles;
-	Perfiles front =new Perfiles();
-	ResponseEntity<?> response = null;
-	
-	try {
-	Utils util = new Utils();
-	perfilInsert.setFechacreacion(util.currentDate());	
-	perfilInsert.setFechamodificacion(util.currentDate());
-	
-	 perfilesRepository.save(perfilInsert);
-	 
-	 front =  perfilesRepository.findById(perfilInsert.getIdperfil()).get();
-	
-	final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("200 OK", "perfil");
-	responseContenido.setContenido(front);
+	public ResponseEntity<?> createPerfil(@RequestBody Perfiles perfiles) throws Exception {
+		LOG.info("createPerfil - createPerfil() Method");
+		LOG.debug("perfiles :: " + perfiles.toString());
 
-	response = new ResponseEntity<>(responseContenido, HttpStatus.OK);
-	
-	}catch(Exception e) {
-			LOG.info("eror"+  e.getStackTrace());
-			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("error",perfiles.toString());
+		Perfiles perfilInsert = perfiles;
+		Perfiles front = new Perfiles();
+		ResponseEntity<?> response = null;
+
+		try {
+			Utils util = new Utils();
+			perfilInsert.setFechacreacion(util.currentDate());
+			perfilInsert.setFechamodificacion(util.currentDate());
+
+			perfilesRepository.save(perfilInsert);
+
+			front = perfilesRepository.findById(perfilInsert.getIdperfil()).get();
+
+			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("200 OK", "perfil");
+			responseContenido.setContenido(front);
+
+			response = new ResponseEntity<>(responseContenido, HttpStatus.OK);
+
+		} catch (Exception e) {
+			LOG.info("eror" + e.getStackTrace());
+			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("error", perfiles.toString());
 		}
 
+		return response;
 
-	return response;
-
-	
-}
+	}
 
 }

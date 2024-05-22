@@ -1,6 +1,5 @@
 package com.emprendetech.market.entitys;
 
-
 import java.sql.Timestamp;
 
 import jakarta.persistence.Column;
@@ -12,27 +11,28 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-@Getter 
-@Setter 
-@NoArgsConstructor 
+
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
-@Table(name="categorias")
+@Table(name = "categorias")
 public class Categorias {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(name = "idcategoria")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "idcategoria")
 	private Integer idcategoria;
-	
+
 	@Column(name = "nombre")
 	private String nombre;
-	
+
 	@Column(name = "creadoridusuario")
 	private Integer creadoridusuario;
-	
-	@Column(name="fechacreacion")
+
+	@Column(name = "fechacreacion")
 	private Timestamp fechacreacion;
 
-	@Column(name="fechamodificacion")
+	@Column(name = "fechamodificacion")
 	private Timestamp fechamodificacion;
-	
+
 }

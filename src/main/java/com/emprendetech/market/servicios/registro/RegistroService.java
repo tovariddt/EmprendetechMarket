@@ -1,4 +1,5 @@
 package com.emprendetech.market.servicios.registro;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,26 +16,20 @@ import org.springframework.web.bind.annotation.RestController;
 // import com.emprendetech.market.dao.RolesDao;
 import com.emprendetech.market.service.requestDto.RegistroDto;
 
-	
 @ResponseBody
-@ResponseStatus(HttpStatus.SERVICE_UNAVAILABLE) 
+@ResponseStatus(HttpStatus.SERVICE_UNAVAILABLE)
 
 @RestController
-@RequestMapping(path="/api/registro")
+@RequestMapping(path = "/api/registro")
 public class RegistroService {
-private static final Log LOG = LogFactory.getLog(RegistroService.class);
+	private static final Log LOG = LogFactory.getLog(RegistroService.class);
 
-@GetMapping("/hello")
-public String hello(@RequestParam(value = "name",defaultValue = "word")String name) {
-	
-	LOG.info("si funciona");
-	return String.format("Hello %s!", name);
-	
+	@GetMapping("/hello")
+	public String hello(@RequestParam(value = "name", defaultValue = "word") String name) {
+
+		LOG.info("si funciona");
+		return String.format("Hello %s!", name);
+
+	}
+
 }
-
-
-
-		
-}
-
-

@@ -6,12 +6,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter 
-@Setter 
-@NoArgsConstructor 
+@Getter
+@Setter
+@NoArgsConstructor
 public class UsuarioContraseñaDto {
 
-	public String Correo; 
+	public String Correo;
 	public String Contraseña;
-	
+
 }
