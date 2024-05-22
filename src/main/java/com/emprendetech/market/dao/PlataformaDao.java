@@ -15,7 +15,9 @@ import com.emprendetech.market.service.responseDto.PostalRespDto;
 import com.emprendetech.market.service.responseDto.RolesRespDto;
 import com.emprendetech.market.service.responseDto.PersonaUsuarioRespDTO;
 import com.emprendetech.market.service.requestDto.UsuarioContraseñaDto;
+import com.emprendetech.market.service.responseDto.CategoriasRespDto;
 import com.emprendetech.market.service.responseDto.EmprendimientosRespDTO;
+import com.emprendetech.market.service.responseDto.PerfilesRespDto;
 
 @Repository
 public class PlataformaDao {
@@ -32,12 +34,29 @@ public class PlataformaDao {
 			
 				 return jdbcTemplate.query(sql, new Object[] {  },(rs, rowNum) ->{
 					 RolesRespDto dto = new RolesRespDto();
-					 dto.setidrol(rs.getInt("idrol"));
-					 dto.setnombre(rs.getString("nombre"));
+					 dto.setIdrol(rs.getInt("idrol"));
+					 dto.setNombre(rs.getString("nombre"));
 					 result.add(dto);
 					 return dto;
 				 });	
-	}		 	   
+	}		
+	
+	public List<PerfilesRespDto> getPefiles(){	
+		
+		List<PerfilesRespDto> result= new ArrayList<PerfilesRespDto>() ;
+
+			String sql =  "SELECT * FROM emprendetech_market.perfiles;";
+			
+				 return jdbcTemplate.query(sql, new Object[] {  },(rs, rowNum) ->{
+					 PerfilesRespDto dto = new PerfilesRespDto();
+					 dto.setIdperfil(rs.getInt("idperfil"));
+					 dto.setNombre(rs.getString("nombre"));
+					 dto.setDescripcion(rs.getNString("descripcion"));
+					 result.add(dto);
+					 return dto;
+				 });	
+	}	
+	
     
 	    public List<PostalRespDto> getCodigo(String clave) {
 		   String sql2 ="SELECT * FROM emprendetech_market.codigo_postal where clave="+clave+";";			
@@ -113,7 +132,21 @@ public class PlataformaDao {
 	            return null;
 	        }
 	    }
+	
+	    public List<CategoriasRespDto> getcategoria(){	
+			
+			List<CategoriasRespDto> result6= new ArrayList<CategoriasRespDto>() ;
 
+				String sql6 =  "SELECT * FROM emprendetech_market.categorias;";
+				
+					 return jdbcTemplate.query(sql6, new Object[] {  },(rs, rowNum) ->{
+						 CategoriasRespDto dto6 = new CategoriasRespDto();
+						 dto6.setIdcategoria(rs.getInt("idcategoria"));
+						 dto6.setNombre(rs.getString("nombre"));
+						 result6.add(dto6);
+						 return dto6;
+					 });	
+		}
 	    
 	    
 	

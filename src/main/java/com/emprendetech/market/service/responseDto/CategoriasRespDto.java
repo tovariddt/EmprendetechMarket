@@ -9,9 +9,8 @@ import lombok.Setter;
 @Getter 
 @Setter 
 @NoArgsConstructor 
-public class CompCorreoRespDto {
-
-	public String Mensaje;
-	public String Correo;
-	public boolean Valor;
+public class CategoriasRespDto {
+	
+	public Integer idcategoria;
+	public String nombre;
 }

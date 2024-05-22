@@ -1,7 +1,5 @@
 package com.emprendetech.market.service.responseDto;
 
-import java.sql.Timestamp;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,9 +7,10 @@ import lombok.Setter;
 @Getter 
 @Setter 
 @NoArgsConstructor 
-public class CompCorreoRespDto {
+public class PerfilesRespDto {
 
-	public String Mensaje;
-	public String Correo;
-	public boolean Valor;
+	public Integer idperfil;
+	public String nombre;
+	public String descripcion;
+
 }

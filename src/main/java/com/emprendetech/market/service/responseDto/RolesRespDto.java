@@ -1,23 +1,17 @@
 package com.emprendetech.market.service.responseDto;
 
-public class RolesRespDto {
+import java.sql.Timestamp;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter 
+@Setter 
+@NoArgsConstructor 
+public class RolesRespDto {
+	
 	public Integer idrol;
 	public String nombre;
 
-    public Integer getidrol() {
-        return idrol;
-    }
-
-    public void setidrol(Integer idrol) {
-        this.idrol = idrol;
-    }
-
-    public String getnombre() {
-        return nombre;
-    }
-
-    public void setnombre(String nombre) {
-        this.nombre = nombre;
-    }
 }
