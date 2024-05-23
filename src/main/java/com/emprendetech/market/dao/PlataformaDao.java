@@ -16,7 +16,7 @@ import com.emprendetech.market.service.responseDto.ProductosRespDto;
 import com.emprendetech.market.service.responseDto.RolesRespDto;
 import com.emprendetech.market.service.responseDto.PersonaUsuarioRespDTO;
 import com.emprendetech.market.entitys.Productos;
-import com.emprendetech.market.service.requestDto.UsuarioContraseñaDto;
+import com.emprendetech.market.service.requestDto.UsuarioContrasenaDto;
 import com.emprendetech.market.service.responseDto.CategoriasRespDto;
 import com.emprendetech.market.service.responseDto.EmprendimientosRespDTO;
 import com.emprendetech.market.service.responseDto.PerfilesRespDto;
@@ -105,12 +105,12 @@ public class PlataformaDao {
 	}
 
 	
-	public List<PersonaUsuarioRespDTO> getUsuarioPersona(String correo, String contraseña) {
+	public List<PersonaUsuarioRespDTO> getUsuarioPersona(String correo, String contrasena) {
 		try {
 			String sqlusuariopersona = "SELECT nombreusuario, correo ,idrol,idperfil , nombre,apellido_paterno,apellido_materno,telefono, direccion ,id_codigo_postal\r\n"
 					+ "FROM emprendetech_market.usuario\r\n"
 					+ "INNER JOIN emprendetech_market.personas ON emprendetech_market.usuario.idpersona = emprendetech_market.personas.idpersona\r\n"
-					+ "where emprendetech_market.usuario.contraseña='" + contraseña
+					+ "where emprendetech_market.usuario.contrasena='" + contrasena
 					+ "' and emprendetech_market.usuario.correo= '" + correo + "';";
 			
 			return jdbcTemplate.query(sqlusuariopersona, new Object[] {}, (rs, rowNum) -> {
@@ -132,13 +132,13 @@ public class PlataformaDao {
 		}
 	}
 
-	public List<EmprendimientosRespDTO> getEmprendimientos(String correo, String contraseña) {
+	public List<EmprendimientosRespDTO> getEmprendimientos(String correo, String contrasena) {
 		try {
 			String sqlemprendimientos = "SELECT emprendetech_market.emprendimientos.nombre,emprendetech_market.emprendimientos.descripcion, emprendetech_market.emprendimientos.industria\r\n"
 					+ "FROM emprendetech_market.usuario\r\n"
 					+ "INNER JOIN emprendetech_market.personas ON emprendetech_market.usuario.idpersona = emprendetech_market.personas.idpersona\r\n"
 					+ "INNER JOIN emprendetech_market.emprendimientos ON emprendetech_market.usuario.idpersona = emprendetech_market.emprendimientos.idpersona\r\n"
-					+ "where emprendetech_market.usuario.contraseña='" + contraseña
+					+ "where emprendetech_market.usuario.contrasena='" + contrasena
 					+ "' and emprendetech_market.usuario.correo='" + correo + "';";
 
 			return jdbcTemplate.query(sqlemprendimientos, new Object[] {}, (rs, rowNum) -> {

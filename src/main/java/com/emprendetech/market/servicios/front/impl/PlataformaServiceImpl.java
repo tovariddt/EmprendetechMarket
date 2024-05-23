@@ -40,7 +40,7 @@ import com.emprendetech.market.servicios.registro.RegistroService;
 import com.emprendetech.market.service.responseDto.RolesRespDto;
 import com.emprendetech.market.service.requestDto.ProductoDto;
 import com.emprendetech.market.service.requestDto.RegistroDto;
-import com.emprendetech.market.service.requestDto.UsuarioContraseñaDto;
+import com.emprendetech.market.service.requestDto.UsuarioContrasenaDto;
 
 import org.springframework.http.HttpStatus;
 
@@ -192,18 +192,18 @@ public class PlataformaServiceImpl {
 
 	
 	@GetMapping("/Consulta")
-	public ResponseEntity<?> getUsuarioPersona(@RequestBody UsuarioContraseñaDto CorroContraseña) {
+	public ResponseEntity<?> getUsuarioPersona(@RequestBody UsuarioContrasenaDto CorroContrasena) {
 		LOG.info("getUsuarioPersona - getUsuarioPersona() Method");
 
 		ResponseEntity<?> responseconsulta = null;
 		try {
-		String correo = CorroContraseña.getCorreo();
-		String contraseña = CorroContraseña.getContraseña();
+		String correo = CorroContrasena.getCorreo();
+		String contrasena = CorroContrasena.getContrasena();
 			List<PersonaUsuarioRespDTO> resultpersonausuario = new ArrayList<PersonaUsuarioRespDTO>();
-			resultpersonausuario = consultaDao.getUsuarioPersona(correo, contraseña);
+			resultpersonausuario = consultaDao.getUsuarioPersona(correo, contrasena);
 
 			List<EmprendimientosRespDTO> resultemprendimientos = new ArrayList<EmprendimientosRespDTO>();
-			resultemprendimientos = consultaDao.getEmprendimientos(correo, contraseña);
+			resultemprendimientos = consultaDao.getEmprendimientos(correo, contrasena);
 
 			UsuarioEmprendimientoRespDto usuarioemprendimiento = new UsuarioEmprendimientoRespDto();
 			usuarioemprendimiento.setEmprendimiento(resultemprendimientos);

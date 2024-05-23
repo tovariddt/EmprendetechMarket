@@ -9,9 +9,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class UsuarioContraseñaDto {
+public class UsuarioContrasenaDto {
 
 	public String correo;
-	public String contraseña;
+	public String contrasena;
 
 }

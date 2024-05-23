@@ -62,6 +62,8 @@ public class RegistroController {
 
 			personasInsert = personasRepository.save(personasInsert);
 
+			String NombreUsuario = registroDto.getNombre() + " " + registroDto.getApellido_paterno();
+
 			if (personasRepository.existsById(personasInsert.getIdpersona())) {
 
 				LOG.info("createAltaUsuario - createAltaUsuario() Method " + personasInsert.getIdpersona());
@@ -69,10 +71,9 @@ public class RegistroController {
 
 				Usuario usuarioInsert = new Usuario();
 
-				String NombreUsuario = registroDto.getNombre() + " " + registroDto.getApellido_paterno();
 
 				usuarioInsert.setIdpersona(personasInsert.getIdpersona());
-				usuarioInsert.setContraseña(registroDto.getContraseña());
+				usuarioInsert.setContrasena(registroDto.getContrasena());
 				usuarioInsert.setCorreo(registroDto.getCorreo());
 				usuarioInsert.setIdrol(registroDto.getIdrol());
 				usuarioInsert.setIdperfil(registroDto.getIdperfil());
