@@ -12,8 +12,10 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.emprendetech.market.service.responseDto.PostalRespDto;
+import com.emprendetech.market.service.responseDto.ProductosRespDto;
 import com.emprendetech.market.service.responseDto.RolesRespDto;
 import com.emprendetech.market.service.responseDto.PersonaUsuarioRespDTO;
+import com.emprendetech.market.entitys.Productos;
 import com.emprendetech.market.service.requestDto.UsuarioContraseñaDto;
 import com.emprendetech.market.service.responseDto.CategoriasRespDto;
 import com.emprendetech.market.service.responseDto.EmprendimientosRespDTO;
@@ -108,8 +110,9 @@ public class PlataformaDao {
 			String sqlusuariopersona = "SELECT nombreusuario, correo ,idrol,idperfil , nombre,apellido_paterno,apellido_materno,telefono, direccion ,id_codigo_postal\r\n"
 					+ "FROM emprendetech_market.usuario\r\n"
 					+ "INNER JOIN emprendetech_market.personas ON emprendetech_market.usuario.idpersona = emprendetech_market.personas.idpersona\r\n"
-					+ "where emprendetech_market.usuario.contrasena='" + contraseña
+					+ "where emprendetech_market.usuario.contraseña='" + contraseña
 					+ "' and emprendetech_market.usuario.correo= '" + correo + "';";
+			
 			return jdbcTemplate.query(sqlusuariopersona, new Object[] {}, (rs, rowNum) -> {
 				PersonaUsuarioRespDTO dtousuariopersona = new PersonaUsuarioRespDTO();
 				dtousuariopersona.setNombreusuario(rs.getString("nombreusuario"));
@@ -135,7 +138,7 @@ public class PlataformaDao {
 					+ "FROM emprendetech_market.usuario\r\n"
 					+ "INNER JOIN emprendetech_market.personas ON emprendetech_market.usuario.idpersona = emprendetech_market.personas.idpersona\r\n"
 					+ "INNER JOIN emprendetech_market.emprendimientos ON emprendetech_market.usuario.idpersona = emprendetech_market.emprendimientos.idpersona\r\n"
-					+ "where emprendetech_market.usuario.contrasena='" + contraseña
+					+ "where emprendetech_market.usuario.contraseña='" + contraseña
 					+ "' and emprendetech_market.usuario.correo='" + correo + "';";
 
 			return jdbcTemplate.query(sqlemprendimientos, new Object[] {}, (rs, rowNum) -> {
@@ -162,6 +165,27 @@ public class PlataformaDao {
 				dtocategoria.setNombre(rs.getString("nombre"));
 				resultcategoria.add(dtocategoria);
 				return dtocategoria;
+			});
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
+
+	public List<ProductosRespDto> getproductoEmprendimiento(Integer ididemprendimiento) {
+		try {
+
+			String sqlproductos = "SELECT * FROM emprendetech_market.productos where idemprendimiento= '"+ididemprendimiento+"';";
+			return jdbcTemplate.query(sqlproductos, new Object[] {}, (rs, rowNum) -> {
+			
+				ProductosRespDto dtoproductos = new ProductosRespDto();
+				dtoproductos.setSku(rs.getString("sku"));
+				dtoproductos.setNombre(rs.getString("nombre"));
+				dtoproductos.setDescripcion(rs.getString("descripcion"));
+				dtoproductos.setImagen(rs.getString("imagen"));
+				dtoproductos.setCantidad_disponible(rs.getInt("cantidad_disponible"));
+				dtoproductos.setIdcategoria(rs.getInt("idcategoria"));
+				dtoproductos.setIdemprendimiento(rs.getInt("idemprendimiento"));
+				return dtoproductos;
 			});
 		} catch (EmptyResultDataAccessException e) {
 			return null;

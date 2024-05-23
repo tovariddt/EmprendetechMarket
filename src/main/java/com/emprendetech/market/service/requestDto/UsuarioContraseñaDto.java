@@ -11,7 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class UsuarioContraseñaDto {
 
-	public String Correo;
-	public String Contraseña;
+	public String correo;
+	public String contraseña;
 
 }

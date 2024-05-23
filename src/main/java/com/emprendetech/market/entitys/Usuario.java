@@ -31,8 +31,8 @@ private String nombreusuario;
 @Column(name = "correo")
 private String correo;
 
-@Column(name = "contrasena")
-private String contrasena;
+@Column(name = "contraseña")
+private String contraseña;
 
 @Column(name = "idrol")
 private Integer idrol;

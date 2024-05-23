@@ -72,7 +72,7 @@ public class RegistroController {
 				String NombreUsuario = registroDto.getNombre() + " " + registroDto.getApellido_paterno();
 
 				usuarioInsert.setIdpersona(personasInsert.getIdpersona());
-				usuarioInsert.setContrasena(registroDto.getContraseña());
+				usuarioInsert.setContraseña(registroDto.getContraseña());
 				usuarioInsert.setCorreo(registroDto.getCorreo());
 				usuarioInsert.setIdrol(registroDto.getIdrol());
 				usuarioInsert.setIdperfil(registroDto.getIdperfil());

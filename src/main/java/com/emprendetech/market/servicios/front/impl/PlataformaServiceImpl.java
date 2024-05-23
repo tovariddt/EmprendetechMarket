@@ -32,6 +32,7 @@ import com.emprendetech.market.service.responseDto.EmprendimientosRespDTO;
 import com.emprendetech.market.service.responseDto.PerfilesRespDto;
 import com.emprendetech.market.service.responseDto.PersonaUsuarioRespDTO;
 import com.emprendetech.market.service.responseDto.PostalRespDto;
+import com.emprendetech.market.service.responseDto.ProductosRespDto;
 import com.emprendetech.market.service.responseDto.RolesRespDto;
 import com.emprendetech.market.service.responseDto.UsuarioEmprendimientoRespDto;
 import com.emprendetech.market.servicios.registro.RegistroService;
@@ -52,7 +53,7 @@ public class PlataformaServiceImpl {
 	private static final Log LOG = LogFactory.getLog(RegistroService.class);
 
 	@Autowired
-	private PlataformaDao rolesDao, perfilesDao, codigoDao, correoDao, consultaDao, categoriaDao;
+	private PlataformaDao rolesDao, perfilesDao, codigoDao, correoDao, consultaDao, categoriaDao, productoEmprendimientoDao;
 
 	@Autowired
 	private RegistroController AltaUsuario;
@@ -77,6 +78,8 @@ public class PlataformaServiceImpl {
 		} catch (Exception e) {
 			LOG.error("eror" + e.getStackTrace());
 			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("error", "Roles");
+			responseroles = new ResponseEntity<>(responseContenido, HttpStatus.OK);
+
 		}
 
 		return responseroles;
@@ -99,6 +102,8 @@ public class PlataformaServiceImpl {
 		} catch (Exception e) {
 			LOG.error("eror" + e.getStackTrace());
 			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("error", "Perfiles");
+			responseperfiles = new ResponseEntity<>(responseContenido, HttpStatus.OK);
+
 		}
 
 		return responseperfiles;
@@ -106,11 +111,11 @@ public class PlataformaServiceImpl {
 
 	
 	@GetMapping("/codigopostal")
-	public ResponseEntity<?> getAllCodigoPostal(@RequestBody PostalRespDto request) {
+	public ResponseEntity<?> getAllCodigoPostal(@RequestBody PostalRespDto postalrespDto) {
 
 		LOG.info("getAllCodigoPostal - getAllCodigoPostal() Method");
 		ResponseEntity<?> responsecodigopostal = null;
-		String clave = request.getClave();
+		String clave = postalrespDto.getClave();
 		
 		List<PostalRespDto> resultcodigopostal = new ArrayList<PostalRespDto>();
 
@@ -123,6 +128,8 @@ public class PlataformaServiceImpl {
 		} catch (Exception e) {
 			LOG.error("eror codigo" + e.getStackTrace());
 			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("error", "Codigo");
+			responsecodigopostal = new ResponseEntity<>(responseContenido, HttpStatus.OK);
+
 		}
 		return responsecodigopostal;
 	}
@@ -135,13 +142,15 @@ public class PlataformaServiceImpl {
 		try {
 			String altausuario = new String();
 			altausuario = AltaUsuario.AltaUsuario(registrodto);
-			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("200 OK", "Codigo");
+			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("200 OK", "Registro");
 			responseContenido.setContenido(altausuario);
 			responsealta = new ResponseEntity<>(responseContenido, HttpStatus.OK);
 
 		} catch (Exception e) {
 			LOG.error("eror codigo" + e.getStackTrace());
-			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("error", "Codigo");
+			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("error", "Registro");
+			responsealta = new ResponseEntity<>(responseContenido, HttpStatus.OK);
+
 		}
 
 		return responsealta;
@@ -149,14 +158,14 @@ public class PlataformaServiceImpl {
 
 	
 	@GetMapping("/Correo")
-	public ResponseEntity<?> getCorreo(@RequestBody Usuario request) {
+	public ResponseEntity<?> getCorreo(@RequestBody Usuario correodto) {
 		LOG.info("getCorreoComprobacion - getCorreoComprobacion() Method");
 
 		ResponseEntity<?> responsecorreo = null;
 		List<CompCorreoRespDto> resultcorreo  = new ArrayList<CompCorreoRespDto>();
 
 		try {
-			String correo = request.getCorreo();
+			String correo = correodto.getCorreo();
 			String Comprobacion = correoDao.getCorreo(correo);
 			boolean Existe = Comprobacion == null;
 
@@ -187,11 +196,9 @@ public class PlataformaServiceImpl {
 		LOG.info("getUsuarioPersona - getUsuarioPersona() Method");
 
 		ResponseEntity<?> responseconsulta = null;
+		try {
 		String correo = CorroContraseña.getCorreo();
 		String contraseña = CorroContraseña.getContraseña();
-
-		try {
-
 			List<PersonaUsuarioRespDTO> resultpersonausuario = new ArrayList<PersonaUsuarioRespDTO>();
 			resultpersonausuario = consultaDao.getUsuarioPersona(correo, contraseña);
 
@@ -202,13 +209,14 @@ public class PlataformaServiceImpl {
 			usuarioemprendimiento.setEmprendimiento(resultemprendimientos);
 			usuarioemprendimiento.setPersonausuario(resultpersonausuario);
 
-			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("200 OK", "Usuario");
+			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("200 OK", "Consulta Usuario");
 			responseContenido.setContenido(usuarioemprendimiento);
 			responseconsulta = new ResponseEntity<>(responseContenido, HttpStatus.OK);
 
 		} catch (Exception e) {
 			LOG.error("eror codigo" + e.getStackTrace());
-			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("error", "Codigo");
+			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("error", "Consulta Usuario");
+			responseconsulta = new ResponseEntity<>(responseContenido, HttpStatus.OK);
 		}
 		return responseconsulta;
 	}
@@ -224,13 +232,15 @@ public class PlataformaServiceImpl {
 
 			resultcategorias = categoriaDao.getcategoria();
 
-			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("200 OK", "Roles");
+			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("200 OK", "Categorias");
 			responseContenido.setContenido(resultcategorias);
 			responsecategorias = new ResponseEntity<>(responseContenido, HttpStatus.OK);
 
 		} catch (Exception e) {
 			LOG.error("eror" + e.getStackTrace());
-			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("error", "Roles");
+			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("error", "Categorias");
+			responsecategorias = new ResponseEntity<>(responseContenido, HttpStatus.OK);
+
 		}
 
 		return responsecategorias;
@@ -247,13 +257,15 @@ public class PlataformaServiceImpl {
 			String altaproducto = null;
 
 			altaproducto = AltaProducto.AltaProducto(productoDto);
-			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("200 OK", "Codigo");
+			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("200 OK", "AltaProducto");
 			responseContenido.setContenido(altaproducto);
 			responsealtaproducto = new ResponseEntity<>(responseContenido, HttpStatus.OK);
 
 		} catch (Exception e) {
 			LOG.error("eror codigo" + e.getStackTrace());
-			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("error", "Codigo");
+			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("error", "AltaProducto");
+			responsealtaproducto = new ResponseEntity<>(responseContenido, HttpStatus.OK);
+
 		}
 		return responsealtaproducto;
 	}
@@ -269,15 +281,42 @@ public class PlataformaServiceImpl {
 			String actualizarProducto = null;
 
 			actualizarProducto = ActualizarProducto.actualizarProducto(productos);
-			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("200 OK", "Codigo");
+			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("200 OK", "ActualizarProducto");
 			responseContenido.setContenido(actualizarProducto);
 			responseactualizarproducto = new ResponseEntity<>(responseContenido, HttpStatus.OK);
 
 		} catch (Exception e) {
 			LOG.error("error codigo" + e.getStackTrace());
-			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("error", "Codigo");
+			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("error", "ActualizarProducto");
+			responseactualizarproducto = new ResponseEntity<>(responseContenido, HttpStatus.OK);
+
 		}
 		return responseactualizarproducto;
 	}
+	
+	@GetMapping("/productoEmprendimiento")
+	public ResponseEntity<?> getproductoEmprendimiento(@RequestBody ProductosRespDto idemprendimientos) {
+
+		LOG.info("getproductoEmprendimiento - getproductoEmprendimiento() Method");
+		ResponseEntity<?> responseproductoEmprendimiento = null;
+		Integer idemprendimiento = idemprendimientos.getIdemprendimiento();
+
+		try {
+		
+		List<ProductosRespDto> resultproductosRespDto = new ArrayList<ProductosRespDto>();
+
+		resultproductosRespDto=productoEmprendimientoDao.getproductoEmprendimiento(idemprendimiento);
+			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("200 OK", "ProductoEmprendimiento");
+			responseContenido.setContenido(resultproductosRespDto);
+			responseproductoEmprendimiento = new ResponseEntity<>(responseContenido, HttpStatus.OK);
+
+		} catch (Exception e) {
+			LOG.error("eror codigo" + e.getStackTrace());
+			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("error", "ProductoEmprendimiento");
+			responseproductoEmprendimiento = new ResponseEntity<>(responseContenido, HttpStatus.OK);
+		}
+		return responseproductoEmprendimiento;
+	}
+
 
 }
