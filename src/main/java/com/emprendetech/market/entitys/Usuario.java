@@ -34,8 +34,6 @@ private String correo;
 @Column(name = "contrasena")
 private String contrasena;
 
-@Column(name = "idrol")
-private Integer idrol;
 
 @Column(name = "idperfil")
 private Integer idperfil;

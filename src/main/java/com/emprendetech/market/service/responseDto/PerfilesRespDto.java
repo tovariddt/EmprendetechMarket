@@ -12,5 +12,6 @@ public class PerfilesRespDto {
 	public Integer idperfil;
 	public String nombre;
 	public String descripcion;
+	public Integer idrol;
 
 }

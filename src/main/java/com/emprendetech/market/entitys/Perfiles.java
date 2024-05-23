@@ -44,5 +44,7 @@ private Timestamp fechacreacion;
 @Column(name="fechamodificacion")
 private Timestamp fechamodificacion;
 
+@Column(name = "idrol")
+private Integer idrol;
 
 }

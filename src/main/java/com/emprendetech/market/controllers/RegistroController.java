@@ -75,7 +75,6 @@ public class RegistroController {
 				usuarioInsert.setIdpersona(personasInsert.getIdpersona());
 				usuarioInsert.setContrasena(registroDto.getContrasena());
 				usuarioInsert.setCorreo(registroDto.getCorreo());
-				usuarioInsert.setIdrol(registroDto.getIdrol());
 				usuarioInsert.setIdperfil(registroDto.getIdperfil());
 				usuarioInsert.setNombreusuario(NombreUsuario);
 				usuarioInsert.setCreadoridusuario(registroDto.getCreadoridusuario());

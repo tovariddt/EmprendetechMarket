@@ -20,7 +20,6 @@ public class RegistroDto implements Serializable {
 	private String telefono;
 	private String correo;
 	private String contrasena;
-	private Integer idrol;
 	private Integer idperfil;
 	private Integer creadoridusuario;
 	private Integer id_codigo_postal;

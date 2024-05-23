@@ -15,7 +15,6 @@ import lombok.Setter;
 public class PersonaUsuarioRespDTO {
 	public String nombreusuario;
 	public String correo;
-	public Integer idrol;
 	public Integer idperfil;
 	public String nombre;
 	public String apellido_paterno;

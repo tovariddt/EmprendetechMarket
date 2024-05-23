@@ -57,7 +57,9 @@ public class PlataformaDao {
 				dtoperfiles.setIdperfil(rs.getInt("idperfil"));
 				dtoperfiles.setNombre(rs.getString("nombre"));
 				dtoperfiles.setDescripcion(rs.getNString("descripcion"));
+				dtoperfiles.setIdrol(rs.getInt("idrol"));
 				resultperfiles.add(dtoperfiles);
+				
 				return dtoperfiles;
 			});
 		} catch (EmptyResultDataAccessException e) {
@@ -117,7 +119,6 @@ public class PlataformaDao {
 				PersonaUsuarioRespDTO dtousuariopersona = new PersonaUsuarioRespDTO();
 				dtousuariopersona.setNombreusuario(rs.getString("nombreusuario"));
 				dtousuariopersona.setCorreo(rs.getString("correo"));
-				dtousuariopersona.setIdrol(rs.getInt("idrol"));
 				dtousuariopersona.setIdperfil(rs.getInt("idperfil"));
 				dtousuariopersona.setNombre(rs.getString("nombre"));
 				dtousuariopersona.setApellido_paterno(rs.getString("apellido_paterno"));
