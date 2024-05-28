@@ -11,8 +11,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.sql.Timestamp;
-
-import javax.management.loading.PrivateClassLoader;
 @Getter 
 @Setter 
 @NoArgsConstructor 
@@ -41,7 +39,7 @@ private String direccion;
 private String telefono; 
 
 @Column(name = "referencia")
-private String refencia;
+private String referencia;
 
 @Column(name = "creadoridusuario")
 private Integer creadoridusuario;

@@ -36,6 +36,9 @@ public class Ventas {
 	
     @Column(name = "total")
     private Float total;
+
+    @Column(name = "fecha_pedido")
+    private Date fecha_pedido;
     
 	@Column(name = "creadoridusuario")
 	private Integer creadoridusuario;

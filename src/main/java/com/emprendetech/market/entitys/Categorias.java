@@ -35,4 +35,5 @@ public class Categorias {
 	@Column(name = "fechamodificacion")
 	private Timestamp fechamodificacion;
 
+
 }

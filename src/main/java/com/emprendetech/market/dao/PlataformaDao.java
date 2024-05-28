@@ -192,5 +192,46 @@ public class PlataformaDao {
 			return null;
 		}
 	}
+	public List<ProductosRespDto> getproductoEmprendimientoCategoria(Integer ididemprendimiento , Integer idcategoria) {
+		try {
+
+			String sqlproductosCategoria = "SELECT * FROM emprendetech_market.productos where idemprendimiento= '"+ididemprendimiento+"' and idcategoria='"+idcategoria+"';";
+			return jdbcTemplate.query(sqlproductosCategoria, new Object[] {}, (rs, rowNum) -> {
+			
+				ProductosRespDto dtoproductosCategoria = new ProductosRespDto();
+				dtoproductosCategoria.setSku(rs.getString("sku"));
+				dtoproductosCategoria.setNombre(rs.getString("nombre"));
+				dtoproductosCategoria.setDescripcion(rs.getString("descripcion"));
+				dtoproductosCategoria.setImagen(rs.getString("imagen"));
+				dtoproductosCategoria.setCantidad_disponible(rs.getInt("cantidad_disponible"));
+				dtoproductosCategoria.setIdcategoria(rs.getInt("idcategoria"));
+				dtoproductosCategoria.setIdemprendimiento(rs.getInt("idemprendimiento"));
+				return dtoproductosCategoria;
+			});
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
+	
+	public List<ProductosRespDto> getproductoEmprendimientoNombreLIKE(Integer ididemprendimiento , String nombre) {
+		try {
+
+			String sqlproductosNombreLIKE = "SELECT * FROM emprendetech_market.productos WHERE nombre LIKE '"+nombre+"%' AND idemprendimiento = "+ididemprendimiento+";";
+			return jdbcTemplate.query(sqlproductosNombreLIKE, new Object[] {}, (rs, rowNum) -> {
+			
+				ProductosRespDto dtoproductosNombreLIKE = new ProductosRespDto();
+				dtoproductosNombreLIKE.setSku(rs.getString("sku"));
+				dtoproductosNombreLIKE.setNombre(rs.getString("nombre"));
+				dtoproductosNombreLIKE.setDescripcion(rs.getString("descripcion"));
+				dtoproductosNombreLIKE.setImagen(rs.getString("imagen"));
+				dtoproductosNombreLIKE.setCantidad_disponible(rs.getInt("cantidad_disponible"));
+				dtoproductosNombreLIKE.setIdcategoria(rs.getInt("idcategoria"));
+				dtoproductosNombreLIKE.setIdemprendimiento(rs.getInt("idemprendimiento"));
+				return dtoproductosNombreLIKE;
+			});
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
 
 }

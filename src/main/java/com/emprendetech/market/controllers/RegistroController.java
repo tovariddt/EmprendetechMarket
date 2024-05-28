@@ -3,8 +3,6 @@ package com.emprendetech.market.controllers;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -12,6 +10,7 @@ import com.emprendetech.market.dao.PlataformaDao;
 import com.emprendetech.market.entitys.Emprendimientos;
 import com.emprendetech.market.entitys.Personas;
 import com.emprendetech.market.entitys.Usuario;
+import com.emprendetech.market.entitys.Ventas;
 import com.emprendetech.market.repositorys.EmprendimientosRepository;
 import com.emprendetech.market.repositorys.PersonasRepository;
 import com.emprendetech.market.repositorys.UsuarioRepository;
@@ -20,9 +19,6 @@ import com.emprendetech.market.service.requestDto.RegistroDto;
 import com.emprendetech.market.utils.Utils;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Data
 @Controller
@@ -40,8 +36,8 @@ public class RegistroController {
 	private EmprendimientosRepository emprendimientosRepository;
 
 	public String AltaUsuario(@RequestBody RegistroDto registroDto) throws Exception {
-		LOG.info("createAlta - createAlta() Method");
-		LOG.debug("createAlta :: " + registroDto.toString());
+		LOG.info("createAlta Registro - createAlta Registro() Method");
+		LOG.debug("createAlta Registro :: " + registroDto.toString());
 
 		String responseAltaUsuario = null;
 		try {
@@ -51,7 +47,7 @@ public class RegistroController {
 			personasInsert.setApellido_paterno(registroDto.getApellido_paterno());
 			personasInsert.setTelefono(registroDto.getTelefono());
 			personasInsert.setDireccion(registroDto.getDireccion());
-			personasInsert.setRefencia(registroDto.getReferencia());
+			personasInsert.setReferencia(registroDto.getReferencia());
 			personasInsert.setCreadoridusuario(registroDto.getCreadoridusuario());
 			personasInsert.setId_codigo_postal(registroDto.getId_codigo_postal());
 
@@ -66,7 +62,7 @@ public class RegistroController {
 
 			if (personasRepository.existsById(personasInsert.getIdpersona())) {
 
-				LOG.info("createAltaUsuario - createAltaUsuario() Method " + personasInsert.getIdpersona());
+				LOG.info("createAlta Usuario - createAlta Usuario() Method " + personasInsert.getIdpersona());
 				LOG.debug("createAlta Usuario Error:: " + personasInsert.getIdpersona());
 
 				Usuario usuarioInsert = new Usuario();
@@ -80,6 +76,7 @@ public class RegistroController {
 				usuarioInsert.setCreadoridusuario(registroDto.getCreadoridusuario());
 				usuarioInsert.setFechacreacion(util.currentDate());
 				usuarioInsert.setFechamodificacion(util.currentDate());
+			
 				usuarioInsert = usuarioRepository.save(usuarioInsert);
 
 				responseAltaUsuario = "Felicidades fue registrado como=" + usuarioInsert.getNombreusuario();
@@ -116,5 +113,92 @@ public class RegistroController {
 		}
 		return responseAltaUsuario;
 	}
+	
+	public String actualizarPersonas(@RequestBody Personas personas) throws Exception {
+		LOG.info("update Personas - update Personas() Method");
+		LOG.debug("update Personas :: " + personas.toString());
+
+		String response = null;
+
+		try {
+			Personas PersonasExistente = personasRepository.findById(personas.getIdpersona()).orElseThrow();
+
+			PersonasExistente.setNombre(personas.getNombre());
+			PersonasExistente.setApellido_materno(personas.getApellido_materno());
+			PersonasExistente.setApellido_paterno(personas.getApellido_paterno());
+			PersonasExistente.setTelefono(personas.getTelefono());
+			PersonasExistente.setDireccion(personas.getDireccion());
+			PersonasExistente.setReferencia(personas.getReferencia());
+			PersonasExistente.setId_codigo_postal(personas.getId_codigo_postal());
+			Utils util = new Utils();
+			PersonasExistente.setFechamodificacion(util.currentDate());
+
+			LOG.info("update personas - update personas() Method " + PersonasExistente.toString());
+
+			PersonasExistente = personasRepository.save(PersonasExistente);
+
+			response = "La personas " + PersonasExistente.getNombre() + " ha sido actualizado exitosamente.";
+		} catch (Exception e) {
+			LOG.info("eror" + e.getStackTrace());
+			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("error", personas.toString());
+		}
+		return response;
+	}	
+	
+	    public String actualizarUsuario(@RequestBody Usuario usuario) throws Exception {
+		LOG.info("update Usuario - update Usuario() Method");
+		LOG.debug("update Usuario :: " + usuario.toString());
+
+		String response = null;
+
+		try {
+			Usuario UsuarioExistente = usuarioRepository.findById(usuario.getIdusuario()).orElseThrow();
+
+			UsuarioExistente.setIdperfil(usuario.getIdperfil());
+			UsuarioExistente.setNombreusuario(usuario.getNombreusuario());
+	
+			Utils util = new Utils();
+			UsuarioExistente.setFechamodificacion(util.currentDate());
+
+			LOG.info("update Usuario - update Usuario() Method " + UsuarioExistente.toString());
+
+			UsuarioExistente = usuarioRepository.save(UsuarioExistente);
+
+			response = "El Usuario " + UsuarioExistente.getNombreusuario() + " ha sido actualizado exitosamente.";
+		} catch (Exception e) {
+			LOG.info("eror" + e.getStackTrace());
+			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("error", usuario.toString());
+		}
+		return response;
+	}
+	    
+	    public String actualizarEmprendimientos(@RequestBody Emprendimientos emprendimientos) throws Exception {
+		LOG.info("update Emprendimientos - update Emprendimientos() Method");
+		LOG.debug("update Emprendimientos :: " + emprendimientos.toString());
+
+		String response = null;
+
+		try {
+			Emprendimientos EmprendimientosExistente = emprendimientosRepository.findById(emprendimientos.getIdemprendimiento()).orElseThrow();
+
+			EmprendimientosExistente.setNombre(emprendimientos.getNombre());
+			EmprendimientosExistente.setDescripcion(emprendimientos.getDescripcion());
+			EmprendimientosExistente.setIndustria(emprendimientos.getIndustria());
+	
+			Utils util = new Utils();
+			EmprendimientosExistente.setFechamodificacion(util.currentDate());
+
+			LOG.info("update Emprendimientos - update Emprendimientos() Method " + EmprendimientosExistente.toString());
+
+			EmprendimientosExistente = emprendimientosRepository.save(EmprendimientosExistente);
+
+			response = "El Emprendimientos " + EmprendimientosExistente.getNombre() + " ha sido actualizado exitosamente.";
+		} catch (Exception e) {
+			LOG.info("eror" + e.getStackTrace());
+			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("error", emprendimientos.toString());
+		}
+		return response;
+	}
+	
 
 }

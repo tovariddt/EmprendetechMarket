@@ -24,8 +24,8 @@ public class ProductoController {
 	private ProductosRepository productosRepository;
 
 	public String AltaProducto(@RequestBody ProductoDto productoDto) throws Exception {
-		LOG.info("createAlta - createAlta() Method");
-		LOG.debug("createAlta :: " + productoDto.toString());
+		LOG.info("createAlta Producto - createAlta Producto() Method");
+		LOG.debug("createAlta Producto :: " + productoDto.toString());
 
 		String response = null;
 		try {
@@ -43,7 +43,7 @@ public class ProductoController {
 			Utils util = new Utils();
 			ProductosInsert.setFechacreacion(util.currentDate());
 			ProductosInsert.setFechamodificacion(util.currentDate());
-			LOG.info("AltaProducto - AltaProducto() Method " + ProductosInsert.toString());
+			LOG.info("Alta Producto - Alta Producto() Method " + ProductosInsert.toString());
 
 			ProductosInsert = productosRepository.save(ProductosInsert);
 
@@ -57,8 +57,8 @@ public class ProductoController {
 	}
 
 	public String actualizarProducto(@RequestBody Productos productos) throws Exception {
-		LOG.info("updateProducto - updateProducto() Method");
-		LOG.debug("updateProducto :: " + productos.toString());
+		LOG.info("update Producto - update Producto() Method");
+		LOG.debug("update Producto :: " + productos.toString());
 
 		String response = null;
 
@@ -77,7 +77,7 @@ public class ProductoController {
 			Utils util = new Utils();
 			productoExistente.setFechamodificacion(util.currentDate());
 
-			LOG.info("updateProducto - updateProducto() Method " + productoExistente.toString());
+			LOG.info("update Producto - update Producto() Method " + productoExistente.toString());
 
 			productoExistente = productosRepository.save(productoExistente);
 
