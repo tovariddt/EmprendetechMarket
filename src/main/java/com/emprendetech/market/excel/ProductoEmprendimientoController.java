@@ -33,7 +33,7 @@ public class ProductoEmprendimientoController {
         ByteArrayResource resource = new ByteArrayResource(outputStream.toByteArray());
 
         HttpHeaders headers = new HttpHeaders();
-        headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=productos_emprendimientos.xlsx");
+        headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=ProductosYEmprendimientos.xlsx");
         headers.add(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_OCTET_STREAM_VALUE);
 
         return ResponseEntity.ok()
@@ -52,7 +52,7 @@ public class ProductoEmprendimientoController {
         ByteArrayResource resource = new ByteArrayResource(outputStream.toByteArray());
 
         HttpHeaders headers = new HttpHeaders();
-        headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=productos_emprendimientos.xlsx");
+        headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=ProductosPorEmprendimientos.xlsx");
         headers.add(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_OCTET_STREAM_VALUE);
 
         return ResponseEntity.ok()
