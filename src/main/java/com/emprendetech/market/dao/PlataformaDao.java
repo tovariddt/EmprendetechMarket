@@ -109,7 +109,7 @@ public class PlataformaDao {
 	
 	public List<PersonaUsuarioRespDTO> getUsuarioPersona(String correo, String contrasena) {
 		try {
-			String sqlusuariopersona = "SELECT nombreusuario, correo ,idrol,idperfil , nombre,apellido_paterno,apellido_materno,telefono, direccion ,id_codigo_postal\r\n"
+			String sqlusuariopersona = "SELECT nombreusuario, correo ,idperfil , nombre,apellido_paterno,apellido_materno,telefono, direccion ,id_codigo_postal\r\n"
 					+ "FROM emprendetech_market.usuario\r\n"
 					+ "INNER JOIN emprendetech_market.personas ON emprendetech_market.usuario.idpersona = emprendetech_market.personas.idpersona\r\n"
 					+ "where emprendetech_market.usuario.contrasena='" + contrasena
