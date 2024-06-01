@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class ProductoEmprendimientoRepository {
+public class PlataformaExcelDao {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;

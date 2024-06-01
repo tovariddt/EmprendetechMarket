@@ -15,15 +15,15 @@ import java.io.IOException;
 import java.util.List;
 
 @Service
-public class ProductoEmprendimientoService {
+public class ExcelController {
 
-	private static final Log LOG = LogFactory.getLog(ProductoEmprendimientoService.class);
+	private static final Log LOG = LogFactory.getLog(ExcelController.class);
 	
     @Autowired
-    private ProductoEmprendimientoRepository repository , repositoryID ;
+    private PlataformaExcelDao ExcelDao , ExcelEmprendimientoDao ;
 
     public ByteArrayOutputStream generarExcel() throws IOException {
-        List<ProductoEmprendimiento> lista = repository.obtenerProductosEmprendimientos();
+        List<ProductoEmprendimiento> listaExcelDao = ExcelDao.obtenerProductosEmprendimientos();
 
         XSSFWorkbook workbook = new XSSFWorkbook();
         Sheet sheet = workbook.createSheet("Productos y Emprendimientos");
@@ -38,7 +38,7 @@ public class ProductoEmprendimientoService {
 
         // Llenar las filas con los datos
         int rowNum = 1;
-        for (ProductoEmprendimiento pe : lista) {
+        for (ProductoEmprendimiento pe : listaExcelDao) {
             Row row = sheet.createRow(rowNum++);
             row.createCell(0).setCellValue(pe.getIdEmprendimiento());
             row.createCell(1).setCellValue(pe.getNombreEmprendimiento());
@@ -67,10 +67,10 @@ public class ProductoEmprendimientoService {
     
     public ByteArrayOutputStream generarExcelEmprendimientos(String idEmprendimiento) throws IOException {
 	
-    	LOG.info("La ID es"+ idEmprendimiento);
+    	LOG.info("La ID es "+ idEmprendimiento);
 
 
-        List<ProductoEmprendimiento> lista2 = repositoryID.obtenerProductosEmprendimientosID(idEmprendimiento);
+        List<ProductoEmprendimiento> listaExcelEmprendimientoDao = ExcelEmprendimientoDao.obtenerProductosEmprendimientosID(idEmprendimiento);
 
         XSSFWorkbook workbook = new XSSFWorkbook();
         Sheet sheet = workbook.createSheet("Productos y Emprendimientos por Emprendimiento");
@@ -85,7 +85,7 @@ public class ProductoEmprendimientoService {
 
         // Llenar las filas con los datos
         int rowNum = 1;
-        for (ProductoEmprendimiento pe : lista2) {
+        for (ProductoEmprendimiento pe : listaExcelEmprendimientoDao) {
             Row row = sheet.createRow(rowNum++);
             row.createCell(0).setCellValue(pe.getIdEmprendimiento());
             row.createCell(1).setCellValue(pe.getNombreEmprendimiento());
