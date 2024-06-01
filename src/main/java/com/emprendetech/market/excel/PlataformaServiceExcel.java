@@ -53,27 +53,24 @@ public class PlataformaServiceExcel {
 
 	@GetMapping("/excelID")
 	public ResponseEntity<?> descargarExcelEmprendimiento(@RequestBody ProductoEmprendimiento idEmprendimiento) {
-	    LOG.info("Emprendimiento La ID es " + idEmprendimiento.getIdEmprendimiento());
-	    ResponseEntity<?> responseEntity;
+		LOG.info("Emprendimiento La ID es " + idEmprendimiento.getIdEmprendimiento());
 
-	    try {
-	        String IDemp = String.valueOf(idEmprendimiento.getIdEmprendimiento());
-	        ByteArrayOutputStream outputStream = DescargarExcelEmprendimiento.generarExcelEmprendimientos(IDemp);
-	        ByteArrayResource resource = new ByteArrayResource(outputStream.toByteArray());
+		try {
+			String IDemp = String.valueOf(idEmprendimiento.getIdEmprendimiento());
+			ByteArrayOutputStream outputStream = DescargarExcelEmprendimiento.generarExcelEmprendimientos(IDemp);
+			ByteArrayResource resource = new ByteArrayResource(outputStream.toByteArray());
 
-	        HttpHeaders headers = new HttpHeaders();
-	        headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=ProductosPorEmprendimientos.xlsx");
-	        headers.add(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_OCTET_STREAM_VALUE);
+			HttpHeaders headers = new HttpHeaders();
+			headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=ProductosPorEmprendimientos.xlsx");
+			headers.add(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_OCTET_STREAM_VALUE);
 
-	        responseEntity = ResponseEntity.ok().headers(headers).contentLength(resource.contentLength()).body(resource);
-	    } catch (IOException e) {
-	        LOG.error("Error al generar o descargar el archivo Excel: ", e);
-	        responseEntity = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-	                .body("Error al generar o descargar el archivo Excel.");
-	    }
-
-	    return responseEntity;
+			return ResponseEntity.ok().headers(headers).contentLength(resource.contentLength()).body(resource);
+		} catch (IOException e) {
+			LOG.error("Error al generar o descargar el archivo Excel: ", e);
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+					.body("Error al generar o descargar el archivo Excel.");
+		}
+	
 	}
-
 	
 }

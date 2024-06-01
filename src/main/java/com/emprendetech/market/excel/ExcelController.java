@@ -23,7 +23,10 @@ public class ExcelController {
     private PlataformaExcelDao ExcelDao , ExcelEmprendimientoDao ;
 
     public ByteArrayOutputStream generarExcel() throws IOException {
-        List<ProductoEmprendimiento> listaExcelDao = ExcelDao.obtenerProductosEmprendimientos();
+        ByteArrayOutputStream outputStream = null;
+
+    	try {
+    	List<ProductoEmprendimiento> listaExcelDao = ExcelDao.obtenerProductosEmprendimientos();
 
         XSSFWorkbook workbook = new XSSFWorkbook();
         Sheet sheet = workbook.createSheet("Productos y Emprendimientos");
@@ -56,58 +59,75 @@ public class ExcelController {
         for (int i = 0; i < columns.length; i++) {
             sheet.autoSizeColumn(i);
         }
-
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        outputStream = new ByteArrayOutputStream();
         workbook.write(outputStream);
         workbook.close();
-
+    	
+        if (listaExcelDao == null || listaExcelDao.isEmpty()) {
+            throw new IOException("La lista de productos del emprendimiento no puede ser null o vacía");
+       }
+    	} catch (IOException e) {
+             LOG.error("Error al generar el Excel de emprendimientos: " + e.getMessage());
+             // Manejo de la excepción
+        }
         return outputStream;
         }
     
     
     public ByteArrayOutputStream generarExcelEmprendimientos(String idEmprendimiento) throws IOException {
-	
-    	LOG.info("La ID es "+ idEmprendimiento);
+        ByteArrayOutputStream outputStream = null;
 
+        try {
+            LOG.info("La ID es " + idEmprendimiento);
 
-        List<ProductoEmprendimiento> listaExcelEmprendimientoDao = ExcelEmprendimientoDao.obtenerProductosEmprendimientosID(idEmprendimiento);
+            List<ProductoEmprendimiento> listaExcelEmprendimientoDao = ExcelEmprendimientoDao.obtenerProductosEmprendimientosID(idEmprendimiento);
 
-        XSSFWorkbook workbook = new XSSFWorkbook();
-        Sheet sheet = workbook.createSheet("Productos y Emprendimientos por Emprendimiento");
+            LOG.info("La respuesta es  " + listaExcelEmprendimientoDao);
 
-        // Crear el encabezado
-        String[] columns = {"ID Emprendimiento", "Nombre Emprendimiento", "ID Producto", "SKU", "Nombre Producto", "ID Categoria", "Descripción", "Cantidad Disponible"};
-        Row headerRow = sheet.createRow(0);
-        for (int i = 0; i < columns.length; i++) {
-            Cell cell = headerRow.createCell(i);
-            cell.setCellValue(columns[i]);
+            XSSFWorkbook workbook = new XSSFWorkbook();
+            Sheet sheet = workbook.createSheet("Productos y Emprendimientos por Emprendimiento");
+
+            // Crear el encabezado
+            String[] columns = {"ID Emprendimiento", "Nombre Emprendimiento", "ID Producto", "SKU", "Nombre Producto", "ID Categoria", "Descripción", "Cantidad Disponible"};
+            Row headerRow = sheet.createRow(0);
+            for (int i = 0; i < columns.length; i++) {
+                Cell cell = headerRow.createCell(i);
+                cell.setCellValue(columns[i]);
+            }
+
+            // Llenar las filas con los datos
+            int rowNum = 1;
+            for (ProductoEmprendimiento pe : listaExcelEmprendimientoDao) {
+                Row row = sheet.createRow(rowNum++);
+                row.createCell(0).setCellValue(pe.getIdEmprendimiento());
+                row.createCell(1).setCellValue(pe.getNombreEmprendimiento());
+                row.createCell(2).setCellValue(pe.getIdProducto());
+                row.createCell(3).setCellValue(pe.getSku());
+                row.createCell(4).setCellValue(pe.getNombreProducto());
+                row.createCell(5).setCellValue(pe.getIdCategoria());
+                row.createCell(6).setCellValue(pe.getDescripcion());
+                row.createCell(7).setCellValue(pe.getCantidadDisponible());
+            }
+
+            // Ajustar el tamaño de las columnas
+            for (int i = 0; i < columns.length; i++) {
+                sheet.autoSizeColumn(i);
+            }
+
+            outputStream = new ByteArrayOutputStream();
+            workbook.write(outputStream);
+            workbook.close();
+
+            
+           if (listaExcelEmprendimientoDao == null || listaExcelEmprendimientoDao.isEmpty()) {
+                throw new IOException("La lista de productos del emprendimiento no puede ser null o vacía");
+           }
+        } catch (IOException e) {
+            LOG.error("Error al generar el Excel de emprendimientos: " + e.getMessage());
+            // Manejo de la excepción
         }
-
-        // Llenar las filas con los datos
-        int rowNum = 1;
-        for (ProductoEmprendimiento pe : listaExcelEmprendimientoDao) {
-            Row row = sheet.createRow(rowNum++);
-            row.createCell(0).setCellValue(pe.getIdEmprendimiento());
-            row.createCell(1).setCellValue(pe.getNombreEmprendimiento());
-            row.createCell(2).setCellValue(pe.getIdProducto());
-            row.createCell(3).setCellValue(pe.getSku());
-            row.createCell(4).setCellValue(pe.getNombreProducto());
-            row.createCell(5).setCellValue(pe.getIdCategoria());
-            row.createCell(6).setCellValue(pe.getDescripcion());
-            row.createCell(7).setCellValue(pe.getCantidadDisponible());
-
-
-        }
-
-        // Ajustar el tamaño de las columnas
-        for (int i = 0; i < columns.length; i++) {
-            sheet.autoSizeColumn(i);
-        }
-
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        workbook.write(outputStream);
-        workbook.close();
 
         return outputStream;
-        }
+    }
+
 }
