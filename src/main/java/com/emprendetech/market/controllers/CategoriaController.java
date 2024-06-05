@@ -7,11 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.emprendetech.market.entitys.Categorias;
-import com.emprendetech.market.entitys.Productos;
 import com.emprendetech.market.repositorys.CategoriasRepository;
 import com.emprendetech.market.response.ResponseContenidoDTO;
 import com.emprendetech.market.service.requestDto.CategoriaDto;
-import com.emprendetech.market.service.requestDto.ProductoDto;
+import com.emprendetech.market.utils.Constantes;
 import com.emprendetech.market.utils.Utils;
 
 import lombok.Data;
@@ -27,8 +26,6 @@ public class CategoriaController {
 
 	public String AltaCategoria(@RequestBody CategoriaDto categoriaDto) throws Exception {
 		LOG.info("createAlta Categoria- createAlta Categoria() Method");
-		LOG.debug("createAlta Categoria:: " + categoriaDto.toString());
-
 		String response = null;
 		try {
 			Categorias CategoriasInsert = new Categorias();
@@ -39,12 +36,12 @@ public class CategoriaController {
 			Utils util = new Utils();
 			CategoriasInsert.setFechacreacion(util.currentDate());
 			CategoriasInsert.setFechamodificacion(util.currentDate());
-			
+
 			LOG.info("Alta Categoria - Alta Categoria() Method " + CategoriasInsert.toString());
 
 			CategoriasInsert = categoriasRepository.save(CategoriasInsert);
 
-			response = "Felicidades Su Categoria fue registrado como = " + CategoriasInsert.getNombre();
+			response = Constantes.FELICIDADESALTACATEGORIAS + CategoriasInsert.getNombre();
 
 		} catch (Exception e) {
 			LOG.info("eror" + e.getStackTrace());
@@ -52,13 +49,10 @@ public class CategoriaController {
 		}
 		return response;
 	}
-	
+
 	public String actualizarCategorias(@RequestBody Categorias categorias) throws Exception {
 		LOG.info("update Categorias - update Categorias() Method");
-		LOG.debug("update Categorias :: " + categorias.toString());
-
 		String response = null;
-
 		try {
 			Categorias categoriasExistente = categoriasRepository.findById(categorias.getIdcategoria()).orElseThrow();
 
@@ -72,13 +66,12 @@ public class CategoriaController {
 
 			categoriasExistente = categoriasRepository.save(categoriasExistente);
 
-			response = "La Categoria " + categoriasExistente.getNombre() + " ha sido actualizado exitosamente.";
+			response = Constantes.FELICIDADESACTUALIZARCATEGORIAS + categoriasExistente.getNombre();
 		} catch (Exception e) {
 			LOG.info("eror" + e.getStackTrace());
 			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("error", categorias.toString());
 		}
 		return response;
 	}
-	
 
 }

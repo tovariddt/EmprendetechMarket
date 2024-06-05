@@ -16,13 +16,13 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "rol_permisos")
-public class Rol_permisos {
+@Table(name = "rolpermisos")
+public class Rolpermisos {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "idrol_permisos")
-	private Integer idrol_permisos;
+	@Column(name = "idrolpermisos")
+	private Integer idrolpermisos;
 
 	@Column(name = "idrol")
 	private Integer idrol;

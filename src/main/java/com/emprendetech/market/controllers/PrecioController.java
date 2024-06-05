@@ -10,6 +10,7 @@ import com.emprendetech.market.entitys.Precio;
 import com.emprendetech.market.repositorys.PrecioRepository;
 import com.emprendetech.market.response.ResponseContenidoDTO;
 import com.emprendetech.market.service.requestDto.PrecioDto;
+import com.emprendetech.market.utils.Constantes;
 import com.emprendetech.market.utils.Utils;
 
 import lombok.Data;
@@ -25,7 +26,6 @@ public class PrecioController {
 
 	public String AltaPrecio(@RequestBody PrecioDto precioDto) throws Exception {
 		LOG.info("createAlta Precio- createAlta Precio() Method");
-		LOG.debug("createAlta Precio:: " + precioDto.toString());
 
 		String response = null;
 		try {
@@ -43,7 +43,7 @@ public class PrecioController {
 
 			PrecioInsert = precioRepository.save(PrecioInsert);
 
-			response = "Felicidades Su Precio fue registrado con el siguiente ID = " + PrecioInsert.getIdprecio();
+			response = Constantes.FELICIDADESALTAPRECIO+ PrecioInsert.getIdprecio();
 
 		} catch (Exception e) {
 			LOG.info("eror" + e.getStackTrace());
@@ -54,7 +54,6 @@ public class PrecioController {
 	
 	public String actualizarPrecio(@RequestBody Precio precio) throws Exception {
 		LOG.info("update Precio - update Precio() Method");
-		LOG.debug("update Precio :: " + precio.toString());
 
 		String response = null;
 
@@ -72,7 +71,7 @@ public class PrecioController {
 
 			precioExistente = precioRepository.save(precioExistente);
 
-			response = "El Precio " + precioExistente.getIdprecio() + " ha sido actualizado exitosamente.";
+			response =Constantes.FELICIDADESACTUALIZARPRECIO + precioExistente.getIdprecio() ;
 		} catch (Exception e) {
 			LOG.info("eror" + e.getStackTrace());
 			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("error", precio.toString());

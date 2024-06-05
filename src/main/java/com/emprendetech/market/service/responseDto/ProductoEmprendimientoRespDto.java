@@ -1,4 +1,4 @@
-package com.emprendetech.market.excel;
+package com.emprendetech.market.service.responseDto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class ProductoEmprendimiento {
+public class ProductoEmprendimientoRespDto {
     private Integer idEmprendimiento;
     private String nombreEmprendimiento;
     private Integer idProducto;

@@ -10,6 +10,7 @@ import com.emprendetech.market.entitys.Permisos;
 import com.emprendetech.market.repositorys.PermisosRepository;
 import com.emprendetech.market.response.ResponseContenidoDTO;
 import com.emprendetech.market.service.requestDto.PermisosDto;
+import com.emprendetech.market.utils.Constantes;
 import com.emprendetech.market.utils.Utils;
 
 import lombok.Data;
@@ -25,7 +26,6 @@ public class PermisosController {
 
 	public String AltaPermisos(@RequestBody PermisosDto permisosDto) throws Exception {
 		LOG.info("createAlta Permisos- createAlta Permisos() Method");
-		LOG.debug("createAlta Permisos:: " + permisosDto.toString());
 
 		String response = null;
 		try {
@@ -43,7 +43,7 @@ public class PermisosController {
 
 			PermisosInsert = permisosRepository.save(PermisosInsert);
 
-			response = "Felicidades Su Permisos fue registrado como = " + PermisosInsert.getNombre();
+			response = Constantes.FELICIDADESALTAPERMISOS + PermisosInsert.getNombre();
 
 		} catch (Exception e) {
 			LOG.info("eror" + e.getStackTrace());
@@ -72,7 +72,7 @@ public class PermisosController {
 
 			permisosExistente = permisosRepository.save(permisosExistente);
 
-			response = "El Permisos " + permisosExistente.getNombre() + " ha sido actualizado exitosamente.";
+			response = Constantes.FELICIDADESACTUALIZARPERMISOS + permisosExistente.getNombre() ;
 		} catch (Exception e) {
 			LOG.info("eror" + e.getStackTrace());
 			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("error", permisos.toString());

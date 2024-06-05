@@ -3,7 +3,6 @@ package com.emprendetech.market.service.requestDto;
 import java.sql.Timestamp;
 import java.util.Date;
 
-import jakarta.persistence.Column;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

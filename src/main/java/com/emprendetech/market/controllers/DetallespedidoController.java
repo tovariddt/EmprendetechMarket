@@ -10,6 +10,7 @@ import com.emprendetech.market.entitys.Detallespedido;
 import com.emprendetech.market.repositorys.DetallespedidoRepository;
 import com.emprendetech.market.response.ResponseContenidoDTO;
 import com.emprendetech.market.service.requestDto.DetallespedidoDto;
+import com.emprendetech.market.utils.Constantes;
 import com.emprendetech.market.utils.Utils;
 
 import lombok.Data;
@@ -23,7 +24,6 @@ public class DetallespedidoController {
 
 	public String AltaDetallespedido(@RequestBody DetallespedidoDto detallespedidoDto) throws Exception {
 		LOG.info("createAlta Detallespedido- createAlta Detallespedido() Method");
-		LOG.debug("createAlta Detallespedido:: " + detallespedidoDto.toString());
 
 		String response = null;
 		try {
@@ -45,7 +45,7 @@ public class DetallespedidoController {
 
 			DetallespedidoInsert = detallespedidoRepository.save(DetallespedidoInsert);
 
-			response = "Felicidades su Detalle pedido  fue registrado con el id de venta  = " + DetallespedidoInsert.getIdventa();
+			response = Constantes.FELICIDADESALTADETALLESPEDIDO + DetallespedidoInsert.getIdventa();
 
 		} catch (Exception e) {
 			LOG.info("eror" + e.getStackTrace());
@@ -56,7 +56,6 @@ public class DetallespedidoController {
 
 	public String actualizarDetallespedido(@RequestBody Detallespedido detallespedido) throws Exception {
 		LOG.info("update Detallespedido - update Detallespedido() Method");
-		LOG.debug("update Detallespedido :: " + detallespedido.toString());
 
 		String response = null;
 
@@ -76,7 +75,7 @@ public class DetallespedidoController {
 
 			detallespedidoExistente = detallespedidoRepository.save(detallespedido);
 
-			response = "El Detalles pedido de la venta " + detallespedido.getIdventa() + " ha sido actualizado exitosamente.";
+			response = Constantes.FELICIDADESACTUALIZARDETALLESPEDIDO + detallespedido.getIdventa() ;
 		} catch (Exception e) {
 			LOG.info("eror" + e.getStackTrace());
 			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("error", detallespedido.toString());

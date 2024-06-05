@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.emprendetech.market.entitys.Personas;
+import com.emprendetech.market.controllers.ExcelController;
+import com.emprendetech.market.service.responseDto.ProductoEmprendimientoRespDto;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -51,8 +52,8 @@ public class PlataformaServiceExcel {
 	}
 
 
-	@GetMapping("/excelID")
-	public ResponseEntity<?> descargarExcelEmprendimiento(@RequestBody ProductoEmprendimiento idEmprendimiento) {
+	@GetMapping("/excelid")
+	public ResponseEntity<?> descargarExcelEmprendimiento(@RequestBody ProductoEmprendimientoRespDto idEmprendimiento) {
 		LOG.info("Emprendimiento La ID es " + idEmprendimiento.getIdEmprendimiento());
 
 		try {

@@ -13,6 +13,7 @@ import com.emprendetech.market.repositorys.RolesRepository;
 import com.emprendetech.market.repositorys.VentasRepository;
 import com.emprendetech.market.response.ResponseContenidoDTO;
 import com.emprendetech.market.service.requestDto.VentasDto;
+import com.emprendetech.market.utils.Constantes;
 import com.emprendetech.market.utils.Utils;
 
 import lombok.Data;
@@ -26,7 +27,6 @@ public class VentasController {
 
 	public String AltaVentas(@RequestBody VentasDto ventasDto) throws Exception {
 		LOG.info("createAlta Ventas- createAlta Ventas() Method");
-		LOG.debug("createAlta Ventas:: " + ventasDto.toString());
 
 		String response = null;
 		try {
@@ -47,7 +47,7 @@ public class VentasController {
 
 			VentasInsert = ventasRepository.save(VentasInsert);
 
-			response = "Felicidades Su Ventas fue registrado con el siguiente ID = " + VentasInsert.getIdventa();
+			response = Constantes.FELICIDADESALTAVENTAS + VentasInsert.getIdventa();
 
 		} catch (Exception e) {
 			LOG.info("eror" + e.getStackTrace());
@@ -58,7 +58,6 @@ public class VentasController {
 	
 	public String actualizarVentas(@RequestBody Ventas ventas) throws Exception {
 		LOG.info("update Ventas - update Ventas() Method");
-		LOG.debug("update Ventas :: " + ventas.toString());
 
 		String response = null;
 
@@ -76,7 +75,7 @@ public class VentasController {
 
 			ventasExistente = ventasRepository.save(ventasExistente);
 
-			response = "La Ventas " + ventasExistente.getIdventa() + " ha sido actualizado exitosamente.";
+			response = Constantes.FELICIDADESACTUALIZARVENTAS + ventasExistente.getIdventa();
 		} catch (Exception e) {
 			LOG.info("eror" + e.getStackTrace());
 			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("error", ventas.toString());

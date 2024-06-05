@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Rol_permisosDto {
+public class RolpermisosDto {
 
 	private Integer idrol;
 

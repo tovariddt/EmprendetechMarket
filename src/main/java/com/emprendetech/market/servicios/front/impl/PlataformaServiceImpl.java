@@ -6,21 +6,19 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.emprendetech.market.controllers.RegistroController;
-import com.emprendetech.market.controllers.Rol_permisosController;
 import com.emprendetech.market.controllers.RolesController;
+import com.emprendetech.market.controllers.RolpermisosController;
 import com.emprendetech.market.controllers.VentasController;
 import com.emprendetech.market.controllers.CategoriaController;
 import com.emprendetech.market.controllers.ClientesController;
@@ -32,7 +30,6 @@ import com.emprendetech.market.controllers.PermisosController;
 import com.emprendetech.market.controllers.PrecioController;
 import com.emprendetech.market.controllers.ProductoController;
 import com.emprendetech.market.controllers.ProductosunidadController;
-import com.emprendetech.market.dao.PlataformaDao;
 import com.emprendetech.market.entitys.Categorias;
 import com.emprendetech.market.entitys.Clientes;
 import com.emprendetech.market.entitys.Detallespedido;
@@ -45,8 +42,8 @@ import com.emprendetech.market.entitys.Personas;
 import com.emprendetech.market.entitys.Precio;
 import com.emprendetech.market.entitys.Productos;
 import com.emprendetech.market.entitys.Productosunidad;
-import com.emprendetech.market.entitys.Rol_permisos;
 import com.emprendetech.market.entitys.Roles;
+import com.emprendetech.market.entitys.Rolpermisos;
 import com.emprendetech.market.entitys.Usuario;
 import com.emprendetech.market.entitys.Ventas;
 import com.emprendetech.market.response.ResponseContenidoDTO;
@@ -55,6 +52,7 @@ import com.emprendetech.market.service.responseDto.CompCorreoRespDto;
 import com.emprendetech.market.service.responseDto.EmprendimientosRespDTO;
 import com.emprendetech.market.service.responseDto.PerfilesRespDto;
 import com.emprendetech.market.service.responseDto.PersonaUsuarioRespDTO;
+import com.emprendetech.market.service.responseDto.PlataformaDao;
 import com.emprendetech.market.service.responseDto.PostalRespDto;
 import com.emprendetech.market.service.responseDto.ProductosRespDto;
 import com.emprendetech.market.service.responseDto.RolesRespDto;
@@ -72,12 +70,10 @@ import com.emprendetech.market.service.requestDto.PrecioDto;
 import com.emprendetech.market.service.requestDto.ProductoDto;
 import com.emprendetech.market.service.requestDto.ProductosunidadDto;
 import com.emprendetech.market.service.requestDto.RegistroDto;
-import com.emprendetech.market.service.requestDto.Rol_permisosDto;
 import com.emprendetech.market.service.requestDto.RolesDto;
+import com.emprendetech.market.service.requestDto.RolpermisosDto;
 import com.emprendetech.market.service.requestDto.UsuarioContrasenaDto;
 import com.emprendetech.market.service.requestDto.VentasDto;
-
-import org.springframework.http.HttpStatus;
 
 @ResponseBody
 @ResponseStatus(HttpStatus.SERVICE_UNAVAILABLE)
@@ -113,7 +109,7 @@ public class PlataformaServiceImpl {
 	@Autowired
 	private PermisosController AltaPermisos, ActualizarPermisos;
 	@Autowired
-	private Rol_permisosController AltaRol_permisos, ActualizarRol_permisos;
+	private RolpermisosController AltaRolpermisos, ActualizarRolpermisos;
 	@Autowired
 	private RolesController AltaRoles, ActualizarRoles;
 	@Autowired
@@ -193,7 +189,7 @@ public class PlataformaServiceImpl {
 		return responseCodigopostal;
 	}
 
-	@PostMapping("/Alta")
+	@PostMapping("/alta")
 	public ResponseEntity<?> postRegistro(@RequestBody RegistroDto registrodto) {
 
 		LOG.info("get Registro - get Registro() Method");
@@ -215,7 +211,7 @@ public class PlataformaServiceImpl {
 		return responseAlta;
 	}
 
-	@PostMapping("/ActualizarUsuario")
+	@PostMapping("/actualizar/usuario")
 	public ResponseEntity<?> updateUsuario(@RequestBody Usuario usuario) {
 
 		LOG.info("update Usuario - update Usuario() Method");
@@ -241,7 +237,7 @@ public class PlataformaServiceImpl {
 	}
 	
 	
-	@PostMapping("/ActualizarPersonas")
+	@PostMapping("/actualizar/personas")
 	public ResponseEntity<?> updatePersonas(@RequestBody Personas personas) {
 
 		LOG.info("update Personas - update Personas() Method");
@@ -266,7 +262,7 @@ public class PlataformaServiceImpl {
 		return responseactualizarPersonas;
 	}
 	
-	@PostMapping("/ActualizarEmprendimientos")
+	@PostMapping("/actualizar/emprendimientos")
 	public ResponseEntity<?> updateEmprendimientos(@RequestBody Emprendimientos emprendimientos) {
 
 		LOG.info("update Emprendimientos - update Emprendimientos() Method");
@@ -293,7 +289,7 @@ public class PlataformaServiceImpl {
 	
 	
 	
-	@GetMapping("/Correo")
+	@GetMapping("/correo")
 	public ResponseEntity<?> getCorreo(@RequestBody Usuario correodto) {
 		LOG.info("get CorreoComprobacion - get CorreoComprobacion() Method");
 
@@ -327,7 +323,7 @@ public class PlataformaServiceImpl {
 	}
 
 	
-	@GetMapping("/Consulta")
+	@GetMapping("/consulta")
 	public ResponseEntity<?> getUsuarioPersona(@RequestBody UsuarioContrasenaDto CorroContrasena) {
 		LOG.info("get UsuarioPersona - get UsuarioPersona() Method");
 
@@ -382,7 +378,7 @@ public class PlataformaServiceImpl {
 		return responseCategorias;
 	}
 
-	@PostMapping("/AltaProducto")
+	@PostMapping("/alta/producto")
 	public ResponseEntity<?> postProducto(@RequestBody ProductoDto productoDto) {
 
 		LOG.info("get Producto - get Producto() Method");
@@ -406,7 +402,7 @@ public class PlataformaServiceImpl {
 		return responsealtaProducto;
 	}
 
-	@PostMapping("/ActualizarProducto")
+	@PostMapping("/actualizar/producto")
 	public ResponseEntity<?> updateProducto(@RequestBody Productos productos) {
 
 		LOG.info("update Producto - update Producto() Method");
@@ -430,7 +426,7 @@ public class PlataformaServiceImpl {
 		return responseactualizarProducto;
 	}
 	
-	@GetMapping("/ConsultaProductoEmprendimiento")
+	@GetMapping("/consulta/productoemprendimiento")
 	public ResponseEntity<?> getproductoEmprendimiento(@RequestBody ProductosRespDto idemprendimientos) {
 
 		LOG.info("get productoEmprendimiento - get productoEmprendimiento() Method");
@@ -454,7 +450,7 @@ public class PlataformaServiceImpl {
 		return responseproductoEmprendimiento;
 	}
 	
-	@GetMapping("/ConsultaProductoEmprendimientoCategoria")
+	@GetMapping("/consulta/productoemprendimientocategoria")
 	public ResponseEntity<?> getproductoEmprendimientoCategoria(@RequestBody ProductosRespDto emprendimientoscategoria ) {
 
 		LOG.info("get productoEmprendimientoCategoria - get productoEmprendimientoCategoria() Method");
@@ -479,7 +475,7 @@ public class PlataformaServiceImpl {
 		return responseproductoEmprendimientoCategoria;
 	}
 	
-	@GetMapping("/ConsultaProductoEmprendimientoNombreLIKE")
+	@GetMapping("/consulta/productomprendimientoombrelike")
 	public ResponseEntity<?> getproductoEmprendimientoNombreLIKE(@RequestBody ProductosRespDto emprendimientosNombreLIKE ) {
 
 		LOG.info("get productoEmprendimientoNombreLIKE - get productoEmprendimientoNombreLIKE() Method");
@@ -506,7 +502,7 @@ public class PlataformaServiceImpl {
 
 
 
-	@PostMapping("/AltaCategoria")
+	@PostMapping("/alta/categoria")
 	public ResponseEntity<?> postCategoria(@RequestBody CategoriaDto categoriaDto) {
 
 		LOG.info("get Categoria - get Categoria() Method");
@@ -530,7 +526,7 @@ public class PlataformaServiceImpl {
 		return responsealtaCategoria;
 	}
 
-	@PostMapping("/ActualizarCategoria")
+	@PostMapping("/actualizar/categoria")
 	public ResponseEntity<?> updateCategorias(@RequestBody Categorias categorias) {
 
 		LOG.info("update Categorias - update Categorias() Method");
@@ -556,7 +552,7 @@ public class PlataformaServiceImpl {
 	}
 	
 	
-	@PostMapping("/AltaClientes")
+	@PostMapping("/alta/clientes")
 	public ResponseEntity<?> postClientes(@RequestBody ClientesDto clientesDto) {
 
 		LOG.info("get Clientes - get Clientes() Method");
@@ -580,7 +576,7 @@ public class PlataformaServiceImpl {
 		return responsealtaClientes;
 	}
 
-	@PostMapping("/ActualizarClientes")
+	@PostMapping("/actualizar/clientes")
 	public ResponseEntity<?> updateClientes(@RequestBody Clientes clientes) {
 
 		LOG.info("update Clientes - update Clientes() Method");
@@ -605,7 +601,7 @@ public class PlataformaServiceImpl {
 		return responseactualizarClientes;
 	}
 	
-	@PostMapping("/AltaMedidas")
+	@PostMapping("/alta/medidas")
 	public ResponseEntity<?> postMedidas(@RequestBody MedidasDto medidasDto) {
 
 		LOG.info("get Medidas - get Medidas() Method");
@@ -629,7 +625,7 @@ public class PlataformaServiceImpl {
 		return responsealtaMedidas;
 	}
 
-	@PostMapping("/ActualizarMedidas")
+	@PostMapping("/actualizar/medidas")
 	public ResponseEntity<?> updateMedidas(@RequestBody Medidas medidas) {
 
 		LOG.info("update Medidas - update Medidas() Method");
@@ -654,7 +650,7 @@ public class PlataformaServiceImpl {
 		return responseactualizarMedidas;
 	}
 	
-	@PostMapping("/AltaDetallespedido")
+	@PostMapping("/alta/detallespedido")
 	public ResponseEntity<?> postDetallespedido(@RequestBody DetallespedidoDto detallespedidoDto) {
 
 		LOG.info("get Detallespedido - get Detallespedido() Method");
@@ -678,7 +674,7 @@ public class PlataformaServiceImpl {
 		return responsealtaDetallespedido;
 	}
 
-	@PostMapping("/ActualizarDetallespedido")
+	@PostMapping("/actualizar/detallespedido")
 	public ResponseEntity<?> updateDetallespedido(@RequestBody Detallespedido detallespedido) {
 
 
@@ -704,7 +700,7 @@ public class PlataformaServiceImpl {
 		return responseactualizarDetallespedido;
 	}
 	
-	@PostMapping("/AltaPedidos")
+	@PostMapping("/alta/pedidos")
 	public ResponseEntity<?> postPedidos(@RequestBody PedidosDto pedidosDto) {
 
 		LOG.info("get Pedidos - get Pedidos() Method");
@@ -728,7 +724,7 @@ public class PlataformaServiceImpl {
 		return responsealtaPedidos;
 	}
 
-	@PostMapping("/ActualizarPedidos")
+	@PostMapping("/actualizar/pedidos")
 	public ResponseEntity<?> updatePedidos(@RequestBody Pedidos pedidos) {
 
 		LOG.info("update Pedidos - update Pedidos() Method");
@@ -753,7 +749,7 @@ public class PlataformaServiceImpl {
 		return responseactualizarPedidos;
 	}
 	
-	@PostMapping("/AltaMetodospago")
+	@PostMapping("/alta/metodospago")
 	public ResponseEntity<?> postMetodospago(@RequestBody MetodospagoDto metodospagoDto) {
 
 		LOG.info("get Metodospago - get Metodospago() Method");
@@ -777,7 +773,7 @@ public class PlataformaServiceImpl {
 		return responsealtaMetodospago;
 	}
 
-	@PostMapping("/ActualizarMetodospago")
+	@PostMapping("/actualizar/metodospago")
 	public ResponseEntity<?> updateMetodospago(@RequestBody Metodospago metodospago) {
 
 		LOG.info("update Metodospago - update Metodospago() Method");
@@ -803,7 +799,7 @@ public class PlataformaServiceImpl {
 	}
 	
 
-	@PostMapping("/AltaPrecio")
+	@PostMapping("/alta/precio")
 	public ResponseEntity<?> postPrecio(@RequestBody PrecioDto precioDto) {
 
 		LOG.info("get Precio - get Precio() Method");
@@ -827,7 +823,7 @@ public class PlataformaServiceImpl {
 		return responsealtaPrecio;
 	}
 
-	@PostMapping("/ActualizarPrecio")
+	@PostMapping("/actualizar/precio")
 	public ResponseEntity<?> updateMetodospago(@RequestBody Precio precio) {
 
 		LOG.info("update Precio - update Metodospago() Method");
@@ -853,7 +849,7 @@ public class PlataformaServiceImpl {
 	}
 	
 
-	@PostMapping("/AltaProductosunidad")
+	@PostMapping("/alta/productosunidad")
 	public ResponseEntity<?> postProductosunidad(@RequestBody ProductosunidadDto  productosunidadDto) {
 
 		LOG.info("get Productosunidad - get Productosunidad() Method");
@@ -877,7 +873,7 @@ public class PlataformaServiceImpl {
 		return responsealtaProductosunidad;
 	}
 
-	@PostMapping("/ActualizarProductosunidad")
+	@PostMapping("/actualizar/productosunidad")
 	public ResponseEntity<?> updateProductosunidad(@RequestBody Productosunidad productosunidad) {
 
 		LOG.info("update Productosunidad - update Productosunidad() Method");
@@ -902,7 +898,7 @@ public class PlataformaServiceImpl {
 		return responseactualizarProductosunidad;
 	}
 	
-	@PostMapping("/AltaPermisos")
+	@PostMapping("/alta/permisos")
 	public ResponseEntity<?> postPermisos(@RequestBody PermisosDto  permisosDto) {
 
 		LOG.info("get Permisos - get Permisos() Method");
@@ -926,7 +922,7 @@ public class PlataformaServiceImpl {
 		return responsealtaPermisos;
 	}
 
-	@PostMapping("/ActualizarPermisos")
+	@PostMapping("/actualizar/permisos")
 	public ResponseEntity<?> updatePermisos(@RequestBody Permisos permisos) {
 
 		LOG.info("update Permisos - update Permisos() Method");
@@ -951,19 +947,19 @@ public class PlataformaServiceImpl {
 		return responseactualizarPermisos;
 	}
 	
-	@PostMapping("/AltaRol_permisos")
-	public ResponseEntity<?> postRol_permisos(@RequestBody Rol_permisosDto  rol_permisosDto) {
+	@PostMapping("/alta/rolpermisos")
+	public ResponseEntity<?> postRolpermisos(@RequestBody RolpermisosDto  rolpermisosDto) {
 
 		LOG.info("get Rol_permisos - get Rol_permisos() Method");
 		ResponseEntity<?> responsealtaPermisos= null;
 
 		try {
 
-			String altaRol_permisos = null;
+			String altaRolpermisos = null;
 
-			altaRol_permisos = AltaRol_permisos.AltaRol_permisos(rol_permisosDto);
+			altaRolpermisos = AltaRolpermisos.AltaRol_permisos(rolpermisosDto);
 			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("200 OK", "Alta Rol_permisos");
-			responseContenido.setContenido(altaRol_permisos);
+			responseContenido.setContenido(altaRolpermisos);
 			responsealtaPermisos = new ResponseEntity<>(responseContenido, HttpStatus.OK);
 
 		} catch (Exception e) {
@@ -975,32 +971,32 @@ public class PlataformaServiceImpl {
 		return responsealtaPermisos;
 	}
 
-	@PostMapping("/ActualizarRol_permisos")
-	public ResponseEntity<?> updateRol_permisos(@RequestBody Rol_permisos rol_permisos) {
+	@PostMapping("/actualizar/rolpermisos")
+	public ResponseEntity<?> updateRolpermisos(@RequestBody Rolpermisos rolpermisos) {
 
-		LOG.info("update Rol_permisos - update Rol_permisos() Method");
+		LOG.info("update Rolpermisos - update Rolpermisos() Method");
 	
 		ResponseEntity<?> responseactualizarRol_permisos = null;
 
 		try {
 
-			String actualizarRol_permisos = null;
+			String actualizarRolpermisos = null;
 
-			actualizarRol_permisos = ActualizarRol_permisos.actualizarRol_permisos(rol_permisos);
-			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("200 OK", "Actualizar Rol_permisos");
-			responseContenido.setContenido(actualizarRol_permisos);
+			actualizarRolpermisos = ActualizarRolpermisos.actualizarRolpermisos(rolpermisos);
+			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("200 OK", "Actualizar Rolpermisos");
+			responseContenido.setContenido(actualizarRolpermisos);
 			responseactualizarRol_permisos= new ResponseEntity<>(responseContenido, HttpStatus.OK);
 
 		} catch (Exception e) {
 			LOG.error("error codigo" + e.getStackTrace());
-			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("error", "Actualizar Rol_permisos");
+			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("error", "Actualizar Rolpermisos");
 			responseactualizarRol_permisos = new ResponseEntity<>(responseContenido, HttpStatus.OK);
 
 		}
 		return responseactualizarRol_permisos;
 	}
 	
-	@PostMapping("/AltaRoles")
+	@PostMapping("/alta/roles")
 	public ResponseEntity<?> postRoles(@RequestBody RolesDto  rolesDto) {
 
 		LOG.info("get Roles - get Roles() Method");
@@ -1024,7 +1020,7 @@ public class PlataformaServiceImpl {
 		return responsealtaRoles;
 	}
 
-	@PostMapping("/ActualizarRoles")
+	@PostMapping("/actualizar/roles")
 	public ResponseEntity<?> updateRoles(@RequestBody Roles roles) {
 
 		LOG.info("update Roles - update Roles() Method");
@@ -1050,7 +1046,7 @@ public class PlataformaServiceImpl {
 	}
 	
 	
-	@PostMapping("/AltaVentas")
+	@PostMapping("/alta/ventas")
 	public ResponseEntity<?> postVentas(@RequestBody VentasDto  ventasDto) {
 
 		LOG.info("get Ventas - get Ventas() Method");
@@ -1074,7 +1070,7 @@ public class PlataformaServiceImpl {
 		return responsealtaVentas;
 	}
 
-	@PostMapping("/ActualizarVentas")
+	@PostMapping("/actualizar/ventas")
 	public ResponseEntity<?> updateVentas(@RequestBody Ventas ventas) {
 
 		LOG.info("update Ventas - update Ventas() Method");

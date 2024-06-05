@@ -6,16 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.emprendetech.market.dao.PlataformaDao;
 import com.emprendetech.market.entitys.Emprendimientos;
 import com.emprendetech.market.entitys.Personas;
 import com.emprendetech.market.entitys.Usuario;
-import com.emprendetech.market.entitys.Ventas;
 import com.emprendetech.market.repositorys.EmprendimientosRepository;
 import com.emprendetech.market.repositorys.PersonasRepository;
 import com.emprendetech.market.repositorys.UsuarioRepository;
 import com.emprendetech.market.response.ResponseContenidoDTO;
 import com.emprendetech.market.service.requestDto.RegistroDto;
+import com.emprendetech.market.service.responseDto.PlataformaDao;
+import com.emprendetech.market.utils.Constantes;
 import com.emprendetech.market.utils.Utils;
 
 import lombok.Data;
@@ -37,7 +37,6 @@ public class RegistroController {
 
 	public String AltaUsuario(@RequestBody RegistroDto registroDto) throws Exception {
 		LOG.info("createAlta Registro - createAlta Registro() Method");
-		LOG.debug("createAlta Registro :: " + registroDto.toString());
 
 		String responseAltaUsuario = null;
 		try {
@@ -63,7 +62,6 @@ public class RegistroController {
 			if (personasRepository.existsById(personasInsert.getIdpersona())) {
 
 				LOG.info("createAlta Usuario - createAlta Usuario() Method " + personasInsert.getIdpersona());
-				LOG.debug("createAlta Usuario Error:: " + personasInsert.getIdpersona());
 
 				Usuario usuarioInsert = new Usuario();
 
@@ -79,7 +77,7 @@ public class RegistroController {
 			
 				usuarioInsert = usuarioRepository.save(usuarioInsert);
 
-				responseAltaUsuario = "Felicidades fue registrado como=" + usuarioInsert.getNombreusuario();
+				responseAltaUsuario = Constantes.FELICIDADESALTAUSUARIO+ usuarioInsert.getNombreusuario();
 				LOG.info(personasInsert.getIdpersona());
 			}
 
@@ -102,8 +100,7 @@ public class RegistroController {
 				emprendimientoInsert.setFechamodificacion(util.currentDate());
 				emprendimientoInsert = emprendimientosRepository.save(emprendimientoInsert);
 
-				responseAltaUsuario = "Felicidades " + personasInsert.getNombre() + " Su emprendimiento fue registrado como = "
-						+ emprendimientoInsert.getNombre();
+				responseAltaUsuario = Constantes.FELICIDADES + personasInsert.getNombre() + Constantes.FELICIDADESALTAEMPRENDIMIENTO+ emprendimientoInsert.getNombre();
 				LOG.info(emprendimientoInsert.getNombre());
 			}
 
@@ -116,7 +113,6 @@ public class RegistroController {
 	
 	public String actualizarPersonas(@RequestBody Personas personas) throws Exception {
 		LOG.info("update Personas - update Personas() Method");
-		LOG.debug("update Personas :: " + personas.toString());
 
 		String response = null;
 
@@ -137,7 +133,7 @@ public class RegistroController {
 
 			PersonasExistente = personasRepository.save(PersonasExistente);
 
-			response = "La personas " + PersonasExistente.getNombre() + " ha sido actualizado exitosamente.";
+			response = Constantes.FELICIDADESACTUALIZARPERSONAS  + PersonasExistente.getNombre() ;
 		} catch (Exception e) {
 			LOG.info("eror" + e.getStackTrace());
 			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("error", personas.toString());
@@ -147,7 +143,6 @@ public class RegistroController {
 	
 	    public String actualizarUsuario(@RequestBody Usuario usuario) throws Exception {
 		LOG.info("update Usuario - update Usuario() Method");
-		LOG.debug("update Usuario :: " + usuario.toString());
 
 		String response = null;
 
@@ -164,7 +159,7 @@ public class RegistroController {
 
 			UsuarioExistente = usuarioRepository.save(UsuarioExistente);
 
-			response = "El Usuario " + UsuarioExistente.getNombreusuario() + " ha sido actualizado exitosamente.";
+			response =  Constantes.FELICIDADESACTUALIZARUSUARIO + UsuarioExistente.getNombreusuario() ;
 		} catch (Exception e) {
 			LOG.info("eror" + e.getStackTrace());
 			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("error", usuario.toString());
@@ -174,7 +169,6 @@ public class RegistroController {
 	    
 	    public String actualizarEmprendimientos(@RequestBody Emprendimientos emprendimientos) throws Exception {
 		LOG.info("update Emprendimientos - update Emprendimientos() Method");
-		LOG.debug("update Emprendimientos :: " + emprendimientos.toString());
 
 		String response = null;
 
@@ -192,7 +186,7 @@ public class RegistroController {
 
 			EmprendimientosExistente = emprendimientosRepository.save(EmprendimientosExistente);
 
-			response = "El Emprendimientos " + EmprendimientosExistente.getNombre() + " ha sido actualizado exitosamente.";
+			response = Constantes.FELICIDADESACTUALIZAREMPRENDIMIENTOS + EmprendimientosExistente.getNombre() ;
 		} catch (Exception e) {
 			LOG.info("eror" + e.getStackTrace());
 			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("error", emprendimientos.toString());

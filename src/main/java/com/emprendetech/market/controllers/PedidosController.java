@@ -12,6 +12,7 @@ import com.emprendetech.market.entitys.Pedidos;
 import com.emprendetech.market.repositorys.PedidosRepository;
 import com.emprendetech.market.response.ResponseContenidoDTO;
 import com.emprendetech.market.service.requestDto.PedidosDto;
+import com.emprendetech.market.utils.Constantes;
 import com.emprendetech.market.utils.Utils;
 
 import lombok.Data;
@@ -27,7 +28,6 @@ public class PedidosController {
 
 	public String AltaPedidos(@RequestBody PedidosDto pedidosDto) throws Exception {
 		LOG.info("createAlta Pedidos- createAlta Pedidos() Method");
-		LOG.debug("createAlta Pedidos:: " + pedidosDto.toString());
 
 		String response = null;
 		try {
@@ -47,7 +47,7 @@ public class PedidosController {
 
 			PedidosInsert = pedidosRepository.save(PedidosInsert);
 
-			response = "Felicidades Su Pedido fue registrado con el ID = " + PedidosInsert.getIdpedido();
+			response = Constantes.FELICIDADESALTAPEDIDOS+ PedidosInsert.getIdpedido();
 
 		} catch (Exception e) {
 			LOG.info("eror" + e.getStackTrace());
@@ -58,7 +58,6 @@ public class PedidosController {
 
 	public String actualizarPedidos(@RequestBody Pedidos pedidos) throws Exception {
 		LOG.info("update Pedidos - update Pedidos() Method");
-		LOG.debug("update Pedidos :: " + pedidos.toString());
 
 		String response = null;
 
@@ -79,7 +78,7 @@ public class PedidosController {
 
 			pedidosExistente = pedidosRepository.save(pedidos);
 
-			response = "Su Pedido " + pedidosExistente.getIdpedido() + " ha sido actualizado exitosamente.";
+			response = Constantes.FELICIDADESACTUALIZARPEDIDOS + pedidosExistente.getIdpedido() ;
 		} catch (Exception e) {
 			LOG.info("eror" + e.getStackTrace());
 			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("error", pedidos.toString());

@@ -24,7 +24,6 @@ public class Perfilcontroller {
 
 	public ResponseEntity<?> createPerfil(@RequestBody Perfiles perfiles) throws Exception {
 		LOG.info("createAlta Perfil - createAlta Perfil() Method");
-		LOG.debug("perfiles :: " + perfiles.toString());
 
 		Perfiles perfilInsert = perfiles;
 		Perfiles front = new Perfiles();

@@ -1,8 +1,11 @@
-package com.emprendetech.market.excel;
+package com.emprendetech.market.dao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
+import com.emprendetech.market.service.responseDto.ProductoEmprendimientoRespDto;
+import com.emprendetech.market.utils.Constantes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,14 +16,13 @@ public class PlataformaExcelDao {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    public List<ProductoEmprendimiento> obtenerProductosEmprendimientos() {
+    public List<ProductoEmprendimientoRespDto> obtenerProductosEmprendimientos() {
         try {
-            List<ProductoEmprendimiento> resultProductosEmprendimientos = new ArrayList<>();
+            List<ProductoEmprendimientoRespDto> resultProductosEmprendimientos = new ArrayList<>();
 
-            String sql = "SELECT emprendetech_market.emprendimientos.idemprendimiento, emprendetech_market.emprendimientos.nombre as nombreEmprendimiento, emprendetech_market.productos.idproducto, emprendetech_market.productos.sku, emprendetech_market.productos.nombre as nombreProducto, emprendetech_market.productos.idcategoria, emprendetech_market.productos.descripcion, emprendetech_market.productos.cantidad_disponible FROM emprendetech_market.productos INNER JOIN emprendetech_market.emprendimientos ON emprendetech_market.productos.idemprendimiento = emprendetech_market.emprendimientos.idemprendimiento;";
-
-            return jdbcTemplate.query(sql, new Object[]{}, (rs, rowNum) -> {
-                ProductoEmprendimiento productoEmprendimiento = new ProductoEmprendimiento();
+            String sql = Constantes.SQLOBTENERPRODUCTOSEMPRENDIMIENTOS;
+            return jdbcTemplate.query(sql,(rs, rowNum) -> {
+            	ProductoEmprendimientoRespDto productoEmprendimiento = new ProductoEmprendimientoRespDto();
                 productoEmprendimiento.setIdEmprendimiento(rs.getInt("idemprendimiento"));
                 productoEmprendimiento.setNombreEmprendimiento(rs.getString("nombreEmprendimiento"));
                 productoEmprendimiento.setIdProducto(rs.getInt("idproducto"));
@@ -38,14 +40,14 @@ public class PlataformaExcelDao {
         }
     }
     
-    public List<ProductoEmprendimiento> obtenerProductosEmprendimientosID(String idEmprendimiento) {
+    public List<ProductoEmprendimientoRespDto> obtenerProductosEmprendimientosID(String idEmprendimiento) {
         try {
-            List<ProductoEmprendimiento> resultProductosEmprendimientos = new ArrayList<>();
+            List<ProductoEmprendimientoRespDto> resultProductosEmprendimientos = new ArrayList<>();
 
-            String sql = "SELECT emprendetech_market.emprendimientos.idemprendimiento, emprendetech_market.emprendimientos.nombre as nombreEmprendimiento, emprendetech_market.productos.idproducto,emprendetech_market.productos.sku ,emprendetech_market.productos.nombre  as nombreProducto, emprendetech_market.productos.idcategoria , emprendetech_market.productos.descripcion, emprendetech_market.productos.cantidad_disponible FROM emprendetech_market.productos INNER JOIN emprendetech_market.emprendimientos ON emprendetech_market.productos.idemprendimiento = emprendetech_market.emprendimientos.idemprendimiento where emprendetech_market.emprendimientos.idemprendimiento = '"+idEmprendimiento+"'; " ;
+            String sql = Constantes.SQLOBTENERPRODUCTOSEMPRENDIMIENTOSID+idEmprendimiento+"'; " ;
 
-            return jdbcTemplate.query(sql, new Object[]{}, (rs, rowNum) -> {
-                ProductoEmprendimiento productoEmprendimiento = new ProductoEmprendimiento();
+            return jdbcTemplate.query(sql,  (rs, rowNum) -> {
+            	ProductoEmprendimientoRespDto productoEmprendimiento = new ProductoEmprendimientoRespDto();
                 productoEmprendimiento.setIdEmprendimiento(rs.getInt("idemprendimiento"));
                 productoEmprendimiento.setNombreEmprendimiento(rs.getString("nombreEmprendimiento"));
                 productoEmprendimiento.setIdProducto(rs.getInt("idproducto"));

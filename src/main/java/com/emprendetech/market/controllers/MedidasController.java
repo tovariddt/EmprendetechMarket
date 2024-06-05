@@ -10,6 +10,7 @@ import com.emprendetech.market.entitys.Medidas;
 import com.emprendetech.market.repositorys.MedidasRepository;
 import com.emprendetech.market.response.ResponseContenidoDTO;
 import com.emprendetech.market.service.requestDto.MedidasDto;
+import com.emprendetech.market.utils.Constantes;
 import com.emprendetech.market.utils.Utils;
 
 import lombok.Data;
@@ -24,7 +25,6 @@ public class MedidasController {
 
 	public String AltaMedidas(@RequestBody MedidasDto medidasDto) throws Exception {
 		LOG.info("createAlta Medidas- createAlta Medidas() Method");
-		LOG.debug("createAlta Medidas:: " + medidasDto.toString());
 
 		String response = null;
 		try {
@@ -43,7 +43,7 @@ public class MedidasController {
 
 			MedidasInsert = medidasRepository.save(MedidasInsert);
 
-			response = "Felicidades Su Medida fue registrado como = " + MedidasInsert.getNombre();
+			response = Constantes.FELICIDADESALTAMEDIDAS + MedidasInsert.getNombre();
 
 		} catch (Exception e) {
 			LOG.info("eror" + e.getStackTrace());
@@ -54,7 +54,6 @@ public class MedidasController {
 
 	public String actualizarMedidas(@RequestBody Medidas medidas) throws Exception {
 		LOG.info("update Medidas - update Medidas() Method");
-		LOG.debug("update Medidas :: " + medidas.toString());
 
 		String response = null;
 
@@ -72,7 +71,7 @@ public class MedidasController {
 
 			medidasExistente = medidasRepository.save(medidas);
 
-			response = "La Medida " + medidasExistente.getNombre() + " ha sido actualizado exitosamente.";
+			response = Constantes.FELICIDADESACTUALIZARMEDIDAS + medidasExistente.getNombre() ;
 		} catch (Exception e) {
 			LOG.info("eror" + e.getStackTrace());
 			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("error", medidas.toString());

@@ -10,6 +10,7 @@ import com.emprendetech.market.entitys.Clientes;
 import com.emprendetech.market.repositorys.ClientesRepository;
 import com.emprendetech.market.response.ResponseContenidoDTO;
 import com.emprendetech.market.service.requestDto.ClientesDto;
+import com.emprendetech.market.utils.Constantes;
 import com.emprendetech.market.utils.Utils;
 
 import lombok.Data;
@@ -24,7 +25,6 @@ public class ClientesController {
 
 	public String AltaClientes(@RequestBody ClientesDto clientesDto) throws Exception {
 		LOG.info("createAlta Clientes- createAlta Clientes() Method");
-		LOG.debug("createAlta Clientes:: " + clientesDto.toString());
 
 		String response = null;
 		try {
@@ -46,7 +46,7 @@ public class ClientesController {
 
 			ClientesInsert = clientesRepository.save(ClientesInsert);
 
-			response = "Felicidades Su Cliente fue registrado como = " + ClientesInsert.getNombre();
+			response = Constantes.FELICIDADESALTACLIENTES + ClientesInsert.getNombre();
 
 		} catch (Exception e) {
 			LOG.info("eror" + e.getStackTrace());
@@ -57,7 +57,6 @@ public class ClientesController {
 
 	public String actualizarClientes(@RequestBody Clientes clientes) throws Exception {
 		LOG.info("update Clientes - update Clientes() Method");
-		LOG.debug("update Clientes :: " + clientes.toString());
 
 		String response = null;
 
@@ -79,7 +78,7 @@ public class ClientesController {
 
 			clientesExistente = clientesRepository.save(clientes);
 
-			response = "El Clientes " + clientesExistente.getNombre() + " ha sido actualizado exitosamente.";
+			response = Constantes.FELICIDADESACTUALIZARCLIENTES+ clientesExistente.getNombre() ;
 		} catch (Exception e) {
 			LOG.info("eror" + e.getStackTrace());
 			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("error", clientes.toString());

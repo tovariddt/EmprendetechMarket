@@ -10,6 +10,7 @@ import com.emprendetech.market.entitys.Productos;
 import com.emprendetech.market.repositorys.ProductosRepository;
 import com.emprendetech.market.response.ResponseContenidoDTO;
 import com.emprendetech.market.service.requestDto.ProductoDto;
+import com.emprendetech.market.utils.Constantes;
 import com.emprendetech.market.utils.Utils;
 
 import lombok.Data;
@@ -25,7 +26,6 @@ public class ProductoController {
 
 	public String AltaProducto(@RequestBody ProductoDto productoDto) throws Exception {
 		LOG.info("createAlta Producto - createAlta Producto() Method");
-		LOG.debug("createAlta Producto :: " + productoDto.toString());
 
 		String response = null;
 		try {
@@ -47,7 +47,7 @@ public class ProductoController {
 
 			ProductosInsert = productosRepository.save(ProductosInsert);
 
-			response = "Felicidades Su Producto fue registrado como = " + ProductosInsert.getNombre();
+			response = Constantes.FELICIDADESALTAPRODUCTO+ ProductosInsert.getNombre();
 
 		} catch (Exception e) {
 			LOG.info("eror" + e.getStackTrace());
@@ -58,7 +58,6 @@ public class ProductoController {
 
 	public String actualizarProducto(@RequestBody Productos productos) throws Exception {
 		LOG.info("update Producto - update Producto() Method");
-		LOG.debug("update Producto :: " + productos.toString());
 
 		String response = null;
 
@@ -81,7 +80,7 @@ public class ProductoController {
 
 			productoExistente = productosRepository.save(productoExistente);
 
-			response = "El producto " + productoExistente.getNombre() + " ha sido actualizado exitosamente.";
+			response =  Constantes.FELICIDADESACTUALIZARPRODUCTO+ productoExistente.getNombre() ;
 		} catch (Exception e) {
 			LOG.info("eror" + e.getStackTrace());
 			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("error", productos.toString());

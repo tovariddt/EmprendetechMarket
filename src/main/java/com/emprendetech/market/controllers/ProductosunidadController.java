@@ -6,13 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.emprendetech.market.entitys.Precio;
 import com.emprendetech.market.entitys.Productosunidad;
-import com.emprendetech.market.repositorys.PrecioRepository;
 import com.emprendetech.market.repositorys.ProductosunidadRepository;
 import com.emprendetech.market.response.ResponseContenidoDTO;
-import com.emprendetech.market.service.requestDto.PrecioDto;
 import com.emprendetech.market.service.requestDto.ProductosunidadDto;
+import com.emprendetech.market.utils.Constantes;
 import com.emprendetech.market.utils.Utils;
 
 import lombok.Data;
@@ -27,7 +25,6 @@ public class ProductosunidadController {
 
 	public String AltaProductosunidad(@RequestBody ProductosunidadDto productosunidadDto) throws Exception {
 		LOG.info("createAlta Productosunidad- createAlta Productosunidad() Method");
-		LOG.debug("createAlta Productosunidad:: " + productosunidadDto.toString());
 
 		String response = null;
 		try {
@@ -45,7 +42,7 @@ public class ProductosunidadController {
 
 			ProductosunidadInsert = productosunidadRepository.save(ProductosunidadInsert);
 
-			response = "Felicidades Su Productosunidad fue registrado con el siguiente ID = " + ProductosunidadInsert.getIdproductounidad();
+			response =Constantes.FELICIDADESALTAPRODUCTOSUNIDAD + ProductosunidadInsert.getIdproductounidad();
 
 		} catch (Exception e) {
 			LOG.info("eror" + e.getStackTrace());
@@ -56,7 +53,6 @@ public class ProductosunidadController {
 	
 	public String actualizarProductosunidad(@RequestBody Productosunidad productosunidad) throws Exception {
 		LOG.info("update Productosunidad - update Productosunidad() Method");
-		LOG.debug("update Productosunidad :: " + productosunidad.toString());
 
 		String response = null;
 
@@ -74,7 +70,7 @@ public class ProductosunidadController {
 
 			productosunidadExistente = productosunidadRepository.save(productosunidadExistente);
 
-			response = "El Precio " + productosunidadExistente.getIdproductounidad() + " ha sido actualizado exitosamente.";
+			response = Constantes.FELICIDADESACTUALIZARPRODUCTOSUNIDAD + productosunidadExistente.getIdproductounidad();
 		} catch (Exception e) {
 			LOG.info("eror" + e.getStackTrace());
 			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("error", productosunidad.toString());

@@ -1,4 +1,4 @@
-package com.emprendetech.market.dao;
+package com.emprendetech.market.service.responseDto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,17 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.RequestBody;
 
-import com.emprendetech.market.service.responseDto.PostalRespDto;
-import com.emprendetech.market.service.responseDto.ProductosRespDto;
-import com.emprendetech.market.service.responseDto.RolesRespDto;
-import com.emprendetech.market.service.responseDto.PersonaUsuarioRespDTO;
-import com.emprendetech.market.entitys.Productos;
-import com.emprendetech.market.service.requestDto.UsuarioContrasenaDto;
-import com.emprendetech.market.service.responseDto.CategoriasRespDto;
-import com.emprendetech.market.service.responseDto.EmprendimientosRespDTO;
-import com.emprendetech.market.service.responseDto.PerfilesRespDto;
+import com.emprendetech.market.utils.Constantes;
 
 @Repository
 public class PlataformaDao {
@@ -29,48 +20,41 @@ public class PlataformaDao {
 	private static final Log LOG = LogFactory.getLog(PlataformaDao.class);
 
 	public List<RolesRespDto> getRoles() {
-		try {
-			List<RolesRespDto> resultroles = new ArrayList<RolesRespDto>();
-
-			String sqlroles = "SELECT idrol, nombre FROM emprendetech_market.roles";
-
-			return jdbcTemplate.query(sqlroles, new Object[] {}, (rs, rowNum) -> {
-				RolesRespDto dtoroles = new RolesRespDto();
-				dtoroles.setIdrol(rs.getInt("idrol"));
-				dtoroles.setNombre(rs.getString("nombre"));
-				resultroles.add(dtoroles);
-				return dtoroles;
-			});
-		} catch (EmptyResultDataAccessException e) {
-			return null;
-		}
+	    try {
+	        String sqlroles = Constantes.SQLGETROLES;
+	        return jdbcTemplate.query(sqlroles, (rs, rowNum) -> {
+	            RolesRespDto dtoroles = new RolesRespDto();
+	            dtoroles.setIdrol(rs.getInt("idrol"));
+	            dtoroles.setNombre(rs.getString("nombre"));
+	            return dtoroles;
+	        });
+	    } catch (EmptyResultDataAccessException e) {
+	        return null;
+	    }
 	}
+
 
 	public List<PerfilesRespDto> getPefiles() {
 		try {
-			List<PerfilesRespDto> resultperfiles = new ArrayList<PerfilesRespDto>();
-
-			String sqlperfiles = "SELECT * FROM emprendetech_market.perfiles;";
-
-			return jdbcTemplate.query(sqlperfiles, new Object[] {}, (rs, rowNum) -> {
-				PerfilesRespDto dtoperfiles = new PerfilesRespDto();
-				dtoperfiles.setIdperfil(rs.getInt("idperfil"));
-				dtoperfiles.setNombre(rs.getString("nombre"));
-				dtoperfiles.setDescripcion(rs.getNString("descripcion"));
-				dtoperfiles.setIdrol(rs.getInt("idrol"));
-				resultperfiles.add(dtoperfiles);
-				
-				return dtoperfiles;
+	        String sqlperfiles = Constantes.SQLGETPEFILES;
+	        return jdbcTemplate.query(sqlperfiles, (rs, rowNum) -> {
+	            PerfilesRespDto dtoperfiles = new PerfilesRespDto();
+	            dtoperfiles.setIdperfil(rs.getInt("idperfil"));
+	            dtoperfiles.setNombre(rs.getString("nombre"));
+	            dtoperfiles.setDescripcion(rs.getNString("descripcion"));
+	            dtoperfiles.setIdrol(rs.getInt("idrol"));
+	            return dtoperfiles;
 			});
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}
 	}
+	
 
 	public List<PostalRespDto> getCodigo(String clave) {
 		try {
-			String sqlcodigo_postal = "SELECT * FROM emprendetech_market.codigo_postal where clave=" + clave + ";";
-			return jdbcTemplate.query(sqlcodigo_postal, new Object[] {}, (rs, rowNum) -> {
+			String sqlcodigo_postal = Constantes.SQLGETCODIGO + clave + ";";
+			return jdbcTemplate.query(sqlcodigo_postal,(rs, rowNum) -> {
 				PostalRespDto dtocodigo_postal = new PostalRespDto();
 				dtocodigo_postal.setId_codigo_postal(rs.getInt("id_codigo_postal"));
 				dtocodigo_postal.setClave(rs.getString("clave"));
@@ -86,9 +70,9 @@ public class PlataformaDao {
 
 	public String getCorreo(String Correo) {
 		try {
-			String sqlcorreo = "SELECT correo FROM emprendetech_market.usuario where correo='" + Correo + "';";
-			return jdbcTemplate.queryForObject(sqlcorreo, new Object[] {}, (rs, rowNum) -> {
-				return rs.getString("correo"); // Aquí puedes seleccionar la columna que deseas retornar
+			String sqlcorreo = Constantes.SQLGETCORREO + Correo + "';";
+			return jdbcTemplate.queryForObject(sqlcorreo,(rs, rowNum) -> {
+				return rs.getString("correo"); 
 			});
 		} catch (EmptyResultDataAccessException e) {
 			return null;
@@ -97,8 +81,8 @@ public class PlataformaDao {
 
 	public int getEmp(Integer Perfilemp) {
 		try {
-			String sqlperfiles = "SELECT idperfil FROM emprendetech_market.perfiles where idperfil=" + Perfilemp + ";";
-			return jdbcTemplate.queryForObject(sqlperfiles, new Object[] {}, (rs, rowNum) -> {
+			String sqlperfiles = Constantes.SQLGETEMP+ Perfilemp + ";";
+			return jdbcTemplate.queryForObject(sqlperfiles, (rs, rowNum) -> {
 				return rs.getInt("idperfil"); // Aquí puedes seleccionar la columna que deseas retornar
 			});
 		} catch (EmptyResultDataAccessException e) {
@@ -109,13 +93,9 @@ public class PlataformaDao {
 	
 	public List<PersonaUsuarioRespDTO> getUsuarioPersona(String correo, String contrasena) {
 		try {
-			String sqlusuariopersona = "SELECT nombreusuario, correo ,idperfil , nombre,apellido_paterno,apellido_materno,telefono, direccion ,id_codigo_postal\r\n"
-					+ "FROM emprendetech_market.usuario\r\n"
-					+ "INNER JOIN emprendetech_market.personas ON emprendetech_market.usuario.idpersona = emprendetech_market.personas.idpersona\r\n"
-					+ "where emprendetech_market.usuario.contrasena='" + contrasena
-					+ "' and emprendetech_market.usuario.correo= '" + correo + "';";
+			String sqlusuariopersona = Constantes.SQLGETUSUARIOPERSONA + contrasena + Constantes.SQLGETUSUARIOPERSONACORREO + correo + "';";
 			
-			return jdbcTemplate.query(sqlusuariopersona, new Object[] {}, (rs, rowNum) -> {
+			return jdbcTemplate.query(sqlusuariopersona,(rs, rowNum) -> {
 				PersonaUsuarioRespDTO dtousuariopersona = new PersonaUsuarioRespDTO();
 				dtousuariopersona.setNombreusuario(rs.getString("nombreusuario"));
 				dtousuariopersona.setCorreo(rs.getString("correo"));
@@ -135,14 +115,9 @@ public class PlataformaDao {
 
 	public List<EmprendimientosRespDTO> getEmprendimientos(String correo, String contrasena) {
 		try {
-			String sqlemprendimientos = "SELECT emprendetech_market.emprendimientos.nombre,emprendetech_market.emprendimientos.descripcion, emprendetech_market.emprendimientos.industria\r\n"
-					+ "FROM emprendetech_market.usuario\r\n"
-					+ "INNER JOIN emprendetech_market.personas ON emprendetech_market.usuario.idpersona = emprendetech_market.personas.idpersona\r\n"
-					+ "INNER JOIN emprendetech_market.emprendimientos ON emprendetech_market.usuario.idpersona = emprendetech_market.emprendimientos.idpersona\r\n"
-					+ "where emprendetech_market.usuario.contrasena='" + contrasena
-					+ "' and emprendetech_market.usuario.correo='" + correo + "';";
+			String sqlemprendimientos = Constantes.SQLGETEMPRENDIMIENTOS + contrasena + Constantes.SQLGETEMPRENDIMIENTOSCORREO+ correo + "';";
 
-			return jdbcTemplate.query(sqlemprendimientos, new Object[] {}, (rs, rowNum) -> {
+			return jdbcTemplate.query(sqlemprendimientos,(rs, rowNum) -> {
 				EmprendimientosRespDTO dtoemprendimientos = new EmprendimientosRespDTO();
 				dtoemprendimientos.setNombre(rs.getString("nombre"));
 				dtoemprendimientos.setDescripcion(rs.getString("descripcion"));
@@ -158,9 +133,9 @@ public class PlataformaDao {
 		try {
 			List<CategoriasRespDto> resultcategoria = new ArrayList<CategoriasRespDto>();
 
-			String sqlcategoria = "SELECT * FROM emprendetech_market.categorias;";
+			String sqlcategoria = Constantes.SQLGETCATEGORIA;
 
-			return jdbcTemplate.query(sqlcategoria, new Object[] {}, (rs, rowNum) -> {
+			return jdbcTemplate.query(sqlcategoria,(rs, rowNum) -> {
 				CategoriasRespDto dtocategoria = new CategoriasRespDto();
 				dtocategoria.setIdcategoria(rs.getInt("idcategoria"));
 				dtocategoria.setNombre(rs.getString("nombre"));
@@ -175,8 +150,8 @@ public class PlataformaDao {
 	public List<ProductosRespDto> getproductoEmprendimiento(Integer ididemprendimiento) {
 		try {
 
-			String sqlproductos = "SELECT * FROM emprendetech_market.productos where idemprendimiento= '"+ididemprendimiento+"';";
-			return jdbcTemplate.query(sqlproductos, new Object[] {}, (rs, rowNum) -> {
+			String sqlproductos = Constantes.SQLGETPRODUCTOEMPRENDIMIENTO+ididemprendimiento+"';";
+			return jdbcTemplate.query(sqlproductos, (rs, rowNum) -> {
 			
 				ProductosRespDto dtoproductos = new ProductosRespDto();
 				dtoproductos.setSku(rs.getString("sku"));
@@ -195,8 +170,8 @@ public class PlataformaDao {
 	public List<ProductosRespDto> getproductoEmprendimientoCategoria(Integer ididemprendimiento , Integer idcategoria) {
 		try {
 
-			String sqlproductosCategoria = "SELECT * FROM emprendetech_market.productos where idemprendimiento= '"+ididemprendimiento+"' and idcategoria='"+idcategoria+"';";
-			return jdbcTemplate.query(sqlproductosCategoria, new Object[] {}, (rs, rowNum) -> {
+			String sqlproductosCategoria = Constantes.SQLGETPRODUCTOEMPRENDIMIENTOCATEGORIA+ididemprendimiento+Constantes.SQLGETPRODUCTOEMPRENDIMIENTOCATEGORIAID+idcategoria+"';";
+			return jdbcTemplate.query(sqlproductosCategoria,(rs, rowNum) -> {
 			
 				ProductosRespDto dtoproductosCategoria = new ProductosRespDto();
 				dtoproductosCategoria.setSku(rs.getString("sku"));
@@ -216,8 +191,8 @@ public class PlataformaDao {
 	public List<ProductosRespDto> getproductoEmprendimientoNombreLIKE(Integer ididemprendimiento , String nombre) {
 		try {
 
-			String sqlproductosNombreLIKE = "SELECT * FROM emprendetech_market.productos WHERE nombre LIKE '"+nombre+"%' AND idemprendimiento = "+ididemprendimiento+";";
-			return jdbcTemplate.query(sqlproductosNombreLIKE, new Object[] {}, (rs, rowNum) -> {
+			String sqlproductosNombreLIKE = Constantes.SQLGETPRODUCTOEMPRENDIMIENTONOMBRELIKE+nombre+Constantes.SQLGETPRODUCTOEMPRENDIMIENTONOMBRELIKEAND+ididemprendimiento+";";
+			return jdbcTemplate.query(sqlproductosNombreLIKE,  (rs, rowNum) -> {
 			
 				ProductosRespDto dtoproductosNombreLIKE = new ProductosRespDto();
 				dtoproductosNombreLIKE.setSku(rs.getString("sku"));
