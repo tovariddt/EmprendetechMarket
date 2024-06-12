@@ -20,6 +20,7 @@ import com.emprendetech.market.controllers.RegistroController;
 import com.emprendetech.market.controllers.RolesController;
 import com.emprendetech.market.controllers.RolpermisosController;
 import com.emprendetech.market.controllers.VentasController;
+import com.emprendetech.market.dao.PlataformaDao;
 import com.emprendetech.market.controllers.CategoriaController;
 import com.emprendetech.market.controllers.ClientesController;
 import com.emprendetech.market.controllers.DetallespedidoController;
@@ -27,7 +28,6 @@ import com.emprendetech.market.controllers.MedidasController;
 import com.emprendetech.market.controllers.MetodospagoController;
 import com.emprendetech.market.controllers.PedidosController;
 import com.emprendetech.market.controllers.PermisosController;
-import com.emprendetech.market.controllers.PrecioController;
 import com.emprendetech.market.controllers.ProductoController;
 import com.emprendetech.market.controllers.ProductosunidadController;
 import com.emprendetech.market.entitys.Categorias;
@@ -39,7 +39,6 @@ import com.emprendetech.market.entitys.Metodospago;
 import com.emprendetech.market.entitys.Pedidos;
 import com.emprendetech.market.entitys.Permisos;
 import com.emprendetech.market.entitys.Personas;
-import com.emprendetech.market.entitys.Precio;
 import com.emprendetech.market.entitys.Productos;
 import com.emprendetech.market.entitys.Productosunidad;
 import com.emprendetech.market.entitys.Roles;
@@ -53,7 +52,6 @@ import com.emprendetech.market.service.responseDto.CompCorreoRespDto;
 import com.emprendetech.market.service.responseDto.EmprendimientosRespDTO;
 import com.emprendetech.market.service.responseDto.PerfilesRespDto;
 import com.emprendetech.market.service.responseDto.PersonaUsuarioRespDTO;
-import com.emprendetech.market.service.responseDto.PlataformaDao;
 import com.emprendetech.market.service.responseDto.PostalRespDto;
 import com.emprendetech.market.service.responseDto.ProductosRespDto;
 import com.emprendetech.market.service.responseDto.RolesRespDto;
@@ -70,7 +68,6 @@ import com.emprendetech.market.service.requestDto.MedidasDto;
 import com.emprendetech.market.service.requestDto.MetodospagoDto;
 import com.emprendetech.market.service.requestDto.PedidosDto;
 import com.emprendetech.market.service.requestDto.PermisosDto;
-import com.emprendetech.market.service.requestDto.PrecioDto;
 import com.emprendetech.market.service.requestDto.ProductoDto;
 import com.emprendetech.market.service.requestDto.ProductosunidadDto;
 import com.emprendetech.market.service.requestDto.RegistroDto;
@@ -106,8 +103,6 @@ public class PlataformaServiceImpl implements Interfaces {
 	private MetodospagoController AltaMetodospago ,ActualizarMetodospago;
 	@Autowired
 	private PedidosController AltaPedidos, ActualizarPedidos;	
-	@Autowired
-	private PrecioController AltaPrecio, ActualizarPrecio;
 	@Autowired
 	private ProductosunidadController AltaProductosunidad, ActualizarProductosunidad;
 	@Autowired
@@ -793,55 +788,6 @@ public class PlataformaServiceImpl implements Interfaces {
 		return responseactualizarMetodospago;
 	}
 	
-
-	@Override
-	public ResponseEntity<?> postPrecio(@RequestBody PrecioDto precioDto) {
-
-		LOG.info("get Precio - get Precio() Method");
-		ResponseEntity<?> responsealtaPrecio = null;
-
-		try {
-
-			String altaPrecio = null;
-
-			altaPrecio = AltaPrecio.AltaPrecio(precioDto);
-			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("200 OK", "Alta Precio");
-			responseContenido.setContenido(altaPrecio);
-			responsealtaPrecio = new ResponseEntity<>(responseContenido, HttpStatus.OK);
-
-		} catch (Exception e) {
-			LOG.error("eror codigo" + e.getStackTrace());
-			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("error", "Alta Precio");
-			responsealtaPrecio = new ResponseEntity<>(responseContenido, HttpStatus.OK);
-
-		}
-		return responsealtaPrecio;
-	}
-
-	@Override
-	public ResponseEntity<?> updateMetodospago(@RequestBody Precio precio) {
-
-		LOG.info("update Precio - update Metodospago() Method");
-	
-		ResponseEntity<?> responseactualizarPrecio = null;
-
-		try {
-
-			String actualizarPrecio = null;
-
-			actualizarPrecio = ActualizarPrecio.actualizarPrecio(precio);
-			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("200 OK", "Actualizar Precio");
-			responseContenido.setContenido(actualizarPrecio);
-			responseactualizarPrecio = new ResponseEntity<>(responseContenido, HttpStatus.OK);
-
-		} catch (Exception e) {
-			LOG.error("error codigo" + e.getStackTrace());
-			final ResponseContenidoDTO responseContenido = new ResponseContenidoDTO("error", "Actualizar Precio");
-			responseactualizarPrecio = new ResponseEntity<>(responseContenido, HttpStatus.OK);
-
-		}
-		return responseactualizarPrecio;
-	}
 	
 
 	@Override

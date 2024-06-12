@@ -1,5 +1,6 @@
 package com.emprendetech.market.entitys;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Date;
 
@@ -20,13 +21,13 @@ import lombok.Setter;
 @Table(name = "ventas")
 public class Ventas {
 	
+	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "idventa")
 	private Integer idventa;
 	
-	@Column(name = "idpedido")
-	private Integer idpedido;
 	
 	@Column(name = "idmetodospago")
 	private Integer idmetodospago;
@@ -34,12 +35,15 @@ public class Ventas {
 	@Column(name = "fechaventa")
     private Date fechaventa;
 	
+	@Column(name = "estatus", columnDefinition = "ENUM('Pagado', 'NoPagado')")
+	private String estatus;
+   
+   @Column(name = "tipo", columnDefinition = "ENUM('Venta', 'Pedido')")
+   private String tipo;
+	
     @Column(name = "total")
     private Float total;
 
-    @Column(name = "fecha_pedido")
-    private Date fecha_pedido;
-    
 	@Column(name = "creadoridusuario")
 	private Integer creadoridusuario;
 	

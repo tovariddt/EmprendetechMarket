@@ -25,14 +25,17 @@ public class Pedidos {
 	@Column(name = "idpedido")
 	private Integer idpedido;
 	
+	@Column(name = "idventa")
+	private Integer idventa;
+	
 	@Column(name = "idcliente")
 	private Integer idcliente;
 	
-	@Column(name = "fecha_pedido")
-    private Date fecha_pedido;
+	@Column(name = "fechapedido")
+    private Date fechapedido;
 	
-	@Column(name = "estado")
-	private String estado;
+	@Column(name = "estatus", columnDefinition = "ENUM('Espera','Finalizado','Canselado')")
+	private String estatus;
 	
 	@Column(name = "creadoridusuario")
 	private Integer creadoridusuario;

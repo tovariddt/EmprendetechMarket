@@ -11,8 +11,13 @@ import lombok.Setter;
 @NoArgsConstructor 
 public class ProductosunidadDto {
 	private Integer idproducto;
+	private String nombre;
 	
 	private Integer idmedida;
+	
+	private Integer cantidad;
+	
+	private Float precio;
 	
 	private Integer creadoridusuario;
 	

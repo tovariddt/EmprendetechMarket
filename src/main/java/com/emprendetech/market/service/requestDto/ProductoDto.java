@@ -12,7 +12,6 @@ public class ProductoDto {
 	public String sku;
 	public String nombre;
 	public String descripcion;
-	public Integer cantidad_disponible;
 	public String imagen;
 	public Integer idemprendimiento;
 	public Integer idcategoria;

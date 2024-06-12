@@ -14,7 +14,6 @@ import com.emprendetech.market.entitys.Metodospago;
 import com.emprendetech.market.entitys.Pedidos;
 import com.emprendetech.market.entitys.Permisos;
 import com.emprendetech.market.entitys.Personas;
-import com.emprendetech.market.entitys.Precio;
 import com.emprendetech.market.entitys.Productos;
 import com.emprendetech.market.entitys.Productosunidad;
 import com.emprendetech.market.entitys.Roles;
@@ -28,7 +27,6 @@ import com.emprendetech.market.service.requestDto.MedidasDto;
 import com.emprendetech.market.service.requestDto.MetodospagoDto;
 import com.emprendetech.market.service.requestDto.PedidosDto;
 import com.emprendetech.market.service.requestDto.PermisosDto;
-import com.emprendetech.market.service.requestDto.PrecioDto;
 import com.emprendetech.market.service.requestDto.ProductoDto;
 import com.emprendetech.market.service.requestDto.ProductosunidadDto;
 import com.emprendetech.market.service.requestDto.RegistroDto;
@@ -179,17 +177,7 @@ public interface Interfaces {
 	@Operation(summary = "Se realiza una actualizacion de metodospago")
     @ApiResponse(responseCode = "200", description = "Con este metodo se realiza una actualizacion de metodospago")
 	public ResponseEntity<?> updateMetodospago(@RequestBody Metodospago metodospago);
-	
-	@PostMapping("/alta/precio")
-	@Operation(summary = "Se realiza un registro de precio")
-    @ApiResponse(responseCode = "200", description = "Con este metodo se realiza un registro de precio")
-	public ResponseEntity<?> postPrecio(@RequestBody PrecioDto precioDto);
-	
-	@PostMapping("/actualizar/precio")
-	@Operation(summary = "Se realiza una actualizacion de precio")
-    @ApiResponse(responseCode = "200", description = "Con este metodo se realiza una actualizacion de precio")
-	public ResponseEntity<?> updateMetodospago(@RequestBody Precio precio);
-	
+		
 	@PostMapping("/alta/productosunidad")
 	@Operation(summary = "Se realiza un registro de productosunidad")
     @ApiResponse(responseCode = "200", description = "Con este metodo se realiza un registro de productosunidad")
@@ -242,6 +230,5 @@ public interface Interfaces {
 	@Operation(summary = "Se realiza una actualizacion de ventas")
     @ApiResponse(responseCode = "200", description = "Con este metodo se realiza una actualizacion de ventas")
 	public ResponseEntity<?> updateVentas(@RequestBody Ventas ventas);
-	
 	
 }

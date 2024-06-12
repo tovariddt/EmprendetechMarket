@@ -33,11 +33,12 @@ public class VentasController {
 			Ventas VentasInsert = new Ventas();
 			Date dateVentas = new Date(); 
 
-			VentasInsert.setIdpedido(ventasDto.getIdpedido());
 			VentasInsert.setIdmetodospago(ventasDto.getIdmetodospago());
 			VentasInsert.setTotal(ventasDto.getTotal());
 			VentasInsert.setFechaventa(dateVentas);
 			VentasInsert.setCreadoridusuario(ventasDto.getCreadoridusuario());
+			VentasInsert.setTipo(ventasDto.getTipo());
+			VentasInsert.setEstatus(ventasDto.getEstatus());
 
 			Utils util = new Utils();
 			VentasInsert.setFechacreacion(util.currentDate());
@@ -64,10 +65,11 @@ public class VentasController {
 		try {
 			Ventas ventasExistente = ventasRepository.findById(ventas.getIdventa()).orElseThrow();
 
-			ventasExistente.setIdpedido(ventas.getIdpedido());
 			ventasExistente.setIdmetodospago(ventas.getIdmetodospago());
 			ventasExistente.setTotal(ventas.getTotal());
 			ventasExistente.setCreadoridusuario(ventas.getCreadoridusuario());
+			ventasExistente.setTipo(ventas.getTipo());
+			ventasExistente.setEstatus(ventas.getEstatus());
 			Utils util = new Utils();
 			ventasExistente.setFechamodificacion(util.currentDate());
 

@@ -11,6 +11,7 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 @Getter 
 @Setter 
 @NoArgsConstructor 
@@ -36,8 +37,8 @@ public class Metodospago {
 	@Column(name="fechamodificacion")
 	private Timestamp fechamodificacion;
 
-   @Column(name="estatus")
-   private Integer estatus;
+	@Column(name = "estatus", columnDefinition = "TINYINT(1)")
+	private Integer  estatus;
 
 	
 }

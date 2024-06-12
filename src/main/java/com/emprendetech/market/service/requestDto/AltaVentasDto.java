@@ -1,6 +1,5 @@
 package com.emprendetech.market.service.requestDto;
 
-import java.sql.Timestamp;
 import java.util.Date;
 
 import lombok.Getter;
@@ -11,9 +10,9 @@ import lombok.Setter;
 @Setter 
 @NoArgsConstructor 
 
-public class VentasDto {
+public class AltaVentasDto {
 	
-	
+	private Integer idventa;
 	
 	private Integer idmetodospago;
 	
@@ -27,10 +26,6 @@ public class VentasDto {
     
 	private Integer creadoridusuario;
 	
-	private Timestamp fechacreacion;
-
-	private Timestamp fechamodificacion;
-
 
 	
 	

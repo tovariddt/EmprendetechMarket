@@ -33,9 +33,10 @@ public class PedidosController {
 		try {
 			Pedidos PedidosInsert = new Pedidos();
 			Date datePedido = new Date(); 
+			PedidosInsert.setIdventa(pedidosDto.getIdventa());
 			PedidosInsert.setIdcliente(pedidosDto.getIdcliente());
-			PedidosInsert.setFecha_pedido(datePedido);
-			PedidosInsert.setEstado(pedidosDto.getEstado());
+			PedidosInsert.setFechapedido(datePedido);
+			PedidosInsert.setEstatus(pedidosDto.getEstatus());
 			PedidosInsert.setCreadoridusuario(pedidosDto.getCreadoridusuario());
 
 
@@ -64,11 +65,10 @@ public class PedidosController {
 		try {
 			Pedidos pedidosExistente = pedidosRepository.findById(pedidos.getIdpedido()).orElseThrow();
 
-			Date datePedido = new Date(); 
-
+		
+			pedidosExistente.setIdventa(pedidos.getIdventa());
 			pedidosExistente.setIdcliente(pedidos.getIdcliente());
-			pedidosExistente.setFecha_pedido(datePedido);
-			pedidosExistente.setEstado(pedidos.getEstado());
+			pedidosExistente.setEstatus(pedidos.getEstatus());
 			pedidosExistente.setCreadoridusuario(pedidos.getCreadoridusuario());
 			
 			Utils util = new Utils();

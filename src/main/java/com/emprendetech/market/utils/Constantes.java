@@ -84,9 +84,35 @@ public class Constantes {
 
 	    public static final String SQLGETPRODUCTOEMPRENDIMIENTONOMBRELIKEAND = "%' AND idemprendimiento = " ;
 
-	    public static final String SQLOBTENERPRODUCTOSEMPRENDIMIENTOS ="SELECT emprendetech_market.emprendimientos.idemprendimiento, emprendetech_market.emprendimientos.nombre as nombreEmprendimiento, emprendetech_market.productos.idproducto, emprendetech_market.productos.sku, emprendetech_market.productos.nombre as nombreProducto, emprendetech_market.productos.idcategoria, emprendetech_market.productos.descripcion, emprendetech_market.productos.cantidad_disponible FROM emprendetech_market.productos INNER JOIN emprendetech_market.emprendimientos ON emprendetech_market.productos.idemprendimiento = emprendetech_market.emprendimientos.idemprendimiento;";;
+	    public static final String SQLOBTENERPRODUCTOSEMPRENDIMIENTOS ="SELECT emprendetech_market.emprendimientos.idemprendimiento, emprendetech_market.emprendimientos.nombre as nombreEmprendimiento, emprendetech_market.productos.idproducto, emprendetech_market.productos.sku, emprendetech_market.productos.nombre as nombreProducto, emprendetech_market.productos.idcategoria, emprendetech_market.productos.descripcion FROM emprendetech_market.productos INNER JOIN emprendetech_market.emprendimientos ON emprendetech_market.productos.idemprendimiento = emprendetech_market.emprendimientos.idemprendimiento;";;
 	    
-	    public static final String SQLOBTENERPRODUCTOSEMPRENDIMIENTOSID = "SELECT emprendetech_market.emprendimientos.idemprendimiento, emprendetech_market.emprendimientos.nombre as nombreEmprendimiento, emprendetech_market.productos.idproducto,emprendetech_market.productos.sku ,emprendetech_market.productos.nombre  as nombreProducto, emprendetech_market.productos.idcategoria , emprendetech_market.productos.descripcion, emprendetech_market.productos.cantidad_disponible FROM emprendetech_market.productos INNER JOIN emprendetech_market.emprendimientos ON emprendetech_market.productos.idemprendimiento = emprendetech_market.emprendimientos.idemprendimiento where emprendetech_market.emprendimientos.idemprendimiento = '";
+	    public static final String SQLOBTENERPRODUCTOSEMPRENDIMIENTOSID = "SELECT emprendetech_market.emprendimientos.idemprendimiento, emprendetech_market.emprendimientos.nombre as nombreEmprendimiento, emprendetech_market.productos.idproducto,emprendetech_market.productos.sku ,emprendetech_market.productos.nombre  as nombreProducto, emprendetech_market.productos.idcategoria , emprendetech_market.productos.descripcion FROM emprendetech_market.productos INNER JOIN emprendetech_market.emprendimientos ON emprendetech_market.productos.idemprendimiento = emprendetech_market.emprendimientos.idemprendimiento where emprendetech_market.emprendimientos.idemprendimiento = '";
 
-    
+	    public static final String SQLOBTENERTOTALVENTA = "SELECT SUM(subtotal) AS totalventa FROM emprendetech_market.detallespedido WHERE idventa = ?";
+        
+	    public static final String SQLOBTENERUNAVENTA = "SELECT idventa,idmetodospago,fechaventa,estatus,tipo,total,creadoridusuario FROM emprendetech_market.ventas where idventa=" ;
+
+	    public static final String SQLOBTENERDETALLEVENTA = "SELECT \r\n"
+	    		+ "  emprendetech_market.productosunidad.idproductounidad,\r\n"
+	    		+ "  emprendetech_market.productosunidad.nombre,\r\n"
+	    		+ "  emprendetech_market.productosunidad.precio,\r\n"
+	    		+ "  emprendetech_market.detallespedido.cantidad,\r\n"
+	    		+ "  emprendetech_market.detallespedido.subtotal\r\n"
+	    		+ "FROM \r\n"
+	    		+ "  emprendetech_market.productosunidad\r\n"
+	    		+ "INNER JOIN \r\n"
+	    		+ "  emprendetech_market.detallespedido\r\n"
+	    		+ "ON \r\n"
+	    		+ "  emprendetech_market.productosunidad.idproductounidad = emprendetech_market.detallespedido.idproductounidad \r\n"
+	    		+ "where  emprendetech_market.detallespedido.idventa=\r\n"
+	    		+ "" ;    
+
+	   public static final String SQLOBTENERPRECIOPRODUCTOUNIDAD="SELECT emprendetech_market.productosunidad.precio  FROM emprendetech_market.productosunidad where  emprendetech_market.productosunidad.idproductounidad=";
+	   public static final String SQLOBTENERCANTIDADPRODUCTOUNIDAD="SELECT emprendetech_market.productosunidad.cantidad  FROM emprendetech_market.productosunidad where  emprendetech_market.productosunidad.idproductounidad=";
+ 
+	   public static final String CANTIDADINSUFICIENTE = "No se puede realizar este movimiento la cantidad solicitada sobrepasa el inventario";
+
+	   public static final String SQLIDCLIENTE = "SELECT emprendetech_market.clientes.idcliente FROM emprendetech_market.clientes where emprendetech_market.clientes.idcliente =";
+
+	  
 }

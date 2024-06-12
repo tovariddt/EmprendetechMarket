@@ -23,11 +23,20 @@ public class Productosunidad {
 	@Column(name = "idproductounidad")
 	private Integer idproductounidad;
 	
+	@Column(name = "nombre")
+	private String nombre;
+	
 	@Column(name = "idproducto")
 	private Integer idproducto;
 	
 	@Column(name = "idmedida")
 	private Integer idmedida;
+	
+	@Column(name = "cantidad")
+	private Integer cantidad;
+	
+	@Column(name = "precio")
+	private Float precio;
 	
 	@Column(name = "creadoridusuario")
 	private Integer creadoridusuario;

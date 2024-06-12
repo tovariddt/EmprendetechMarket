@@ -6,16 +6,19 @@ import java.util.Date;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-@Getter 
+ 
+@Getter
 @Setter 
 @NoArgsConstructor 
 public class PedidosDto {
 	
 	private Integer idcliente;
 	
-    private Date fecha_pedido;
+	private Integer idventa;
 	
-	private String estado;
+    private Date fechapedido;
+	
+	private String estatus;
 	
 	private Integer creadoridusuario;
 	

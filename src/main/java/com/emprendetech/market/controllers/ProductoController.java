@@ -34,7 +34,6 @@ public class ProductoController {
 			ProductosInsert.setSku(productoDto.getSku());
 			ProductosInsert.setNombre(productoDto.getNombre());
 			ProductosInsert.setDescripcion(productoDto.getDescripcion());
-			ProductosInsert.setCantidad_disponible(productoDto.getCantidad_disponible());
 			ProductosInsert.setImagen(productoDto.getImagen());
 			ProductosInsert.setIdcategoria(productoDto.getIdcategoria());
 			ProductosInsert.setCreadoridusuario(productoDto.getCreadoridusuario());
@@ -67,7 +66,6 @@ public class ProductoController {
 			productoExistente.setSku(productos.getSku());
 			productoExistente.setNombre(productos.getNombre());
 			productoExistente.setDescripcion(productos.getDescripcion());
-			productoExistente.setCantidad_disponible(productos.getCantidad_disponible());
 			productoExistente.setImagen(productos.getImagen());
 			productoExistente.setIdcategoria(productos.getIdcategoria());
 			productoExistente.setIdemprendimiento(productos.getIdemprendimiento());

@@ -1,4 +1,4 @@
-package com.emprendetech.market.service.responseDto;
+package com.emprendetech.market.dao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +10,13 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.emprendetech.market.service.responseDto.CategoriasRespDto;
+import com.emprendetech.market.service.responseDto.EmprendimientosRespDTO;
+import com.emprendetech.market.service.responseDto.PerfilesRespDto;
+import com.emprendetech.market.service.responseDto.PersonaUsuarioRespDTO;
+import com.emprendetech.market.service.responseDto.PostalRespDto;
+import com.emprendetech.market.service.responseDto.ProductosRespDto;
+import com.emprendetech.market.service.responseDto.RolesRespDto;
 import com.emprendetech.market.utils.Constantes;
 
 @Repository

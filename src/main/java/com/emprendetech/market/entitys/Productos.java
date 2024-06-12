@@ -32,9 +32,6 @@ public class Productos {
 	@Column(name = "descripcion")
 	private String descripcion;
 	
-	@Column(name = "cantidad_disponible")
-	private Integer cantidad_disponible;
-	
 	@Column(name = "imagen")
 	private String  imagen;
 	

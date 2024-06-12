@@ -30,7 +30,6 @@ public class PlataformaExcelDao {
                 productoEmprendimiento.setNombreProducto(rs.getString("nombreProducto"));
                 productoEmprendimiento.setIdCategoria(rs.getInt("idcategoria"));
                 productoEmprendimiento.setDescripcion(rs.getString("descripcion"));
-                productoEmprendimiento.setCantidadDisponible(rs.getInt("cantidad_disponible"));
                 resultProductosEmprendimientos.add(productoEmprendimiento);
 
                 return productoEmprendimiento;
@@ -55,7 +54,6 @@ public class PlataformaExcelDao {
                 productoEmprendimiento.setNombreProducto(rs.getString("nombreProducto"));
                 productoEmprendimiento.setIdCategoria(rs.getInt("idcategoria"));
                 productoEmprendimiento.setDescripcion(rs.getString("descripcion"));
-                productoEmprendimiento.setCantidadDisponible(rs.getInt("cantidad_disponible"));
                 resultProductosEmprendimientos.add(productoEmprendimiento);
 
                 return productoEmprendimiento;

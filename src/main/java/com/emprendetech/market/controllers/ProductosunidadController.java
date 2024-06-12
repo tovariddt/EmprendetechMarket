@@ -31,8 +31,11 @@ public class ProductosunidadController {
 			Productosunidad ProductosunidadInsert = new Productosunidad();
 
 			ProductosunidadInsert.setIdproducto(productosunidadDto.getIdproducto());	
+			ProductosunidadInsert.setNombre(productosunidadDto.getNombre());
 			ProductosunidadInsert.setIdmedida(productosunidadDto.getIdmedida());
 			ProductosunidadInsert.setCreadoridusuario(productosunidadDto.getCreadoridusuario());
+			ProductosunidadInsert.setCantidad(productosunidadDto.getCantidad());
+			ProductosunidadInsert.setPrecio(productosunidadDto.getPrecio());
 
 			Utils util = new Utils();
 			ProductosunidadInsert.setFechacreacion(util.currentDate());
@@ -59,9 +62,12 @@ public class ProductosunidadController {
 		try {
 			Productosunidad productosunidadExistente = productosunidadRepository.findById(productosunidad.getIdproductounidad()).orElseThrow();
 	
+			productosunidadExistente.setNombre(productosunidad.getNombre());
 			productosunidadExistente.setIdproducto(productosunidad.getIdproducto());	
 			productosunidadExistente.setIdmedida(productosunidad.getIdmedida());
 			productosunidadExistente.setCreadoridusuario(productosunidad.getCreadoridusuario());
+			productosunidadExistente.setCantidad(productosunidad.getCantidad());
+			productosunidadExistente.setPrecio(productosunidad.getPrecio());
 			
 			Utils util = new Utils();
 			productosunidadExistente.setFechamodificacion(util.currentDate());

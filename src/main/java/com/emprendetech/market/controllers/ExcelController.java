@@ -31,7 +31,7 @@ public class ExcelController {
         Sheet sheet = workbook.createSheet("Productos y Emprendimientos");
 
         // Crear el encabezado
-        String[] columns = {"ID Emprendimiento", "Nombre Emprendimiento", "ID Producto", "SKU", "Nombre Producto", "ID Categoria", "Descripción", "Cantidad Disponible"};
+        String[] columns = {"ID Emprendimiento", "Nombre Emprendimiento", "ID Producto", "SKU", "Nombre Producto", "ID Categoria", "Descripción"};
         Row headerRow = sheet.createRow(0);
         for (int i = 0; i < columns.length; i++) {
             Cell cell = headerRow.createCell(i);
@@ -49,7 +49,6 @@ public class ExcelController {
             row.createCell(4).setCellValue(pe.getNombreProducto());
             row.createCell(5).setCellValue(pe.getIdCategoria());
             row.createCell(6).setCellValue(pe.getDescripcion());
-            row.createCell(7).setCellValue(pe.getCantidadDisponible());
 
 
         }
@@ -87,7 +86,7 @@ public class ExcelController {
             Sheet sheet = workbook.createSheet("Productos y Emprendimientos por Emprendimiento");
 
             // Crear el encabezado
-            String[] columns = {"ID Emprendimiento", "Nombre Emprendimiento", "ID Producto", "SKU", "Nombre Producto", "ID Categoria", "Descripción", "Cantidad Disponible"};
+            String[] columns = {"ID Emprendimiento", "Nombre Emprendimiento", "ID Producto", "SKU", "Nombre Producto", "ID Categoria", "Descripción"};
             Row headerRow = sheet.createRow(0);
             for (int i = 0; i < columns.length; i++) {
                 Cell cell = headerRow.createCell(i);
@@ -105,7 +104,6 @@ public class ExcelController {
                 row.createCell(4).setCellValue(pe.getNombreProducto());
                 row.createCell(5).setCellValue(pe.getIdCategoria());
                 row.createCell(6).setCellValue(pe.getDescripcion());
-                row.createCell(7).setCellValue(pe.getCantidadDisponible());
             }
 
             // Ajustar el tamaño de las columnas
