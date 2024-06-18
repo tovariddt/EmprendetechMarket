@@ -12,7 +12,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class UsuarioEmprendimientoRespDto {
 
-	List<PersonaUsuarioRespDTO> personausuario = new ArrayList<PersonaUsuarioRespDTO>();
-	List<EmprendimientosRespDTO> emprendimiento = new ArrayList<EmprendimientosRespDTO>();
+	List<PersonaUsuarioRespDto> personausuario = new ArrayList<PersonaUsuarioRespDto>();
+	List<EmprendimientosRespDto> emprendimiento = new ArrayList<EmprendimientosRespDto>();
 
 }

@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.emprendetech.market.controllers.ExcelController;
-import com.emprendetech.market.service.responseDto.ProductoEmprendimientoRespDto;
+import com.emprendetech.market.service.requestDto.EmprendimientoFechaDto;
+import com.emprendetech.market.service.requestDto.FechaDto;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -26,7 +27,7 @@ public class PlataformaServiceExcel {
 	private static final Log LOG = LogFactory.getLog(PlataformaServiceExcel.class);
 
 	@Autowired
-	private ExcelController DescargarExcel, DescargarExcelEmprendimiento;
+	private ExcelController DescargarExcel, DescargarExcelEmprendimiento, DescargarExcelVentas;
 
 	@GetMapping("/excel")
 	public ResponseEntity<?> descargarExcel() {
@@ -53,12 +54,17 @@ public class PlataformaServiceExcel {
 
 
 	@GetMapping("/excelid")
-	public ResponseEntity<?> descargarExcelEmprendimiento(@RequestBody ProductoEmprendimientoRespDto idEmprendimiento) {
-		LOG.info("Emprendimiento La ID es " + idEmprendimiento.getIdEmprendimiento());
+	public ResponseEntity<?> descargarExcelEmprendimiento(@RequestBody EmprendimientoFechaDto datosidfecha) {
+		LOG.info("Emprendimiento La ID es " + datosidfecha.getIdemprendimiento());
 
 		try {
-			String IDemp = String.valueOf(idEmprendimiento.getIdEmprendimiento());
-			ByteArrayOutputStream outputStream = DescargarExcelEmprendimiento.generarExcelEmprendimientos(IDemp);
+			String IDemp = String.valueOf(datosidfecha.getIdemprendimiento());
+			String fechamin= datosidfecha.getFechaminima();
+			String fechamax= datosidfecha.getFechamaxima();
+			LOG.info("Emprendimiento La  " +fechamin) ;
+
+			
+			ByteArrayOutputStream outputStream = DescargarExcelEmprendimiento.generarExcelEmprendimientos(IDemp , fechamin, fechamax);
 			ByteArrayResource resource = new ByteArrayResource(outputStream.toByteArray());
 
 			HttpHeaders headers = new HttpHeaders();
@@ -73,5 +79,33 @@ public class PlataformaServiceExcel {
 		}
 	
 	}
+	
+	@GetMapping("/excelventaspedidos")
+	public ResponseEntity<?> descargarExcelventas(@RequestBody FechaDto datosidfecha) {
+		LOG.info(" La fecha es " + datosidfecha.getFechaminima());
+
+		try {
+			String fechamin= datosidfecha.getFechaminima();
+			String fechamax= datosidfecha.getFechamaxima();
+			LOG.info("Fecha minima " +fechamin) ;
+
+			
+			ByteArrayOutputStream outputStream = DescargarExcelVentas.generarExcelVentasPorFecha(fechamin, fechamax);
+			ByteArrayResource resource = new ByteArrayResource(outputStream.toByteArray());
+
+			HttpHeaders headers = new HttpHeaders();
+			headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=VentasYPedidos.xlsx");
+			headers.add(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_OCTET_STREAM_VALUE);
+
+			return ResponseEntity.ok().headers(headers).contentLength(resource.contentLength()).body(resource);
+		} catch (IOException e) {
+			LOG.error("Error al generar o descargar el archivo Excel: ", e);
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+					.body("Error al generar o descargar el archivo Excel.");
+		}
+	
+	}
+	
+	
 	
 }

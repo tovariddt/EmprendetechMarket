@@ -49,9 +49,9 @@ import com.emprendetech.market.interfaces.Interfaces;
 import com.emprendetech.market.response.ResponseContenidoDTO;
 import com.emprendetech.market.service.responseDto.CategoriasRespDto;
 import com.emprendetech.market.service.responseDto.CompCorreoRespDto;
-import com.emprendetech.market.service.responseDto.EmprendimientosRespDTO;
+import com.emprendetech.market.service.responseDto.EmprendimientosRespDto;
 import com.emprendetech.market.service.responseDto.PerfilesRespDto;
-import com.emprendetech.market.service.responseDto.PersonaUsuarioRespDTO;
+import com.emprendetech.market.service.responseDto.PersonaUsuarioRespDto;
 import com.emprendetech.market.service.responseDto.PostalRespDto;
 import com.emprendetech.market.service.responseDto.ProductosRespDto;
 import com.emprendetech.market.service.responseDto.RolesRespDto;
@@ -321,10 +321,10 @@ public class PlataformaServiceImpl implements Interfaces {
 		try {
 		String correo = CorroContrasena.getCorreo();
 		String contrasena = CorroContrasena.getContrasena();
-			List<PersonaUsuarioRespDTO> resultPersonaUsuario = new ArrayList<PersonaUsuarioRespDTO>();
+			List<PersonaUsuarioRespDto> resultPersonaUsuario = new ArrayList<PersonaUsuarioRespDto>();
 			resultPersonaUsuario = consultaDao.getUsuarioPersona(correo, contrasena);
 
-			List<EmprendimientosRespDTO> resultEmprendimientos = new ArrayList<EmprendimientosRespDTO>();
+			List<EmprendimientosRespDto> resultEmprendimientos = new ArrayList<EmprendimientosRespDto>();
 			resultEmprendimientos = consultaDao.getEmprendimientos(correo, contrasena);
 
 			UsuarioEmprendimientoRespDto usuarioEmprendimiento = new UsuarioEmprendimientoRespDto();

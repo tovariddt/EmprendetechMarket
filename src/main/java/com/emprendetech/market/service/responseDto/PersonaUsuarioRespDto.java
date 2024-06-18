@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class PersonaUsuarioRespDTO {
+public class PersonaUsuarioRespDto {
 	public String nombreusuario;
 	public String correo;
 	public Integer idperfil;

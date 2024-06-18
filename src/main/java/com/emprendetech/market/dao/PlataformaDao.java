@@ -11,9 +11,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.emprendetech.market.service.responseDto.CategoriasRespDto;
-import com.emprendetech.market.service.responseDto.EmprendimientosRespDTO;
+import com.emprendetech.market.service.responseDto.EmprendimientosRespDto;
 import com.emprendetech.market.service.responseDto.PerfilesRespDto;
-import com.emprendetech.market.service.responseDto.PersonaUsuarioRespDTO;
+import com.emprendetech.market.service.responseDto.PersonaUsuarioRespDto;
 import com.emprendetech.market.service.responseDto.PostalRespDto;
 import com.emprendetech.market.service.responseDto.ProductosRespDto;
 import com.emprendetech.market.service.responseDto.RolesRespDto;
@@ -98,12 +98,12 @@ public class PlataformaDao {
 	}
 
 	
-	public List<PersonaUsuarioRespDTO> getUsuarioPersona(String correo, String contrasena) {
+	public List<PersonaUsuarioRespDto> getUsuarioPersona(String correo, String contrasena) {
 		try {
 			String sqlusuariopersona = Constantes.SQLGETUSUARIOPERSONA + contrasena + Constantes.SQLGETUSUARIOPERSONACORREO + correo + "';";
 			
 			return jdbcTemplate.query(sqlusuariopersona,(rs, rowNum) -> {
-				PersonaUsuarioRespDTO dtousuariopersona = new PersonaUsuarioRespDTO();
+				PersonaUsuarioRespDto dtousuariopersona = new PersonaUsuarioRespDto();
 				dtousuariopersona.setNombreusuario(rs.getString("nombreusuario"));
 				dtousuariopersona.setCorreo(rs.getString("correo"));
 				dtousuariopersona.setIdperfil(rs.getInt("idperfil"));
@@ -120,12 +120,12 @@ public class PlataformaDao {
 		}
 	}
 
-	public List<EmprendimientosRespDTO> getEmprendimientos(String correo, String contrasena) {
+	public List<EmprendimientosRespDto> getEmprendimientos(String correo, String contrasena) {
 		try {
 			String sqlemprendimientos = Constantes.SQLGETEMPRENDIMIENTOS + contrasena + Constantes.SQLGETEMPRENDIMIENTOSCORREO+ correo + "';";
 
 			return jdbcTemplate.query(sqlemprendimientos,(rs, rowNum) -> {
-				EmprendimientosRespDTO dtoemprendimientos = new EmprendimientosRespDTO();
+				EmprendimientosRespDto dtoemprendimientos = new EmprendimientosRespDto();
 				dtoemprendimientos.setNombre(rs.getString("nombre"));
 				dtoemprendimientos.setDescripcion(rs.getString("descripcion"));
 				dtoemprendimientos.setIndustria(rs.getString("industria"));

@@ -1,5 +1,7 @@
 package com.emprendetech.market.utils;
 
+import org.apache.xmlbeans.impl.xb.xsdschema.Public;
+
 public class Constantes {
 
 	    public static final String FELICIDADESALTACATEGORIAS = "Felicidades su Categoria fue registrado como =";
@@ -84,7 +86,7 @@ public class Constantes {
 
 	    public static final String SQLGETPRODUCTOEMPRENDIMIENTONOMBRELIKEAND = "%' AND idemprendimiento = " ;
 
-	    public static final String SQLOBTENERPRODUCTOSEMPRENDIMIENTOS ="SELECT emprendetech_market.emprendimientos.idemprendimiento, emprendetech_market.emprendimientos.nombre as nombreEmprendimiento, emprendetech_market.productos.idproducto, emprendetech_market.productos.sku, emprendetech_market.productos.nombre as nombreProducto, emprendetech_market.productos.idcategoria, emprendetech_market.productos.descripcion FROM emprendetech_market.productos INNER JOIN emprendetech_market.emprendimientos ON emprendetech_market.productos.idemprendimiento = emprendetech_market.emprendimientos.idemprendimiento;";;
+	    public static final String SQLOBTENERPRODUCTOSEMPRENDIMIENTOS ="SELECT emprendetech_market.emprendimientos.idemprendimiento, emprendetech_market.emprendimientos.nombre as nombreEmprendimiento, emprendetech_market.productos.idproducto, emprendetech_market.productos.sku, emprendetech_market.productos.nombre as nombreProducto, emprendetech_market.productos.idcategoria, emprendetech_market.productos.descripcion FROM emprendetech_market.productos INNER JOIN emprendetech_market.emprendimientos ON emprendetech_market.productos.idemprendimiento = emprendetech_market.emprendimientos.idemprendimiento;";
 	    
 	    public static final String SQLOBTENERPRODUCTOSEMPRENDIMIENTOSID = "SELECT emprendetech_market.emprendimientos.idemprendimiento, emprendetech_market.emprendimientos.nombre as nombreEmprendimiento, emprendetech_market.productos.idproducto,emprendetech_market.productos.sku ,emprendetech_market.productos.nombre  as nombreProducto, emprendetech_market.productos.idcategoria , emprendetech_market.productos.descripcion FROM emprendetech_market.productos INNER JOIN emprendetech_market.emprendimientos ON emprendetech_market.productos.idemprendimiento = emprendetech_market.emprendimientos.idemprendimiento where emprendetech_market.emprendimientos.idemprendimiento = '";
 
@@ -114,5 +116,17 @@ public class Constantes {
 
 	   public static final String SQLIDCLIENTE = "SELECT emprendetech_market.clientes.idcliente FROM emprendetech_market.clientes where emprendetech_market.clientes.idcliente =";
 
+	  public static final String SQLCALLGETDETALLEVENTAPOREMPRENDIMIENTO ="{call GetDetalleVentaPorEmprendimiento(?, ?, ?)}";
+	  
+	  public static final String SQLIVENTARIOPOREMPRENDIMIENTO ="{call GetInventarioEmprendimiento(?)}";
+
+	  public static final String SQLIVENTARIOGENERAL="{call GetInventario()}";
+	  
+	  public static final String SQLVENTAPORFECHA="{call GetVentasFecha(?,?)}";
+	  
+	  public static final String SQLPEDIDOPORFECHA="{call GetPedidosFecha(?,?)}";
+	  
+	  public static final String SQLUNIDADPORFECHA="{call GetUnidadFecha(?,?)}";
+	  
 	  
 }

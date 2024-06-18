@@ -15,7 +15,6 @@ public class ProductoEmprendimientoRespDto {
     private String nombreProducto;
     private Integer idCategoria;
     private String descripcion;
-    private Integer cantidadDisponible;
 
-    // Getters y Setters
+
 }
