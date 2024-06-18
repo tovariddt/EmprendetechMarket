@@ -1,0 +1,877 @@
+{
+	"info": {
+		"_postman_id": "a07fc371-0cdb-4695-86f7-4cbb7fafcace",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34571374"
+	},
+	"item": [
+		{
+			"name": "Crear Alta Usuario y emprendedor",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\": \"NombreP3\",\n    \"apellido_materno\": \"ApellidoMP3\",\n    \"apellido_paterno\": \"ApellidoP3\",\n    \"direccion\": \"Calle P3\",\n    \"referencia\": \"3\",\n    \"telefono\": \"9221755557\",\n    \"correo\": \"Correo3@gmail.com\",\n    \"contrasena\": \"contrasena3\",\n    \"idperfil\":\"3\",\n    \"creadoridusuario\": \"1\",\n    \"id_codigo_postal\": \"19\",\n    \"nombre_empren\": \"Emprendimiento p2\",\n    \"descripcion\":\"descripcion p2\",\n    \"industria\": \"industria p2\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/plataforma/Alta",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"plataforma",
+						"Alta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Emprendedimiento",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"idemprendimiento\":\"1\",\n    \"nombre\": \"Tacos locos\",\n    \"descripcion\":\"Se venden tacos\",\n    \"industria\": \"Restaurante\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/plataforma/ActualizarEmprendimientos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"plataforma",
+						"ActualizarEmprendimientos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Persona",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"idpersona\":\"1\",\n    \"nombre\": \"David\",\n    \"apellido_materno\": \"Dominguez\",\n    \"apellido_paterno\": \"Tovar\",\n    \"direccion\": \"Calle P1\",\n    \"referencia\": \"1\",\n    \"telefono\": \"9221755557\",\n    \"id_codigo_postal\": \"19\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/plataforma/ActualizarPersonas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"plataforma",
+						"ActualizarPersonas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ActualizarEmprendimientos",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"idemprendimiento\":\"1\",\n    \"nombre\": \"Emprendimiento 18\",\n    \"descripcion\":\"descripcion 18\",\n    \"industria\": \"industria 18\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/plataforma/ActualizarEmprendimientos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"plataforma",
+						"ActualizarEmprendimientos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ActualizarProducto",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"idproducto\":\"1\",\n    \"sku\": \"Prodcuto4\",\n    \"nombre\": \"Prodcuto4-N\",\n    \"descripcion\": \"Prodcuto4-N-Des\",\n    \"cantidad_disponible\": \"20\",\n    \"imagen\": \"imagen Prodcuto4\",\n    \"idemprendimiento\": \"1\",\n    \"idcategoria\": \"1\",\n    \"creadoridusuario\": \"1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/plataforma/ActualizarProducto",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"plataforma",
+						"ActualizarProducto"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Categoria",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"idcategoria\":\"2\",\n    \"nombre\": \"Categoria n 2 \",\n    \"creadoridusuario\":\"1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/plataforma/ActualizarCategoria",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"plataforma",
+						"ActualizarCategoria"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AltaProducto",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"sku\": \"Prodcuto5\",\n    \"nombre\": \"Prodcuto5-N\",\n    \"descripcion\": \"Prodcuto5-N-Des\",\n    \"cantidad_disponible\": \"5\",\n    \"imagen\": \"imagen Prodcuto5\",\n    \"idemprendimiento\": \"2\",\n    \"idcategoria\": \"2\",\n    \"creadoridusuario\": \"1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/plataforma/AltaProducto",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"plataforma",
+						"AltaProducto"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AltaCategoria",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\": \"Categoria 2\",\n    \"creadoridusuario\": \"1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/plataforma/AltaCategoria",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"plataforma",
+						"AltaCategoria"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Comprobar Existencia De correo , PEPE",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"correo\": \"Correo@gmail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/plataforma/Correo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"plataforma",
+						"Correo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Comprobar Codigo postal",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"clave\": \"96716\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/plataforma/codigopostal",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"plataforma",
+						"codigopostal"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Consulta Producto  con Emprendimiento Y Categoria",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"idemprendimiento\": \"1\", \"idcategoria\":\"2\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/plataforma/ConsultaProductoEmprendimientoCategoria",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"plataforma",
+						"ConsultaProductoEmprendimientoCategoria"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Consulta Producto  con Emprendimiento Y NombreLIKE",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"idemprendimiento\": \"1\", \"nombre\":\"Prodcu\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/plataforma/ConsultaProductoEmprendimientoNombreLIKE",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"plataforma",
+						"ConsultaProductoEmprendimientoNombreLIKE"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Consulta Producto  con Emprendimiento",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"idemprendimiento\": \"502\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/plataforma/ConsultaProductoEmprendimiento",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"plataforma",
+						"ConsultaProductoEmprendimiento"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Consultar con correo  y contraseña, PEPE",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"correo\": \"Correo1@gmail.com\",\"contrasena\": \"contrasena1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/plataforma/Consulta",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"plataforma",
+						"Consulta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CategoriasAll",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/plataforma/categorias",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"plataforma",
+						"categorias"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Consulta Perfiles",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/plataforma/perfiles",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"plataforma",
+						"perfiles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Consulta Roles",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/plataforma/roles",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"plataforma",
+						"roles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Descargar Excel y Inventario",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "\tapplication/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/productos-emprendimientos/excel",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"productos-emprendimientos",
+						"excel"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Descargar Excel Emprendimiento y fecha",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "\tapplication/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"idemprendimiento\": \"1\",\n   \"fechaminima\": \"2024-06-14 00:00:00\",\n   \"fechamaxima\": \"2024-06-15 00:00:00\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/productos-emprendimientos/excelid",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"productos-emprendimientos",
+						"excelid"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Descargar Excel Copy",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "\tapplication/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"\": \"2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/productos-emprendimientos/excelID",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"productos-emprendimientos",
+								"excelID"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "raw",
+					"header": [
+						{
+							"key": "Content-Disposition",
+							"value": "attachment; filename=ProductosPorEmprendimientos.xlsx"
+						},
+						{
+							"key": "Accept-Ranges",
+							"value": "bytes"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/octet-stream"
+						},
+						{
+							"key": "Content-Length",
+							"value": "3568"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 01 Jun 2024 00:34:03 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "PK\u0003\u0004\u0014\u0000\b\b\b\u0000A��X\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0013\u0000\u0000\u0000[Content_Types].xml�S�n�0\u0010����*6�PU\u0015�C\u001f�\u0016��\u0003\\{�X�%����]\u00078�R�\nq�cfgfW�d�q�ZCB\u0013|��|�*�*h㻆},^�{Va�^K\u001b<4l\u000b�f��b\u001b\u0001+��ذ>�� \u0004�\u001e�D\u001e\"xBڐ��tL��R-e\u0007�v4�\u0013*�\f>׹h���\tZ���z��\u0017��\u0018�Q2S,���H��\u000b�\u0004v�`o\"�\u0010�U�\u001bRٵC(2q��qa9S�\u001b\r&\u0019\r��\u0016��(�A�\u001c�p(�\u001at\u001d\u0013\u0011S6��9�)�JG���sBQ�4���0\u0016\u0015\u0012�eX�\u00179\u001eu�1���\u0003dg9�2�~ω^��\u0010\u001b+~\u0010��#o�)�\u0000\u0003r�\t�ʝ4���WH��\u0010���/\u000e��/�\u0001D1,�C\u000e1|��7PK\u0007\b�,(�;\u0001\u0000\u0000\u001d\u0004\u0000\u0000PK\u0003\u0004\u0014\u0000\b\b\b\u0000A��X\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u000b\u0000\u0000\u0000_rels/.rels���J\u00031\u0010�_%̽�m\u0005\u0011iڋ\b���\u0007\u0018��ݰ�LHFݾ����lA��03��1�v?�I�S.���uӂ�h���\u001bx9>��@\u0015��p�H\u0006NT`��>ӄRW��SQ�\u0011��A$�k]�@\u0001KÉb�t�\u0003J-s�\u0013�\u0011{қ����'\u0003Ι��\f�[�:b�I\f̓��<�2�M���)�oB�뼥\u0007�o��,d_L�^v�|�8�O��&���24\u000bEGn�j\u0002e���W�n\u0016�,g����Gс\u0004\u001d\n~Q/���\u001f�}\u0002PK\u0007\bn2\bK�\u0000\u0000\u0000J\u0002\u0000\u0000PK\u0003\u0004\u0014\u0000\b\b\b\u0000A��X\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0010\u0000\u0000\u0000docProps/app.xmlM��\n�0\u0010D�~EȽ��ADҔ�\b��A? ��6�lB�J?ߜ���0���ͯ�)�@��׍\u0014H6���V>\u001f��$;�SC\n\u0011\u0013;̢\u001c(�ra�g�l\u0017�&�e��L!y�%�\u0019�49��`_\u001e���4G���F\u001c��\u0005J��\u0018Wg\r\u0017\u0007�GS�b��\u0014��\n~\u000e�\u0003PK\u0007\b�|wؑ\u0000\u0000\u0000�\u0000\u0000\u0000PK\u0003\u0004\u0014\u0000\b\b\b\u0000A��X\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0011\u0000\u0000\u0000docProps/core.xmlm��J�0\u0010F_�依�]\u0016\tm\u0017Q\u0016\u0004�\u0005+�w!\u0019�b�C\u0012��ֵۛ�z��;s�|����\u0003�\u001f��I�Q��\u0016F\u000e���c�O/H�\u0003ג�FcMN�ɮ��e�8<8cх\u0001}\u0012=�3ak҇`\u0019�\u0017=*�H�\u0018�\u001a�x�Wׁ��w\b\u0005�[P\u0018���,L�j$g�\u0014�Ҿ�q\u0011H\u00018�B\u001d<�Y\u000e?l@���\u0003K��G?��4M�T.\\�(��ۇe�t���\u0005��:��p�\u0003�$\nX8�X�w�T^]�{�\u0014�ؤt�Ҽ���\u001bF˗\n~��¯�q�e,���p3s�s\u0005jn>\u0001PK\u0007\b�S&6\u0006\u0001\u0000\u0000�\u0001\u0000\u0000PK\u0003\u0004\u0014\u0000\b\b\b\u0000A��X\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0014\u0000\u0000\u0000xl/sharedStrings.xml���J\u00031\u0010��>EȽ�ڃ\u0014ɦ�]\u0005\u0011D�>@�Lw\u00076�53+�����\u0019\u0011\u0014*�����w\u0018�{K�z��՗�F+��#������j�w��2�\ny!i�V���e��g�\u0006q�G���\u0018\u000e#$��<\u0003Ur�%y��\f��\u0002>�\b i2���2�#ig\u0019�\u0015w׫�T\u001d��\u0010H�5�����CN�\u0002�H��Xr\\�_�t�?�<wQc�\u0017\u0018rA�z�Pp\u000e��N���$\u0018}T=�\t\u000f\u0013�*���}\u0002PK\u0007\b��\u0015l�\u0000\u0000\u0000|\u0001\u0000\u0000PK\u0003\u0004\u0014\u0000\b\b\b\u0000A��X\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\r\u0000\u0000\u0000xl/styles.xml���n� \u0010��>\u0005bop2TQ��P)U�RWb�6*\u001c\u0016����\u0017�ӤS�Nw�s���3ߍ֐\u000b��\u001d�t��(\u0001l��������ҝx�!N\u0006\u000e=@$ɀ��}��3c���ʰr\u0003`:i��2��w,\f\u001e�\n�d\r�T�\u0013�R#\u0015\u001c�voc �;c�iE��Û��E\u0010<|��4Iɣ���\u0019�F\u0005#��n���B�z�F���y�j3\u0015y��yҥ�jt>���2��Lژ�!6�\b�\u000f2F�O\u0005Y��4@M�!\u0014���G��������1�t��y��p��\"\tn����u��\u0018���a�ΦDi�9�&#��%I�\u0006�9��}���cK�\u000e�T��$?������`J������7���o��f��M|\u0003PK\u0007\b�1X@C\u0001\u0000\u0000�\u0002\u0000\u0000PK\u0003\u0004\u0014\u0000\b\b\b\u0000A��X\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u000f\u0000\u0000\u0000xl/workbook.xml���N�0\u0010�w�º�:\u0001� ��\u0005��u(�}i��>����8�\u0002�L�����w��ӏ⌜\u001c\u0005\u0005��\u0002���u��}�v�\u0004�\u0010\u001f�DGQ�!)\u0018r����\f�uZQ�P&=�׹D>�\u0014\u0019�M\u0003b�����G�\u000bp%4�\u001f\u0006��3�B��1�+�qԹȦ��\u0004ݏٖ��\u0019���AA�Ǆ �v�|8����\u0014�6ٝq��\n��'�\u0014g��\u0015A{T�e�'�)�/���i�:�T��� �qV\u0001o�=�yqSb=�\u0017�\\\f�oPK\u0007\b\u001a��M�\u0000\u0000\u0000v\u0001\u0000\u0000PK\u0003\u0004\u0014\u0000\b\b\b\u0000A��X\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u001a\u0000\u0000\u0000xl/_rels/workbook.xml.rels��Mk�0\f@���}q��\u0018�n/c�k?~���84����˿����@\u0007;�$��{\u000f�\\��:Q�>\u0006\u0003MU��`��Cg��xz\u0005ł��\u0010\u0003\u0019��a�Zni@)_���Ua\u00046�Eқ�l=��UL\u0014ʦ�yD)�����\u001d�E]��|ˀ9Sm���q\r�=��\u0000{��v�K\u001aW\u0005\\VS��hc���ޣ�\u001c)�\u001d���AߏY���4��+����瘏��Z^F��\u001f�5FϮ��\u0000PK\u0007\bg뢨�\u0000\u0000\u00004\u0002\u0000\u0000PK\u0003\u0004\u0014\u0000\b\b\b\u0000A��X\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0018\u0000\u0000\u0000xl/worksheets/sheet1.xml��M��0\u0010���\u0015���|��ն�4=T��yv`\u0000k\u0001G�\u0013���v(Yĥ�\u0005<�y�\u0019\u000fc珯C�� $�c�=��\bƊ�ll\u000b����}�\u001f�w��ŋ�\u0000\u0014��(\u000b�)u| DV\u001d\fT:�\b���p1P�C�\u0012y\u0014@k+\u001az�nL\u0006�F\\�5\u001b`4\t����O���ä�-���$߬�I}���\u0004_�\u0002�\n\u0015=��\u001e*\u0005:V�\u0004FM6��@54�ԫ�|�\u0003k;�7\u001a�jQ�{i�h`f�\u0018\r�վ'V�΂q�n�G\u0018U'�������E\u0007�j�Ե��˟����w\u001d�>�`�\n\u0016��IS?�nv\ng�pq\n�4I�;��f��ڬ�\t�*��⫕�^��ir�W2{%oz��~\u0010\u00067[��Uz-+v�0��.�\\&���3U��\u0005��0#�\u0013�œ\u001e6-�\u0018I3�e~.ݜ��t&>l\toM|�\u0012��x�\u0012����%�5��\u0012њ��%�5��\u0012�B\u0010ݛ\u0007�Ҭ#m�+\u0015-\u001b%:p�ۭU�i~ù\u0002a\"}(:}�,A\u000f��\u0014F�r��Z��5�e��ʿPK\u0007\bK�|��\u0001\u0000\u0000\u0003\u0005\u0000\u0000PK\u0001\u0002\u0014\u0000\u0014\u0000\b\b\b\u0000A��X�,(�;\u0001\u0000\u0000\u001d\u0004\u0000\u0000\u0013\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000[Content_Types].xmlPK\u0001\u0002\u0014\u0000\u0014\u0000\b\b\b\u0000A��Xn2\bK�\u0000\u0000\u0000J\u0002\u0000\u0000\u000b\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000|\u0001\u0000\u0000_rels/.relsPK\u0001\u0002\u0014\u0000\u0014\u0000\b\b\b\u0000A��X�|wؑ\u0000\u0000\u0000�\u0000\u0000\u0000\u0010\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000�\u0002\u0000\u0000docProps/app.xmlPK\u0001\u0002\u0014\u0000\u0014\u0000\b\b\b\u0000A��X�S&6\u0006\u0001\u0000\u0000�\u0001\u0000\u0000\u0011\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000i\u0003\u0000\u0000docProps/core.xmlPK\u0001\u0002\u0014\u0000\u0014\u0000\b\b\b\u0000A��X��\u0015l�\u0000\u0000\u0000|\u0001\u0000\u0000\u0014\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000�\u0004\u0000\u0000xl/sharedStrings.xmlPK\u0001\u0002\u0014\u0000\u0014\u0000\b\b\b\u0000A��X�1X@C\u0001\u0000\u0000�\u0002\u0000\u0000\r\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000�\u0005\u0000\u0000xl/styles.xmlPK\u0001\u0002\u0014\u0000\u0014\u0000\b\b\b\u0000A��X\u001a��M�\u0000\u0000\u0000v\u0001\u0000\u0000\u000f\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000D\u0007\u0000\u0000xl/workbook.xmlPK\u0001\u0002\u0014\u0000\u0014\u0000\b\b\b\u0000A��Xg뢨�\u0000\u0000\u00004\u0002\u0000\u0000\u001a\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000j\b\u0000\u0000xl/_rels/workbook.xml.relsPK\u0001\u0002\u0014\u0000\u0014\u0000\b\b\b\u0000A��XK�|��\u0001\u0000\u0000\u0003\u0005\u0000\u0000\u0018\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000�\t\u0000\u0000xl/worksheets/sheet1.xmlPK\u0005\u0006\u0000\u0000\u0000\u0000\t\u0000\t\u0000?\u0002\u0000\u0000�\u000b\u0000\u0000\u0000\u0000"
+				}
+			]
+		},
+		{
+			"name": "Descargar Excel Ventas y Pedidos fecha",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "\tapplication/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"fechaminima\": \"2024-06-17 00:00:00\",\n   \"fechamaxima\": \"2024-06-18 00:00:00\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/productos-emprendimientos/excelventaspedidos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"productos-emprendimientos",
+						"excelventaspedidos"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Descargar Excel Copy",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "\tapplication/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"\": \"2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/productos-emprendimientos/excelID",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"productos-emprendimientos",
+								"excelID"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "raw",
+					"header": [
+						{
+							"key": "Content-Disposition",
+							"value": "attachment; filename=ProductosPorEmprendimientos.xlsx"
+						},
+						{
+							"key": "Accept-Ranges",
+							"value": "bytes"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/octet-stream"
+						},
+						{
+							"key": "Content-Length",
+							"value": "3568"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 01 Jun 2024 00:34:03 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "PK\u0003\u0004\u0014\u0000\b\b\b\u0000A��X\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0013\u0000\u0000\u0000[Content_Types].xml�S�n�0\u0010����*6�PU\u0015�C\u001f�\u0016��\u0003\\{�X�%����]\u00078�R�\nq�cfgfW�d�q�ZCB\u0013|��|�*�*h㻆},^�{Va�^K\u001b<4l\u000b�f��b\u001b\u0001+��ذ>�� \u0004�\u001e�D\u001e\"xBڐ��tL��R-e\u0007�v4�\u0013*�\f>׹h���\tZ���z��\u0017��\u0018�Q2S,���H��\u000b�\u0004v�`o\"�\u0010�U�\u001bRٵC(2q��qa9S�\u001b\r&\u0019\r��\u0016��(�A�\u001c�p(�\u001at\u001d\u0013\u0011S6��9�)�JG���sBQ�4���0\u0016\u0015\u0012�eX�\u00179\u001eu�1���\u0003dg9�2�~ω^��\u0010\u001b+~\u0010��#o�)�\u0000\u0003r�\t�ʝ4���WH��\u0010���/\u000e��/�\u0001D1,�C\u000e1|��7PK\u0007\b�,(�;\u0001\u0000\u0000\u001d\u0004\u0000\u0000PK\u0003\u0004\u0014\u0000\b\b\b\u0000A��X\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u000b\u0000\u0000\u0000_rels/.rels���J\u00031\u0010�_%̽�m\u0005\u0011iڋ\b���\u0007\u0018��ݰ�LHFݾ����lA��03��1�v?�I�S.���uӂ�h���\u001bx9>��@\u0015��p�H\u0006NT`��>ӄRW��SQ�\u0011��A$�k]�@\u0001KÉb�t�\u0003J-s�\u0013�\u0011{қ����'\u0003Ι��\f�[�:b�I\f̓��<�2�M���)�oB�뼥\u0007�o��,d_L�^v�|�8�O��&���24\u000bEGn�j\u0002e���W�n\u0016�,g����Gс\u0004\u001d\n~Q/���\u001f�}\u0002PK\u0007\bn2\bK�\u0000\u0000\u0000J\u0002\u0000\u0000PK\u0003\u0004\u0014\u0000\b\b\b\u0000A��X\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0010\u0000\u0000\u0000docProps/app.xmlM��\n�0\u0010D�~EȽ��ADҔ�\b��A? ��6�lB�J?ߜ���0���ͯ�)�@��׍\u0014H6���V>\u001f��$;�SC\n\u0011\u0013;̢\u001c(�ra�g�l\u0017�&�e��L!y�%�\u0019�49��`_\u001e���4G���F\u001c��\u0005J��\u0018Wg\r\u0017\u0007�GS�b��\u0014��\n~\u000e�\u0003PK\u0007\b�|wؑ\u0000\u0000\u0000�\u0000\u0000\u0000PK\u0003\u0004\u0014\u0000\b\b\b\u0000A��X\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0011\u0000\u0000\u0000docProps/core.xmlm��J�0\u0010F_�依�]\u0016\tm\u0017Q\u0016\u0004�\u0005+�w!\u0019�b�C\u0012��ֵۛ�z��;s�|����\u0003�\u001f��I�Q��\u0016F\u000e���c�O/H�\u0003ג�FcMN�ɮ��e�8<8cх\u0001}\u0012=�3ak҇`\u0019�\u0017=*�H�\u0018�\u001a�x�Wׁ��w\b\u0005�[P\u0018���,L�j$g�\u0014�Ҿ�q\u0011H\u00018�B\u001d<�Y\u000e?l@���\u0003K��G?��4M�T.\\�(��ۇe�t���\u0005��:��p�\u0003�$\nX8�X�w�T^]�{�\u0014�ؤt�Ҽ���\u001bF˗\n~��¯�q�e,���p3s�s\u0005jn>\u0001PK\u0007\b�S&6\u0006\u0001\u0000\u0000�\u0001\u0000\u0000PK\u0003\u0004\u0014\u0000\b\b\b\u0000A��X\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0014\u0000\u0000\u0000xl/sharedStrings.xml���J\u00031\u0010��>EȽ�ڃ\u0014ɦ�]\u0005\u0011D�>@�Lw\u00076�53+�����\u0019\u0011\u0014*�����w\u0018�{K�z��՗�F+��#������j�w��2�\ny!i�V���e��g�\u0006q�G���\u0018\u000e#$��<\u0003Ur�%y��\f��\u0002>�\b i2���2�#ig\u0019�\u0015w׫�T\u001d��\u0010H�5�����CN�\u0002�H��Xr\\�_�t�?�<wQc�\u0017\u0018rA�z�Pp\u000e��N���$\u0018}T=�\t\u000f\u0013�*���}\u0002PK\u0007\b��\u0015l�\u0000\u0000\u0000|\u0001\u0000\u0000PK\u0003\u0004\u0014\u0000\b\b\b\u0000A��X\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\r\u0000\u0000\u0000xl/styles.xml���n� \u0010��>\u0005bop2TQ��P)U�RWb�6*\u001c\u0016����\u0017�ӤS�Nw�s���3ߍ֐\u000b��\u001d�t��(\u0001l��������ҝx�!N\u0006\u000e=@$ɀ��}��3c���ʰr\u0003`:i��2��w,\f\u001e�\n�d\r�T�\u0013�R#\u0015\u001c�voc �;c�iE��Û��E\u0010<|��4Iɣ���\u0019�F\u0005#��n���B�z�F���y�j3\u0015y��yҥ�jt>���2��Lژ�!6�\b�\u000f2F�O\u0005Y��4@M�!\u0014���G��������1�t��y��p��\"\tn����u��\u0018���a�ΦDi�9�&#��%I�\u0006�9��}���cK�\u000e�T��$?������`J������7���o��f��M|\u0003PK\u0007\b�1X@C\u0001\u0000\u0000�\u0002\u0000\u0000PK\u0003\u0004\u0014\u0000\b\b\b\u0000A��X\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u000f\u0000\u0000\u0000xl/workbook.xml���N�0\u0010�w�º�:\u0001� ��\u0005��u(�}i��>����8�\u0002�L�����w��ӏ⌜\u001c\u0005\u0005��\u0002���u��}�v�\u0004�\u0010\u001f�DGQ�!)\u0018r����\f�uZQ�P&=�׹D>�\u0014\u0019�M\u0003b�����G�\u000bp%4�\u001f\u0006��3�B��1�+�qԹȦ��\u0004ݏٖ��\u0019���AA�Ǆ �v�|8����\u0014�6ٝq��\n��'�\u0014g��\u0015A{T�e�'�)�/���i�:�T��� �qV\u0001o�=�yqSb=�\u0017�\\\f�oPK\u0007\b\u001a��M�\u0000\u0000\u0000v\u0001\u0000\u0000PK\u0003\u0004\u0014\u0000\b\b\b\u0000A��X\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u001a\u0000\u0000\u0000xl/_rels/workbook.xml.rels��Mk�0\f@���}q��\u0018�n/c�k?~���84����˿����@\u0007;�$��{\u000f�\\��:Q�>\u0006\u0003MU��`��Cg��xz\u0005ł��\u0010\u0003\u0019��a�Zni@)_���Ua\u00046�Eқ�l=��UL\u0014ʦ�yD)�����\u001d�E]��|ˀ9Sm���q\r�=��\u0000{��v�K\u001aW\u0005\\VS��hc���ޣ�\u001c)�\u001d���AߏY���4��+����瘏��Z^F��\u001f�5FϮ��\u0000PK\u0007\bg뢨�\u0000\u0000\u00004\u0002\u0000\u0000PK\u0003\u0004\u0014\u0000\b\b\b\u0000A��X\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0018\u0000\u0000\u0000xl/worksheets/sheet1.xml��M��0\u0010���\u0015���|��ն�4=T��yv`\u0000k\u0001G�\u0013���v(Yĥ�\u0005<�y�\u0019\u000fc珯C�� $�c�=��\bƊ�ll\u000b����}�\u001f�w��ŋ�\u0000\u0014��(\u000b�)u| DV\u001d\fT:�\b���p1P�C�\u0012y\u0014@k+\u001az�nL\u0006�F\\�5\u001b`4\t����O���ä�-���$߬�I}���\u0004_�\u0002�\n\u0015=��\u001e*\u0005:V�\u0004FM6��@54�ԫ�|�\u0003k;�7\u001a�jQ�{i�h`f�\u0018\r�վ'V�΂q�n�G\u0018U'�������E\u0007�j�Ե��˟����w\u001d�>�`�\n\u0016��IS?�nv\ng�pq\n�4I�;��f��ڬ�\t�*��⫕�^��ir�W2{%oz��~\u0010\u00067[��Uz-+v�0��.�\\&���3U��\u0005��0#�\u0013�œ\u001e6-�\u0018I3�e~.ݜ��t&>l\toM|�\u0012��x�\u0012����%�5��\u0012њ��%�5��\u0012�B\u0010ݛ\u0007�Ҭ#m�+\u0015-\u001b%:p�ۭU�i~ù\u0002a\"}(:}�,A\u000f��\u0014F�r��Z��5�e��ʿPK\u0007\bK�|��\u0001\u0000\u0000\u0003\u0005\u0000\u0000PK\u0001\u0002\u0014\u0000\u0014\u0000\b\b\b\u0000A��X�,(�;\u0001\u0000\u0000\u001d\u0004\u0000\u0000\u0013\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000[Content_Types].xmlPK\u0001\u0002\u0014\u0000\u0014\u0000\b\b\b\u0000A��Xn2\bK�\u0000\u0000\u0000J\u0002\u0000\u0000\u000b\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000|\u0001\u0000\u0000_rels/.relsPK\u0001\u0002\u0014\u0000\u0014\u0000\b\b\b\u0000A��X�|wؑ\u0000\u0000\u0000�\u0000\u0000\u0000\u0010\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000�\u0002\u0000\u0000docProps/app.xmlPK\u0001\u0002\u0014\u0000\u0014\u0000\b\b\b\u0000A��X�S&6\u0006\u0001\u0000\u0000�\u0001\u0000\u0000\u0011\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000i\u0003\u0000\u0000docProps/core.xmlPK\u0001\u0002\u0014\u0000\u0014\u0000\b\b\b\u0000A��X��\u0015l�\u0000\u0000\u0000|\u0001\u0000\u0000\u0014\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000�\u0004\u0000\u0000xl/sharedStrings.xmlPK\u0001\u0002\u0014\u0000\u0014\u0000\b\b\b\u0000A��X�1X@C\u0001\u0000\u0000�\u0002\u0000\u0000\r\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000�\u0005\u0000\u0000xl/styles.xmlPK\u0001\u0002\u0014\u0000\u0014\u0000\b\b\b\u0000A��X\u001a��M�\u0000\u0000\u0000v\u0001\u0000\u0000\u000f\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000D\u0007\u0000\u0000xl/workbook.xmlPK\u0001\u0002\u0014\u0000\u0014\u0000\b\b\b\u0000A��Xg뢨�\u0000\u0000\u00004\u0002\u0000\u0000\u001a\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000j\b\u0000\u0000xl/_rels/workbook.xml.relsPK\u0001\u0002\u0014\u0000\u0014\u0000\b\b\b\u0000A��XK�|��\u0001\u0000\u0000\u0003\u0005\u0000\u0000\u0018\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000�\t\u0000\u0000xl/worksheets/sheet1.xmlPK\u0005\u0006\u0000\u0000\u0000\u0000\t\u0000\t\u0000?\u0002\u0000\u0000�\u000b\u0000\u0000\u0000\u0000"
+				}
+			]
+		},
+		{
+			"name": "Alta Productosunidad",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"idproducto\": \"5\",\n  \"idmedida\": \"2\",\n  \"nombre\":\"Cosa-8\",\n  \"cantidad\": \"40\",\n  \"precio\": \"100\",\n  \"creadoridusuario\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/plataforma/alta/productosunidad",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"plataforma",
+						"alta",
+						"productosunidad"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Venta y pedido",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"idmetodospago\": 1,\n  \"estatusventa\": \"NoPagado\",\n  \"tipo\": \"Pedido\",\n  \"creadoridusuario\": 1,\n  \"idcliente\": 1,\n  \"estatuspedido\": \"Espera\",\n  \"nombre\": \"David\",\n  \"apellido_materno\": \"Dominguez\",\n  \"apellido_paterno\": \"Tovar\",\n  \"direccion\": \"Colocnia xxx\",\n  \"referencia\": \"Casa amarilla\",\n  \"telefono\": \"9221763053\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/movimientos/ventapedido",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"movimientos",
+						"ventapedido"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "detallepedido",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"idventa\": \"254\",\n  \"idproductounidad\": \"1\",\n  \"cantidad\": \"10\",\n  \"creadoridusuario\": \"1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/movimientos/detallepedido",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"movimientos",
+						"detallepedido"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Consulta Venta y Detalles",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"idventa\": \"202\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/movimientos/ventadetalle",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"movimientos",
+						"ventadetalle"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
