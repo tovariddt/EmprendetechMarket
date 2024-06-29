@@ -47,6 +47,12 @@ public class Constantes {
 	    public static final String FELICIDADESALTAVENTAS = "Felicidades su Venta fue registrado como =";
 	    public static final String FELICIDADESACTUALIZARVENTAS = "Felicidades su Venta fue actualizado como =";
 
+	    public static final String FELICIDADESALTACAJAS = "Felicidades su caja fue registrado como =";
+	    public static final String FELICIDADESACTUALIZARCAJAS= "Felicidades su caja fue actualizado como =";
+	    
+	    public static final String FELICIDADESALTAINGRESOS = "Felicidades su Ingreso fue registrado como =";
+	    public static final String FELICIDADESACTUALIZARINGRESOS = "Felicidades su Ingreso fue actualizado como =";
+	    
 	    public static final String SQLGETROLES = "SELECT idrol, nombre FROM emprendetech_market.roles";
 	    
 	    public static final String SQLGETPEFILES = "SELECT idperfil, nombre, descripcion, idrol FROM emprendetech_market.perfiles;";

@@ -16,19 +16,12 @@ public interface InterfacesMovimientos {
 
 	
 	
-	@PostMapping("/ventapedido")
-	@Operation(summary = "Se realiza un registro de una venta")
-    @ApiResponse(responseCode = "200", description = "Con este metodo se realiza un registro de una venta")
 	ResponseEntity<?> postUnaVentaPedido(VentaYPedidosDto ventaYPedidosDto);
 
-	@PostMapping("/detallepedido")
-	@Operation(summary = "Se realiza un registro de un detallepedido")
-    @ApiResponse(responseCode = "200", description = "Con este metodo se realiza un registro de un detallepedido")
+
 	ResponseEntity<?> postDetalleVenta(DetallespedidoDto detallespedidoDto);
 
-	@GetMapping("/ventadetalle")
-	@Operation(summary = "Se realiza una consulta a venta y  detallepedido")
-    @ApiResponse(responseCode = "200", description = "Con este metodo se realiza una consulta a venta y  detallepedido")
+
 	ResponseEntity<?> getVentaDetalleventa(DetallespedidoDto detallespedidoDto);
 	
 	

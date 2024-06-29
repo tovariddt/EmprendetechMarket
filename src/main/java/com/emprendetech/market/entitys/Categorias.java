@@ -18,6 +18,7 @@ import lombok.Setter;
 @Entity
 @Table(name = "categorias")
 public class Categorias {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "idcategoria")

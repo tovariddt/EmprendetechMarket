@@ -14,22 +14,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.emprendetech.market.controllers.ExcelController;
+import com.emprendetech.market.interfaces.InterfecesExcel;
 import com.emprendetech.market.service.requestDto.EmprendimientoFechaDto;
 import com.emprendetech.market.service.requestDto.FechaDto;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 @RestController
 @RequestMapping("/api/productos-emprendimientos")
-public class PlataformaServiceExcel {
+public class PlataformaServiceExcel implements InterfecesExcel{
 
 	private static final Log LOG = LogFactory.getLog(PlataformaServiceExcel.class);
 
 	@Autowired
 	private ExcelController DescargarExcel, DescargarExcelEmprendimiento, DescargarExcelVentas;
 
+    @Override
 	@GetMapping("/excel")
+	@Operation(summary = "Se crea un registro en un archivo excel")
+    @ApiResponse(responseCode = "200", description = "Con este metodo se crea un registro en un archivo excel")
 	public ResponseEntity<?> descargarExcel() {
 	    LOG.info("Productos y Emprendimientos");
 	    ResponseEntity<?> responseEntity;
@@ -53,8 +60,11 @@ public class PlataformaServiceExcel {
 	}
 
 
+    @Override
 	@GetMapping("/excelid")
-	public ResponseEntity<?> descargarExcelEmprendimiento(@RequestBody EmprendimientoFechaDto datosidfecha) {
+	@Operation(summary = "Se crea un registro en un archivo excel con datos de emprendimiento y fecha")
+    @ApiResponse(responseCode = "200", description = "Con este metodo se crea un registro en un archivo excel con datos de emprendimiento y fecha")
+    public ResponseEntity<?> descargarExcelEmprendimiento(@RequestBody EmprendimientoFechaDto datosidfecha) {
 		LOG.info("Emprendimiento La ID es " + datosidfecha.getIdemprendimiento());
 
 		try {
@@ -80,7 +90,10 @@ public class PlataformaServiceExcel {
 	
 	}
 	
+	@Override
 	@GetMapping("/excelventaspedidos")
+	@Operation(summary = "Se crea un registro en un archivo excel con datos de fecha")
+    @ApiResponse(responseCode = "200", description = "Con este metodo se crea un registro en un archivo excel con datos de fecha")
 	public ResponseEntity<?> descargarExcelventas(@RequestBody FechaDto datosidfecha) {
 		LOG.info(" La fecha es " + datosidfecha.getFechaminima());
 

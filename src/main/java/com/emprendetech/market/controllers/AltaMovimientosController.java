@@ -11,11 +11,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.emprendetech.market.dao.PlataformaMovimientoDao;
 import com.emprendetech.market.entitys.Clientes;
 import com.emprendetech.market.entitys.Detallespedido;
+import com.emprendetech.market.entitys.Ingresos;
 import com.emprendetech.market.entitys.Pedidos;
 import com.emprendetech.market.entitys.Productosunidad;
 import com.emprendetech.market.entitys.Ventas;
 import com.emprendetech.market.repositorys.ClientesRepository;
 import com.emprendetech.market.repositorys.DetallespedidoRepository;
+import com.emprendetech.market.repositorys.IngresosRepository;
 import com.emprendetech.market.repositorys.PedidosRepository;
 import com.emprendetech.market.repositorys.ProductosunidadRepository;
 import com.emprendetech.market.repositorys.VentasRepository;
@@ -44,6 +46,8 @@ public class AltaMovimientosController {
 	private ClientesRepository clientesRepository;
 	@Autowired
 	private PedidosRepository pedidosRepository;
+	@Autowired
+	private IngresosRepository ingresosRepository ;
 	
 	public String UnaVentaoPedido(@RequestBody VentaYPedidosDto ventaYPedidosDto) throws Exception {
 		LOG.info("createAlta UnaVenta- createAlta UnaVenta() Method");
@@ -51,30 +55,48 @@ public class AltaMovimientosController {
 		String response = null;
 		String Venta=null;
 		String Pedido=null;
+		String Ingresos=null;
 		
 		try {
 
 			Ventas VentasInsert = new Ventas();
 			Date dateVentas = new Date();
+			Ingresos ingresosInsert =new Ingresos();
 
 			VentasInsert.setIdmetodospago(ventaYPedidosDto.getIdmetodospago());
 			VentasInsert.setFechaventa(dateVentas);
 			VentasInsert.setCreadoridusuario(ventaYPedidosDto.getCreadoridusuario());
 			VentasInsert.setTipo(ventaYPedidosDto.getTipo());
 			VentasInsert.setEstatus(ventaYPedidosDto.getEstatusventa());
+		
+			ingresosInsert.setCreadoridusuario(ventaYPedidosDto.getCreadoridusuario());
 
+			if ("Venta".equals(ventaYPedidosDto.getTipo())) {
+		     ingresosInsert.setIdcaja(ventaYPedidosDto.getIdcaja());
+
+			}
+			
 			Utils util = new Utils();
 			VentasInsert.setFechacreacion(util.currentDate());
 			VentasInsert.setFechamodificacion(util.currentDate());
+			ingresosInsert.setFechacreacion(util.currentDate());
+			ingresosInsert.setFechamodificacion(util.currentDate());
 
 			LOG.info("Alta UnaVenta - Alta UnaVenta() Method " + VentasInsert.toString());
 
 			VentasInsert = ventasRepository.save(VentasInsert);
 			
+		     ingresosInsert.setIdventa(VentasInsert.getIdventa());
+			 ingresosInsert =  ingresosRepository.save(ingresosInsert);
+				
 			Venta="Su id de venta es ="+VentasInsert.getIdventa();
 	
 
 			if ("Pedido".equals(ventaYPedidosDto.getTipo())) {
+				
+				  ingresosInsert.setIdcaja(1);
+				  ingresosInsert.setIdventa(VentasInsert.getIdventa());
+				  ingresosInsert =  ingresosRepository.save(ingresosInsert);
 
 				Integer idcliente = ClienteExistente.getCliente(ventaYPedidosDto.getIdcliente());
 				
@@ -124,13 +146,15 @@ public class AltaMovimientosController {
 				LOG.info("Alta Pedidos - Alta Pedidos() Method " + PedidosInsert.toString());
 				PedidosInsert = pedidosRepository.save(PedidosInsert);
 				
+				
 				Pedido="Su id de pedido es ="+PedidosInsert.getIdpedido()+" Su id de cliente es "+idcliente;
 
 				}
 				
 			}
 
-			response =Venta + Pedido;
+			Ingresos="Su id de ingreso es ="+ ingresosInsert.getIdingresos();
+			response =Venta+" " + Pedido+" " +Ingresos;
 
 		} catch (Exception e) {
 			LOG.info("eror" + e.getStackTrace());
@@ -180,11 +204,19 @@ public class AltaMovimientosController {
 				Ventas ventasExistente = ventasRepository.findById(detallespedidoDto.getIdventa()).orElseThrow();
 				ventasExistente.setTotal(total);
 				ventasExistente = ventasRepository.save(ventasExistente);
-
+				
+				
+			    Ingresos ingresosExistente = ingresosRepository.findById(detallespedidoDto.getIdingresos()).orElseThrow();
+			    
+			    ingresosExistente.setIngreso(total);
+			    ingresosExistente = ingresosRepository.save(ingresosExistente);
+			    
+			    LOG.info("IDingreso: " + ingresosExistente.getIdingresos() + "ingreso: " + ingresosExistente.getIngreso() +"venta: " + ingresosExistente.getIdventa());
+			    
+			    
 				Integer cantidadrestante = (cantidadproductounidad - detallespedidoDto.getCantidad());
 
-				Productosunidad productosunidadExistente = productosunidadRepository
-						.findById(detallespedidoDto.getIdproductounidad()).orElseThrow();
+				Productosunidad productosunidadExistente = productosunidadRepository.findById(detallespedidoDto.getIdproductounidad()).orElseThrow();
 				productosunidadExistente.setCantidad(cantidadrestante);
 				productosunidadExistente = productosunidadRepository.save(productosunidadExistente);
 

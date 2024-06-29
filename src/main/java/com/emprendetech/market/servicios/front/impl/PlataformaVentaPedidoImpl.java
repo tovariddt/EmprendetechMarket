@@ -8,6 +8,8 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,6 +27,9 @@ import com.emprendetech.market.service.requestDto.VentaYPedidosDto;
 import com.emprendetech.market.service.requestDto.VentasDto;
 import com.emprendetech.market.service.responseDto.VentaDetallesPedido;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+
 @ResponseBody
 @ResponseStatus(HttpStatus.SERVICE_UNAVAILABLE)
 
@@ -39,6 +44,9 @@ public class PlataformaVentaPedidoImpl implements InterfacesMovimientos {
 	private PlataformaMovimientoDao CabezaVenta , CuerpoVenta;
 
 	@Override
+	@PostMapping("/ventapedido")
+	@Operation(summary = "Se realiza un registro de una venta")
+    @ApiResponse(responseCode = "200", description = "Con este metodo se realiza un registro de una venta")
 	public ResponseEntity<?> postUnaVentaPedido(@RequestBody VentaYPedidosDto ventaYPedidosDto) {
 
 		LOG.info("get Ventas - get Ventas() Method");
@@ -62,6 +70,9 @@ public class PlataformaVentaPedidoImpl implements InterfacesMovimientos {
 	}
 	
 	@Override
+	@PostMapping("/detallepedido")
+	@Operation(summary = "Se realiza un registro de un detallepedido")
+    @ApiResponse(responseCode = "200", description = "Con este metodo se realiza un registro de un detallepedido")
 	public ResponseEntity<?> postDetalleVenta(@RequestBody DetallespedidoDto detallespedidoDto) {
 		LOG.info("get Detallespedido - get Detallespedido() Method");
 		ResponseEntity<?> responsealtaDetallespedido = null;
@@ -85,6 +96,9 @@ public class PlataformaVentaPedidoImpl implements InterfacesMovimientos {
 	}
 	
 	@Override
+	@GetMapping("/ventadetalle")
+	@Operation(summary = "Se realiza una consulta a venta y  detallepedido")
+    @ApiResponse(responseCode = "200", description = "Con este metodo se realiza una consulta a venta y  detallepedido")
 	public ResponseEntity<?> getVentaDetalleventa(@RequestBody DetallespedidoDto detallespedidoDto) {
 		LOG.info("get VentaDetalleventa -  get VentaDetalleventa() Method");
 

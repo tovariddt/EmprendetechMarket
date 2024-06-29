@@ -115,6 +115,9 @@ public class PlataformaServiceImpl implements Interfaces {
 	private VentasController AltaVentas , ActualizarVentas;
 
     @Override
+	@GetMapping("/roles")
+	@Operation(summary = "Obtiene una lista de roles")
+	@ApiResponse(responseCode = "200", description = "Con este metodo se obtiene la lista de roles")
     public ResponseEntity<?> getAllRoles() {
         LOG.info("get AllRoles - get AllRoles() Method");
         ResponseEntity<?> responseRoles = null;
@@ -135,6 +138,9 @@ public class PlataformaServiceImpl implements Interfaces {
     }
 
     @Override
+	@GetMapping("/perfiles")
+	@Operation(summary = "Obtiene una lista de perfiles")
+	@ApiResponse(responseCode = "200", description = "Con este metodo se obtiene la lista de perfiles")
     public ResponseEntity<?> getAllPerfiles() {
         LOG.info("getAllPerfiles - getAllPerfiles() Method");
         ResponseEntity<?> responsePerfiles = null;
@@ -156,6 +162,9 @@ public class PlataformaServiceImpl implements Interfaces {
 
 	
     @Override
+	@GetMapping("/codigopostal")
+	@Operation(summary = "Obtiene la informacion de un codigo postal")
+    @ApiResponse(responseCode = "200", description = "Con este metodo se obtiene la informacion de un codigo postal solicitado ")
     public ResponseEntity<?> getAllCodigoPostal(@RequestBody PostalRespDto postalrespDto) {
 
 		LOG.info("get AllCodigoPostal - get AllCodigoPostal() Method");
@@ -180,6 +189,9 @@ public class PlataformaServiceImpl implements Interfaces {
 	}
 
     @Override
+	@PostMapping("/alta")
+	@Operation(summary = "Se realiza un registro de Persona, Usuario y Emprendimiento")
+    @ApiResponse(responseCode = "200", description = "Con este metodo se realiza un registro de Persona, Usuario y Emprendimiento")
     public ResponseEntity<?> postRegistro(@RequestBody RegistroDto registrodto) {
 		LOG.info("get Registro - get Registro() Method");
 		ResponseEntity<?> responseAlta = null;
@@ -202,6 +214,9 @@ public class PlataformaServiceImpl implements Interfaces {
 
     
     @Override
+	@PostMapping("/actualizar/usuario")
+	@Operation(summary = "Se realiza una actualizacion de Usuario")
+    @ApiResponse(responseCode = "200", description = "Con este metodo se realiza una actualizacion de Usuario")
     public ResponseEntity<?> updateUsuario(@RequestBody Usuario usuario) {
 
 		LOG.info("update Usuario - update Usuario() Method");
@@ -228,6 +243,9 @@ public class PlataformaServiceImpl implements Interfaces {
 	
 	
 	@Override
+	@PostMapping("/actualizar/personas")
+	@Operation(summary = "Se realiza una actualizacion de Persona")
+    @ApiResponse(responseCode = "200", description = "Con este metodo se realiza una actualizacion de Persona")
 	public ResponseEntity<?> updatePersonas(@RequestBody Personas personas) {
 
 		LOG.info("update Personas - update Personas() Method");
@@ -253,6 +271,9 @@ public class PlataformaServiceImpl implements Interfaces {
 	}
 	
 	@Override
+	@PostMapping("/actualizar/emprendimientos")
+	@Operation(summary = "Se realiza un actualizacion de Emprendimiento")
+    @ApiResponse(responseCode = "200", description = "Con este metodo se realiza una actualizacion de Emprendimiento")
 	public ResponseEntity<?> updateEmprendimientos(@RequestBody Emprendimientos emprendimientos) {
 
 		LOG.info("update Emprendimientos - update Emprendimientos() Method");
@@ -280,6 +301,9 @@ public class PlataformaServiceImpl implements Interfaces {
 	
 	
 	@Override
+	@GetMapping("/correo")
+	@Operation(summary = "Se realiza una comprobacion de que el correo existe")
+    @ApiResponse(responseCode = "200", description = "Con este metodo se realiza una comprobacion de que el correo existe en la base de datos")
 	public ResponseEntity<?> getCorreo(@RequestBody Usuario correodto) {
 		LOG.info("get CorreoComprobacion - get CorreoComprobacion() Method");
 
@@ -314,6 +338,9 @@ public class PlataformaServiceImpl implements Interfaces {
 
 	
 	@Override
+	@GetMapping("/consulta")
+	@Operation(summary = "Se realiza una consulta a Usuario")
+    @ApiResponse(responseCode = "200", description = "Con este metodo se realiza una consulta a Usuario")
 	public ResponseEntity<?> getUsuarioPersona(@RequestBody UsuarioContrasenaDto CorroContrasena) {
 		LOG.info("get UsuarioPersona - get UsuarioPersona() Method");
 
@@ -344,6 +371,9 @@ public class PlataformaServiceImpl implements Interfaces {
 	}
 
 	@Override
+	@GetMapping("/categorias")
+	@Operation(summary = "Obtiene una lista de categorias")
+	@ApiResponse(responseCode = "200", description = "Con este metodo se obtiene la lista de categorias")
 	public ResponseEntity<?> getAllCategorias() {
 
 		LOG.info("get AllCategorias - get AllCategorias() Method");
@@ -369,6 +399,9 @@ public class PlataformaServiceImpl implements Interfaces {
 	}
 
 	@Override
+	@PostMapping("/alta/producto")
+	@Operation(summary = "Se realiza un registro de producto")
+    @ApiResponse(responseCode = "200", description = "Con este metodo se realiza un registro de producto")
 	public ResponseEntity<?> postProducto(@RequestBody ProductoDto productoDto) {
 
 		LOG.info("get Producto - get Producto() Method");
@@ -393,6 +426,9 @@ public class PlataformaServiceImpl implements Interfaces {
 	}
 
 	@Override
+	@PostMapping("/actualizar/producto")
+	@Operation(summary = "Se realiza una actualizacion de producto")
+    @ApiResponse(responseCode = "200", description = "Con este metodo se realiza una actualizacion de producto")
 	public ResponseEntity<?> updateProducto(@RequestBody Productos productos) {
 
 		LOG.info("update Producto - update Producto() Method");
@@ -417,6 +453,9 @@ public class PlataformaServiceImpl implements Interfaces {
 	}
 	
 	@Override
+	@GetMapping("/consulta/productoemprendimiento")
+	@Operation(summary = "Se realiza una consulta a producto emprendimiento")
+    @ApiResponse(responseCode = "200", description = "Con este metodo se realiza una consulta a producto emprendimiento")
 	public ResponseEntity<?> getproductoEmprendimiento(@RequestBody ProductosRespDto idemprendimientos) {
 
 		LOG.info("get productoEmprendimiento - get productoEmprendimiento() Method");
@@ -441,6 +480,9 @@ public class PlataformaServiceImpl implements Interfaces {
 	}
 	
 	@Override
+	@GetMapping("/consulta/productoemprendimientocategoria")
+	@Operation(summary = "Se realiza una consulta a producto emprendimiento categoria")
+    @ApiResponse(responseCode = "200", description = "Con este metodo se realiza una consulta a producto emprendimiento categoria")
 	public ResponseEntity<?> getproductoEmprendimientoCategoria(@RequestBody ProductosRespDto emprendimientoscategoria ) {
 
 		LOG.info("get productoEmprendimientoCategoria - get productoEmprendimientoCategoria() Method");
@@ -466,6 +508,9 @@ public class PlataformaServiceImpl implements Interfaces {
 	}
 	
 	@Override
+	@GetMapping("/consulta/productoemprendimientonombrelike")
+	@Operation(summary = "Se realiza una consulta por producto emprendimiento nombrelike")
+    @ApiResponse(responseCode = "200", description = "Con este metodo se realiza una consulta por producto emprendimiento nombrelike")
 	public ResponseEntity<?> getproductoEmprendimientoNombreLIKE(@RequestBody ProductosRespDto emprendimientosNombreLIKE ) {
 
 		LOG.info("get productoEmprendimientoNombreLIKE - get productoEmprendimientoNombreLIKE() Method");
@@ -493,6 +538,9 @@ public class PlataformaServiceImpl implements Interfaces {
 
 
 	@Override
+	@PostMapping("/alta/categoria")
+	@Operation(summary = "Se realiza un registro de categoria")
+    @ApiResponse(responseCode = "200", description = "Con este metodo se realiza un registro de categoria")
 	public ResponseEntity<?> postCategoria(@RequestBody CategoriaDto categoriaDto) {
 
 		LOG.info("get Categoria - get Categoria() Method");
@@ -517,6 +565,9 @@ public class PlataformaServiceImpl implements Interfaces {
 	}
 
 	@Override
+	@PostMapping("/actualizar/categoria")
+	@Operation(summary = "Se realiza una actualizacion de categoria")
+    @ApiResponse(responseCode = "200", description = "Con este metodo se realiza una actualizacion de categoria")
 	public ResponseEntity<?> updateCategorias(@RequestBody Categorias categorias) {
 
 		LOG.info("update Categorias - update Categorias() Method");
@@ -543,6 +594,9 @@ public class PlataformaServiceImpl implements Interfaces {
 	
 	
 	@Override
+	@PostMapping("/alta/clientes")
+	@Operation(summary = "Se realiza un registro de clientes")
+    @ApiResponse(responseCode = "200", description = "Con este metodo se realiza un registro de clientes")
 	public ResponseEntity<?> postClientes(@RequestBody ClientesDto clientesDto) {
 
 		LOG.info("get Clientes - get Clientes() Method");
@@ -567,6 +621,9 @@ public class PlataformaServiceImpl implements Interfaces {
 	}
 
 	@Override
+	@PostMapping("/actualizar/clientes")
+	@Operation(summary = "Se realiza una actualizacion de clientes")
+    @ApiResponse(responseCode = "200", description = "Con este metodo se realiza una actualizacion de clientes")
 	public ResponseEntity<?> updateClientes(@RequestBody Clientes clientes) {
 
 		LOG.info("update Clientes - update Clientes() Method");
@@ -592,6 +649,9 @@ public class PlataformaServiceImpl implements Interfaces {
 	}
 	
 	@Override
+	@PostMapping("/alta/medidas")
+	@Operation(summary = "Se realiza un registro de medidas")
+    @ApiResponse(responseCode = "200", description = "Con este metodo se realiza un registro de medidas")
 	public ResponseEntity<?> postMedidas(@RequestBody MedidasDto medidasDto) {
 
 		LOG.info("get Medidas - get Medidas() Method");
@@ -616,6 +676,9 @@ public class PlataformaServiceImpl implements Interfaces {
 	}
 
 	@Override
+	@PostMapping("/actualizar/medidas")
+	@Operation(summary = "Se realiza una actualizacion de medidas")
+    @ApiResponse(responseCode = "200", description = "Con este metodo se realiza una actualizacion de medidas")
 	public ResponseEntity<?> updateMedidas(@RequestBody Medidas medidas) {
 
 		LOG.info("update Medidas - update Medidas() Method");
@@ -641,6 +704,9 @@ public class PlataformaServiceImpl implements Interfaces {
 	}
 	
 	@Override
+	@PostMapping("/alta/detallespedido")
+	@Operation(summary = "Se realiza un registro de detallespedido")
+    @ApiResponse(responseCode = "200", description = "Con este metodo se realiza un registro de detallespedido")
 	public ResponseEntity<?> postDetallespedido(@RequestBody DetallespedidoDto detallespedidoDto) {
 
 		LOG.info("get Detallespedido - get Detallespedido() Method");
@@ -665,6 +731,9 @@ public class PlataformaServiceImpl implements Interfaces {
 	}
 
 	@Override
+	@PostMapping("/actualizar/detallespedido")
+	@Operation(summary = "Se realiza una actualizacion de detallespedido")
+    @ApiResponse(responseCode = "200", description = "Con este metodo se realiza una actualizacion de detallespedido")
 	public ResponseEntity<?> updateDetallespedido(@RequestBody Detallespedido detallespedido) {
 
 
@@ -691,6 +760,9 @@ public class PlataformaServiceImpl implements Interfaces {
 	}
 	
 	@Override
+	@PostMapping("/alta/pedidos")
+	@Operation(summary = "Se realiza un registro de pedidos")
+    @ApiResponse(responseCode = "200", description = "Con este metodo se realiza un registro de pedidos")
 	public ResponseEntity<?> postPedidos(@RequestBody PedidosDto pedidosDto) {
 
 		LOG.info("get Pedidos - get Pedidos() Method");
@@ -715,6 +787,9 @@ public class PlataformaServiceImpl implements Interfaces {
 	}
 
 	@Override
+	@PostMapping("/actualizar/pedidos")
+	@Operation(summary = "Se realiza una actualizacion de pedidos")
+    @ApiResponse(responseCode = "200", description = "Con este metodo se realiza una actualizacion de pedidos")
 	public ResponseEntity<?> updatePedidos(@RequestBody Pedidos pedidos) {
 
 		LOG.info("update Pedidos - update Pedidos() Method");
@@ -740,6 +815,9 @@ public class PlataformaServiceImpl implements Interfaces {
 	}
 	
 	@Override
+	@PostMapping("/alta/metodospago")
+	@Operation(summary = "Se realiza un registro de metodospago")
+    @ApiResponse(responseCode = "200", description = "Con este metodo se realiza un registro de metodospago")
 	public ResponseEntity<?> postMetodospago(@RequestBody MetodospagoDto metodospagoDto) {
 
 		LOG.info("get Metodospago - get Metodospago() Method");
@@ -764,6 +842,9 @@ public class PlataformaServiceImpl implements Interfaces {
 	}
 
 	@Override
+	@PostMapping("/actualizar/metodospago")
+	@Operation(summary = "Se realiza una actualizacion de metodospago")
+    @ApiResponse(responseCode = "200", description = "Con este metodo se realiza una actualizacion de metodospago")
 	public ResponseEntity<?> updateMetodospago(@RequestBody Metodospago metodospago) {
 
 		LOG.info("update Metodospago - update Metodospago() Method");
@@ -791,6 +872,9 @@ public class PlataformaServiceImpl implements Interfaces {
 	
 
 	@Override
+	@PostMapping("/alta/productosunidad")
+	@Operation(summary = "Se realiza un registro de productosunidad")
+    @ApiResponse(responseCode = "200", description = "Con este metodo se realiza un registro de productosunidad")
 	public ResponseEntity<?> postProductosunidad(@RequestBody ProductosunidadDto  productosunidadDto) {
 
 		LOG.info("get Productosunidad - get Productosunidad() Method");
@@ -815,6 +899,9 @@ public class PlataformaServiceImpl implements Interfaces {
 	}
 
 	@Override
+	@PostMapping("/actualizar/productosunidad")
+	@Operation(summary = "Se realiza una actualizacion de productosunidad")
+    @ApiResponse(responseCode = "200", description = "Con este metodo se realiza una actualizacion de productosunidad")
 	public ResponseEntity<?> updateProductosunidad(@RequestBody Productosunidad productosunidad) {
 
 		LOG.info("update Productosunidad - update Productosunidad() Method");
@@ -840,6 +927,10 @@ public class PlataformaServiceImpl implements Interfaces {
 	}
 	
 	@Override
+	
+	@PostMapping("/alta/permisos")
+	@Operation(summary = "Se realiza un registro de permisos")
+    @ApiResponse(responseCode = "200", description = "Con este metodo se realiza un registro de permisos")
 	public ResponseEntity<?> postPermisos(@RequestBody PermisosDto  permisosDto) {
 
 		LOG.info("get Permisos - get Permisos() Method");
@@ -864,6 +955,9 @@ public class PlataformaServiceImpl implements Interfaces {
 	}
 
 	@Override
+	@PostMapping("/actualizar/permisos")
+	@Operation(summary = "Se realiza una actualizacion de permisos")
+    @ApiResponse(responseCode = "200", description = "Con este metodo se realiza una actualizacion de permisos")
 	public ResponseEntity<?> updatePermisos(@RequestBody Permisos permisos) {
 
 		LOG.info("update Permisos - update Permisos() Method");
@@ -889,6 +983,9 @@ public class PlataformaServiceImpl implements Interfaces {
 	}
 	
 	@Override
+	@PostMapping("/alta/rolpermisos")
+	@Operation(summary = "Se realiza un registro de rolpermisos")
+    @ApiResponse(responseCode = "200", description = "Con este metodo se realiza un registro de rolpermisos")
 	public ResponseEntity<?> postRolpermisos(@RequestBody RolpermisosDto  rolpermisosDto) {
 
 		LOG.info("get Rol_permisos - get Rol_permisos() Method");
@@ -913,6 +1010,9 @@ public class PlataformaServiceImpl implements Interfaces {
 	}
 
 	@Override
+	@PostMapping("/actualizar/rolpermisos")
+	@Operation(summary = "Se realiza una actualizacion de rolpermisos")
+    @ApiResponse(responseCode = "200", description = "Con este metodo se realiza una actualizacion de rolpermisos")
 	public ResponseEntity<?> updateRolpermisos(@RequestBody Rolpermisos rolpermisos) {
 
 		LOG.info("update Rolpermisos - update Rolpermisos() Method");
@@ -938,6 +1038,9 @@ public class PlataformaServiceImpl implements Interfaces {
 	}
 	
 	@Override
+	@PostMapping("/alta/roles")
+	@Operation(summary = "Se realiza un registro de roles")
+    @ApiResponse(responseCode = "200", description = "Con este metodo se realiza un registro de roles")
 	public ResponseEntity<?> postRoles(@RequestBody RolesDto  rolesDto) {
 
 		LOG.info("get Roles - get Roles() Method");
@@ -962,6 +1065,9 @@ public class PlataformaServiceImpl implements Interfaces {
 	}
 
 	@Override
+	@PostMapping("/actualizar/roles")
+	@Operation(summary = "Se realiza una actualizacion de roles")
+    @ApiResponse(responseCode = "200", description = "Con este metodo se realiza una actualizacion de roles")
 	public ResponseEntity<?> updateRoles(@RequestBody Roles roles) {
 
 		LOG.info("update Roles - update Roles() Method");
@@ -988,6 +1094,9 @@ public class PlataformaServiceImpl implements Interfaces {
 	
 	
 	@Override
+	@PostMapping("/alta/ventas")
+	@Operation(summary = "Se realiza un registro de ventas")
+    @ApiResponse(responseCode = "200", description = "Con este metodo se realiza un registro de ventas")
 	public ResponseEntity<?> postVentas(@RequestBody VentasDto  ventasDto) {
 
 		LOG.info("get Ventas - get Ventas() Method");
@@ -1012,6 +1121,9 @@ public class PlataformaServiceImpl implements Interfaces {
 	}
 
 	@Override
+	@PostMapping("/actualizar/ventas")
+	@Operation(summary = "Se realiza una actualizacion de ventas")
+    @ApiResponse(responseCode = "200", description = "Con este metodo se realiza una actualizacion de ventas")
 	public ResponseEntity<?> updateVentas(@RequestBody Ventas ventas) {
 
 		LOG.info("update Ventas - update Ventas() Method");
