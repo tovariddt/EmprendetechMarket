@@ -61,6 +61,8 @@ public class Constantes {
 	    public static final String SQLGETCODIGO = "SELECT * FROM emprendetech_market.codigo_postal where clave=";
 
 	    public static final String SQLGETCORREO = "SELECT correo FROM emprendetech_market.usuario where correo='";
+	    
+	    public static final String SQLGETNOMBREUSUARIO = "SELECT idusuario FROM emprendetech_market.usuario where nombreusuario='";
 
 	    public static final String SQLGETEMP = "SELECT idperfil FROM emprendetech_market.perfiles where idperfil=" ;
 

@@ -10,6 +10,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.emprendetech.market.entitys.Usuario;
 import com.emprendetech.market.service.responseDto.CategoriasRespDto;
 import com.emprendetech.market.service.responseDto.EmprendimientosRespDto;
 import com.emprendetech.market.service.responseDto.PerfilesRespDto;
@@ -86,6 +87,18 @@ public class PlataformaDao {
 		}
 	}
 
+	public String getIdUsuario(String nombreusuario) {
+	    try {
+	        String sqlcorreo = Constantes.SQLGETNOMBREUSUARIO + nombreusuario + "';";
+	        return jdbcTemplate.queryForObject(sqlcorreo, (rs, rowNum) -> {	        	
+	            return rs.getString("idusuario");
+	        });
+	    } catch (EmptyResultDataAccessException e) {
+	        return null;
+	    }
+	}
+
+	
 	public int getEmp(Integer Perfilemp) {
 		try {
 			String sqlperfiles = Constantes.SQLGETEMP+ Perfilemp + ";";

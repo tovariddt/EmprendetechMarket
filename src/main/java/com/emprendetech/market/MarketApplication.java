@@ -33,4 +33,5 @@ public class MarketApplication {
 		return builder.setConnectTimeout(Duration.ofMillis(60000)).setReadTimeout(Duration.ofMillis(60000)).build();
 	}
 
+	
 }
